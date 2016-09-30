@@ -6,11 +6,13 @@ using System.Windows.Forms;
 
 namespace Ocorrências_Aeronáuticas
 {
+    /// <summary>
+    /// Classe de programa
+    /// </summary>
     static class Program
     {
         /// <summary>
-        /// The main entry point for the application.
-        /// Test commit
+        /// Função Main do programa
         /// </summary>
         [STAThread]
         static void Main()

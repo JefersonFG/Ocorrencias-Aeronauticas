@@ -17,13 +17,25 @@ using GMap.NET.MapProviders;
 
 namespace Ocorrências_Aeronáuticas
 {
+    /// <summary>
+    /// Form principal do programa
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Inicializa uma nova instância da classe <see cref="MainForm"/>
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Evento de load do componente GMaps.NET, ferramenta usada para exibição de mapas no programa, que é usado para fazer a configuração inicial do mapa.
+        /// </summary>
+        /// <param name="sender">Origem do evento</param>
+        /// <param name="e">Instância <see cref="EventArgs"/> que contém as informações do evento</param>
         private void Gmap_Load(object sender, EventArgs e)
         {
             //Setup inicial feito no evento OnLoad do componente de mapas
