@@ -10,7 +10,7 @@ namespace Ocorrências_Aeronáuticas
     /// Classe contendo as informações da aeronave envolvida na ocorrência, lidas do arquivo aeronave.csv
     /// O campo chave é codigo_ocorrencia
     /// </summary>
-    class Aeronave
+    public class Aeronave
     {
         /// <summary>
         /// Código de identificação de aeronave

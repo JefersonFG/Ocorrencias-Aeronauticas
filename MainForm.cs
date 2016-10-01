@@ -66,11 +66,21 @@ namespace Ocorrências_Aeronáuticas
 
         private void goBtn_Click(object sender, EventArgs e)
         {
-            CsvLeitura leitor = new CsvLeitura(textBox1.Text);
+            CsvLeitura leitor;
             CsvLinha linha = new CsvLinha();
             bool leu_linha = false;
             bool continuar = true;
-            string linha_mensagem;
+            int linha_atual = 0;
+
+            if(textBox1.Text.Trim() == "" | ! (textBox1.Text.EndsWith(".csv")))
+            {
+                MessageBox.Show("Selecione um arquivo CSV", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            leitor = new CsvLeitura(textBox1.Text);
+
+
+            /*string linha_mensagem;
 
             while(continuar && (leu_linha = leitor.LeLinha(linha))) //bota a chamada de leitura dentro do while
             {
@@ -86,7 +96,37 @@ namespace Ocorrências_Aeronáuticas
                     continuar = false;
                     break;
                 }
+            } */
+
+            List<Ocorrencia> ocorrencias = new List<Ocorrencia>();
+
+            while (continuar && (leu_linha = leitor.LeLinha(linha)))
+            {
+                if(linha.Count != 19)
+                {
+                    MessageBox.Show("Quantidade de campos na linha "+linha_atual+" é inválida", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    if (linha_atual > 0)
+                    {
+                        Ocorrencia ocorrencia = new Ocorrencia();
+                        ocorrencia.codigo_ocorrencia = Int32.Parse(linha[0]);
+                        ocorrencia.classificacao = linha[1];
+                        ocorrencia.tipo = linha[2];
+                        ocorrencia.localidade = linha[3];
+                        ocorrencias.Add(ocorrencia);
+                    }
+                }
+                
+                linha_atual++;
             }
+
+            leitor.Close();
+
+            ListaCompleta listaCompleta = new ListaCompleta(ocorrencias);
+            listaCompleta.ShowDialog();
+
         }//goBtn Click
     }
 }
