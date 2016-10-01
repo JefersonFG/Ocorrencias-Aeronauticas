@@ -145,7 +145,7 @@ namespace Ocorrências_Aeronáuticas
             while (linha.Count > rows)
                 linha.RemoveAt(rows);
 
-            // Retorna verdadeiro se uma coluna inteira foi lida
+            // Retorna verdadeiro se uma coluna (?) inteira foi lida
             return (linha.Count > 0);
         }
     }

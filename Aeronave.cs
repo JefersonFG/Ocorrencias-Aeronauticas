@@ -187,5 +187,33 @@ namespace Ocorrências_Aeronáuticas
         /// Data no formato dd/mm/aaaa
         /// </value>
         public DateTime dia_extracao { get; set; }
+
+        public Aeronave fromCSV(CsvLinha linha)
+        {
+            //Aeronave aeronave = new Aeronave();
+            this.codigo_aeronave = Convert.ToInt32(linha[0]);
+            this.codigo_ocorrencia = Convert.ToInt32(linha[1]);
+            this.matricula = linha[2];
+            this.codigo_operador = (linha[3] == "NULL" ? 0 : Convert.ToInt32(linha[3]));
+            this.equipamento = linha[4];
+            this.fabricante = linha[5];
+            this.modelo = linha[6];
+            this.tipo_motor = linha[7];
+            this.quantidade_motores = (linha[8] == "NULL" ? 0 : Convert.ToInt32(linha[8]));
+            this.peso_maximo_decolagem = (linha[9] == "NULL" ? 0 : Convert.ToSingle(linha[9]));
+            this.quantidade_assentos = (linha[10] == "NULL" ? 0 : Convert.ToInt32(linha[10]));
+            this.ano_fabricacao = (linha[11] == "NULL" ? 0 : Convert.ToInt32(linha[11]));
+            this.pais_registro = linha[12];
+            this.categoria_registro = linha[13];
+            this.categoria_aviacao = linha[14];
+            this.origem_voo = linha[15];
+            this.destino_voo = linha[16];
+            this.fase_operacao = linha[17];
+            this.tipo_operacao = linha[18];
+            this.nivel_dano = linha[19];
+            this.quantidade_fatalidades = (linha[20] == "NULL" ? 0 : Convert.ToInt32(linha[20]));
+            this.dia_extracao = Convert.ToDateTime(linha[21]);
+            return this;
+        }
     }
 }

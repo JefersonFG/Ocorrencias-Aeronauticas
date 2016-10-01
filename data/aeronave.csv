@@ -1,4 +1,3 @@
-codigo_aeronave,codigo_ocorrencia,matricula,codigo_operador,equipamento,fabricante,modelo,tipo_motor,quantidade_motores,peso_maximo_decolagem,quantidade_assentos,ano_fabricacao,pais_registro,categoria_registro,categoria_aviacao,origem_voo,destino_voo,fase_operacao,tipo_operacao,nivel_dano,quantidade_fatalidades,dia_extracao
 4,45602,PPGXE,241,AVIÃO,"NEIVA INDUSTRIA AERONAUTICA",56-C,PISTÃO,1,660,2,1962,BRASIL,PRI,INSTRUÇÃO,SDPW,SDPW,INDETERMINADA,INSTRUÇÃO,SUBSTANCIAL,NULL,2016-07-30
 40,53551,PPGSZ,160,AVIÃO,"NEIVA INDUSTRIA AERONAUTICA",56-C,PISTÃO,1,660,2,1960,BRASIL,PRI,INSTRUÇÃO,SBBP,SBBP,DECOLAGEM,INSTRUÇÃO,LEVE,NULL,2016-07-30
 118,43721,PTCMT,1232,AVIÃO,"BEECH AIRCRAFT",95-B55,PISTÃO,2,2310,6,1966,BRASIL,TPX,"TÁXI AÉREO",****,****,"CORRIDA APÓS POUSO","TÁXI AÉREO",SUBSTANCIAL,NULL,2016-07-30

@@ -71,7 +71,9 @@ namespace Ocorrências_Aeronáuticas
             bool leu_linha = false;
             bool continuar = true;
             string linha_mensagem;
+            List<Aeronave> aeronaves = new List<Aeronave>();
 
+            /*
             while(continuar && (leu_linha = leitor.LeLinha(linha))) //bota a chamada de leitura dentro do while
             {
                 linha_mensagem = "";
@@ -86,6 +88,14 @@ namespace Ocorrências_Aeronáuticas
                     continuar = false;
                     break;
                 }
+            }
+            */
+
+            while (leitor.LeLinha(linha))
+            {
+                Aeronave aeronave = new Aeronave();
+                aeronave.fromCSV(linha);
+                aeronaves.Add(aeronave);
             }
         }//goBtn Click
     }
