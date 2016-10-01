@@ -29,13 +29,16 @@
         private void InitializeComponent()
         {
             this.Gmap = new GMap.NET.WindowsForms.GMapControl();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Gmap
             // 
             this.Gmap.Bearing = 0F;
+            this.Gmap.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Gmap.CanDragMap = true;
-            this.Gmap.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Gmap.Dock = System.Windows.Forms.DockStyle.Top;
             this.Gmap.EmptyTileColor = System.Drawing.Color.RoyalBlue;
             this.Gmap.GrayScaleMode = false;
             this.Gmap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
@@ -53,27 +56,48 @@
             this.Gmap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.Gmap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.Gmap.ShowTileGridLines = false;
-            this.Gmap.Size = new System.Drawing.Size(484, 361);
+            this.Gmap.Size = new System.Drawing.Size(484, 273);
             this.Gmap.TabIndex = 0;
             this.Gmap.Zoom = 13D;
             this.Gmap.Load += new System.EventHandler(this.Gmap_Load);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(12, 281);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(379, 20);
+            this.textBox1.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(397, 279);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Open";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 361);
+            this.ClientSize = new System.Drawing.Size(484, 438);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.Gmap);
             this.Name = "MainForm";
             this.Text = "MainForm";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private GMap.NET.WindowsForms.GMapControl Gmap;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button1;
     }
 }
 
