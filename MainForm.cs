@@ -55,5 +55,37 @@ namespace Ocorrências_Aeronáuticas
             markers.Markers.Add(marker);                                //Adicionado o marcador ao overlay
             Gmap.Overlays.Add(markers);                                 //Adicionado overlay ao mapa
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                textBox1.Text = openFileDialog1.FileName;
+            }
+        }//button1 Click
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            CsvLeitura leitor = new CsvLeitura(textBox1.Text);
+            CsvLinha linha = new CsvLinha();
+            bool leu_linha = false;
+            bool continuar = true;
+
+            leu_linha = leitor.LeLinha(linha);
+
+            while(continuar && leu_linha)
+            {
+                for(int i = 0; i < linha.Count; i++)
+                {
+                    var resposta = MessageBox.Show(linha[i], "Mensagem", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    if (resposta == DialogResult.Cancel)
+                    {
+                        continuar = false;
+                        break;
+                    }
+                }
+                leu_linha = leitor.LeLinha(linha);
+            }
+        }//button2 Click
     }
 }
