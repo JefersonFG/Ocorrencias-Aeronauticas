@@ -10,7 +10,7 @@ namespace Ocorrências_Aeronáuticas
     /// Classe contendo as informações dos fatores contribuintes envolvidos com a ocorrência, lidas do arquivo fator_contribuinte.csv
     /// O campo chave é codigo_ocorrencia
     /// </summary>
-    class FatorContribuinte
+    public class FatorContribuinte
     {
         /// <summary>
         /// Código de identificação do fator contribuinte
