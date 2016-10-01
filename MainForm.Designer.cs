@@ -30,9 +30,9 @@
         {
             this.Gmap = new GMap.NET.WindowsForms.GMapControl();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.browseBtn = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.button2 = new System.Windows.Forms.Button();
+            this.goBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Gmap
@@ -71,37 +71,37 @@
             this.textBox1.Size = new System.Drawing.Size(379, 20);
             this.textBox1.TabIndex = 1;
             // 
-            // button1
+            // browseBtn
             // 
-            this.button1.Location = new System.Drawing.Point(397, 279);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Browse";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.browseBtn.Location = new System.Drawing.Point(397, 279);
+            this.browseBtn.Name = "browseBtn";
+            this.browseBtn.Size = new System.Drawing.Size(75, 23);
+            this.browseBtn.TabIndex = 2;
+            this.browseBtn.Text = "Browse";
+            this.browseBtn.UseVisualStyleBackColor = true;
+            this.browseBtn.Click += new System.EventHandler(this.browseBtn_Click);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // button2
+            // goBtn
             // 
-            this.button2.Location = new System.Drawing.Point(199, 317);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Go";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.goBtn.Location = new System.Drawing.Point(199, 317);
+            this.goBtn.Name = "goBtn";
+            this.goBtn.Size = new System.Drawing.Size(75, 23);
+            this.goBtn.TabIndex = 3;
+            this.goBtn.Text = "Go";
+            this.goBtn.UseVisualStyleBackColor = true;
+            this.goBtn.Click += new System.EventHandler(this.goBtn_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 438);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.goBtn);
+            this.Controls.Add(this.browseBtn);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.Gmap);
             this.Name = "MainForm";
@@ -115,9 +115,9 @@
 
         private GMap.NET.WindowsForms.GMapControl Gmap;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button browseBtn;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button goBtn;
     }
 }
 

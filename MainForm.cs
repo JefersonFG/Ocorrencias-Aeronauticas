@@ -46,7 +46,7 @@ namespace Ocorrências_Aeronáuticas
             Gmap.Position = new PointLatLng(-30.0364242, -51.2191413);  //Posição por coordenadas
             Gmap.ShowCenter = false;                                    //Remove a cruz que indica o centro do mapa
 
-            //Inserção de um marcado de local
+            //Inserção de um marcador de local
 
             GMapOverlay markers = new GMapOverlay("markers");           //Overlay é uma camada onde colocamos marcadores e rotas
             GMapMarker marker = new GMarkerGoogle(
@@ -56,15 +56,15 @@ namespace Ocorrências_Aeronáuticas
             Gmap.Overlays.Add(markers);                                 //Adicionado overlay ao mapa
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void browseBtn_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 textBox1.Text = openFileDialog1.FileName;
             }
-        }//button1 Click
+        }//browseBtn Click
 
-        private void button2_Click(object sender, EventArgs e)
+        private void goBtn_Click(object sender, EventArgs e)
         {
             CsvLeitura leitor = new CsvLeitura(textBox1.Text);
             CsvLinha linha = new CsvLinha();
@@ -72,9 +72,7 @@ namespace Ocorrências_Aeronáuticas
             bool continuar = true;
             string linha_mensagem;
 
-            leu_linha = leitor.LeLinha(linha);
-
-            while(continuar && leu_linha)
+            while(continuar && (leu_linha = leitor.LeLinha(linha))) //bota a chamada de leitura dentro do while
             {
                 linha_mensagem = "";
                 for(int i = 0; i < linha.Count; i++)
@@ -88,8 +86,7 @@ namespace Ocorrências_Aeronáuticas
                     continuar = false;
                     break;
                 }
-                leu_linha = leitor.LeLinha(linha);
             }
-        }//button2 Click
+        }//goBtn Click
     }
 }
