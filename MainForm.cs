@@ -70,19 +70,23 @@ namespace Ocorrências_Aeronáuticas
             CsvLinha linha = new CsvLinha();
             bool leu_linha = false;
             bool continuar = true;
+            string linha_mensagem;
 
             leu_linha = leitor.LeLinha(linha);
 
             while(continuar && leu_linha)
             {
+                linha_mensagem = "";
                 for(int i = 0; i < linha.Count; i++)
                 {
-                    var resposta = MessageBox.Show(linha[i], "Mensagem", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                    if (resposta == DialogResult.Cancel)
-                    {
-                        continuar = false;
-                        break;
-                    }
+                    linha_mensagem += linha[i];
+                    linha_mensagem += " | ";
+                }
+                var resposta = MessageBox.Show(linha_mensagem, "Mensagem", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                if (resposta == DialogResult.Cancel)
+                {
+                    continuar = false;
+                    break;
                 }
                 leu_linha = leitor.LeLinha(linha);
             }
