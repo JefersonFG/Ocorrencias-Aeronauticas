@@ -75,6 +75,8 @@ namespace Ocorrências_Aeronáuticas
             List<Ocorrencia> ocorrencias = new List<Ocorrencia>();
             List<FatorContribuinte> fatores = new List<FatorContribuinte>();
 
+            outputBox.Text = "Populando classes...\r\n";
+
             if (textBox1.Text.EndsWith("ocorrencia.csv"))
             {
                 ListaCompleta listaCompleta = new ListaCompleta(ocorrencias);
@@ -97,6 +99,7 @@ namespace Ocorrências_Aeronáuticas
                 }
                 leitor.Close();
                 listaCompleta.populaDados(ocorrencias);
+                outputBox.Text += "Foram criadas " + linha_atual + " entradas.\r\n";
                 listaCompleta.ShowDialog(); 
             }
             else if (textBox1.Text.EndsWith("aeronave.csv"))
@@ -121,6 +124,7 @@ namespace Ocorrências_Aeronáuticas
                 }
                 leitor.Close();
                 listaCompleta.populaDados(aeronaves);
+                outputBox.Text += "Foram criadas " + linha_atual + " entradas.\r\n";
                 listaCompleta.ShowDialog();
             }
             else if (textBox1.Text.EndsWith("fator_contribuinte.csv"))
@@ -145,7 +149,12 @@ namespace Ocorrências_Aeronáuticas
                 }
                 leitor.Close();
                 listaCompleta.populaDados(fatores);
+                outputBox.Text += "Foram criadas " + linha_atual + " entradas.\r\n";
                 listaCompleta.ShowDialog();
+            }
+            else
+            {
+                outputBox.Text += "ERRO: O arquivo selecionado não é do tipo esperado.\r\n";
             }
         }//goBtn Click
     }
