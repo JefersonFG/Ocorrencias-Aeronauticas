@@ -11,7 +11,7 @@ namespace Ocorrências_Aeronáuticas
     public static class Sorting //mamãe
     {
         #region Bubble Sort
-        public static List<Aeronave> bubbleSort_CodigoOcorrencia(List<Aeronave> aeronaves)
+        public static List<Aeronave> bubbleSort_codigo_ocorrencia(List<Aeronave> aeronaves)
         {
             List<Aeronave> lista_ordenada = new List<Aeronave>();
             foreach (Aeronave aeronave in aeronaves)
@@ -37,23 +37,84 @@ namespace Ocorrências_Aeronáuticas
 
             return lista_ordenada;
         }
+
+        public static List<Aeronave> bubbleSort_fabricante(List<Aeronave> aeronaves)
+        {
+            List<Aeronave> lista_ordenada = new List<Aeronave>();
+            foreach (Aeronave aeronave in aeronaves)
+            {
+                lista_ordenada.Add(aeronave);
+            }
+            bool exchanges;
+            do
+            {
+                exchanges = false;
+                for (int i = 0; i < lista_ordenada.Count - 1; i++)
+                {
+                    if(lista_ordenada[i].fabricante.CompareTo(lista_ordenada[i + 1].fabricante) > 0)
+                    {
+                        // Exchange elements
+                        Aeronave temp = lista_ordenada[i];
+                        lista_ordenada[i] = lista_ordenada[i + 1];
+                        lista_ordenada[i + 1] = temp;
+                        exchanges = true;
+                    }
+                }
+            } while (exchanges);
+
+            return lista_ordenada;
+        }
+
         #endregion
 
         #region Insertion Sort
-        public static void InsertionSort(ref int[] x)
+        public static void InsertionSort_codigo_ocorrencia(List<Aeronave> aeronaves)
         {
-            int n = x.Length - 1;
-            int i, j, temp;
+            int n = aeronaves.Count - 1;
+            int i, j;
+
+            Aeronave temp;
+
+            List<Aeronave> lista_ordenada = new List<Aeronave>();
+            foreach (Aeronave aeronave in aeronaves)
+            {
+                lista_ordenada.Add(aeronave);
+            }
 
             for (i = 1; i <= n; ++i)
             {
-                temp = x[i];
+                temp = lista_ordenada[i];
                 for (j = i - 1; j >= 0; --j)
                 {
-                    if (temp < x[j]) x[j + 1] = x[j];
+                    if (temp.codigo_ocorrencia < lista_ordenada[j].codigo_ocorrencia) lista_ordenada[j + 1] = lista_ordenada[j];
                     else break;
                 }
-                x[j + 1] = temp;
+                lista_ordenada[j + 1] = temp;
+            }
+        }
+
+        public static void InsertionSort_fabricante(List<Aeronave> aeronaves)
+        {
+            int n = aeronaves.Count - 1;
+            int i, j;
+
+            Aeronave temp;
+
+            List<Aeronave> lista_ordenada = new List<Aeronave>();
+            foreach (Aeronave aeronave in aeronaves)
+            {
+                lista_ordenada.Add(aeronave);
+            }
+
+            for (i = 1; i <= n; ++i)
+            {
+                temp = lista_ordenada[i];
+                for (j = i - 1; j >= 0; --j)
+                {
+                    if (temp.fabricante.CompareTo(lista_ordenada[j].fabricante) < 0) lista_ordenada[j + 1] = lista_ordenada[j];
+                    else break;
+                }
+                lista_ordenada[j + 1] = temp;
             }
         }
         #endregion
