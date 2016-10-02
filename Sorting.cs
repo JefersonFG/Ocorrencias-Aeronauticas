@@ -71,17 +71,17 @@ namespace Ocorrências_Aeronáuticas
         #endregion
 
         #region Insertion Sort
-        public static void InsertionSort_codigo_ocorrencia(List<Aeronave> aeronaves)
+        public static List<DadosOcorrencia> InsertionSort_codigo_ocorrencia(List<DadosOcorrencia> lista_desordenada)
         {
-            int n = aeronaves.Count - 1;
+            int n = lista_desordenada.Count - 1;
             int i, j;
 
-            Aeronave temp;
+            DadosOcorrencia temp;
 
-            List<Aeronave> lista_ordenada = new List<Aeronave>();
-            foreach (Aeronave aeronave in aeronaves)
+            List<DadosOcorrencia> lista_ordenada = new List<DadosOcorrencia>();
+            foreach (DadosOcorrencia dados_ocorrencia in lista_desordenada)
             {
-                lista_ordenada.Add(aeronave);
+                lista_ordenada.Add(dados_ocorrencia);
             }
 
             for (i = 1; i <= n; ++i)
@@ -94,19 +94,21 @@ namespace Ocorrências_Aeronáuticas
                 }
                 lista_ordenada[j + 1] = temp;
             }
+
+            return lista_ordenada;
         }
 
-        public static void InsertionSort_fabricante(List<Aeronave> aeronaves)
+        public static List<DadosOcorrencia> InsertionSort_localidade(List<DadosOcorrencia> lista_desordenada)
         {
-            int n = aeronaves.Count - 1;
+            int n = lista_desordenada.Count - 1;
             int i, j;
 
-            Aeronave temp;
+            DadosOcorrencia temp;
 
-            List<Aeronave> lista_ordenada = new List<Aeronave>();
-            foreach (Aeronave aeronave in aeronaves)
+            List<DadosOcorrencia> lista_ordenada = new List<DadosOcorrencia>();
+            foreach (DadosOcorrencia dados_ocorrencia in lista_desordenada)
             {
-                lista_ordenada.Add(aeronave);
+                lista_ordenada.Add(dados_ocorrencia);
             }
 
             for (i = 1; i <= n; ++i)
@@ -114,11 +116,13 @@ namespace Ocorrências_Aeronáuticas
                 temp = lista_ordenada[i];
                 for (j = i - 1; j >= 0; --j)
                 {
-                    if (temp.fabricante.CompareTo(lista_ordenada[j].fabricante) < 0) lista_ordenada[j + 1] = lista_ordenada[j];
+                    if (temp.ocorrencia.localidade.CompareTo(lista_ordenada[j].ocorrencia.localidade) < 0) lista_ordenada[j + 1] = lista_ordenada[j];
                     else break;
                 }
                 lista_ordenada[j + 1] = temp;
             }
+
+            return lista_ordenada;
         }
         #endregion
 
