@@ -11,24 +11,31 @@ namespace Ocorrências_Aeronáuticas
     public static class Sorting //mamãe
     {
         #region Bubble Sort
-        public static void bubbleSort(ref int[] x)
+        public static List<Aeronave> bubbleSort_CodigoOcorrencia(List<Aeronave> aeronaves)
         {
+            List<Aeronave> lista_ordenada = new List<Aeronave>();
+            foreach (Aeronave aeronave in aeronaves)
+            {
+                lista_ordenada.Add(aeronave);
+            }
             bool exchanges;
             do
             {
                 exchanges = false;
-                for (int i = 0; i < x.Length - 1; i++)
+                for (int i = 0; i < lista_ordenada.Count - 1; i++)
                 {
-                    if (x[i] > x[i + 1])
+                    if (lista_ordenada[i].codigo_ocorrencia > lista_ordenada[i + 1].codigo_ocorrencia)
                     {
                         // Exchange elements
-                        int temp = x[i];
-                        x[i] = x[i + 1];
-                        x[i + 1] = temp;
+                        Aeronave temp = lista_ordenada[i];
+                        lista_ordenada[i] = lista_ordenada[i + 1];
+                        lista_ordenada[i + 1] = temp;
                         exchanges = true;
                     }
                 }
             } while (exchanges);
+
+            return lista_ordenada;
         }
         #endregion
 

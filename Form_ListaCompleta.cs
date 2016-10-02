@@ -12,9 +12,9 @@ namespace Ocorrências_Aeronáuticas
 {
     public partial class Form_ListaCompleta : Form
     {
-        private List<Ocorrencia> lista_ocorrencias;
-        private List<Aeronave> lista_aeronaves;
-        private List<FatorContribuinte> lista_fatores;
+        private List<Ocorrencia> lista_ocorrencias = null;
+        private List<Aeronave> lista_aeronaves = null;
+        private List<FatorContribuinte> lista_fatores = null;
 
         public Form_ListaCompleta(List<Ocorrencia> ocorrencias)
         {
@@ -26,7 +26,52 @@ namespace Ocorrências_Aeronáuticas
         {
             InitializeComponent();
             lista_aeronaves = aeronaves;
-        }
+
+            
+
+            while (this.gridListaCompleta.Columns.Count > 0)
+            {
+                this.gridListaCompleta.Columns.RemoveAt(0);
+            }
+
+            List<string> lista_colunas = new List<string>();
+            lista_colunas.Add("codigo_aeronave");
+            lista_colunas.Add("codigo_ocorrencia");
+            lista_colunas.Add("matricula");
+            lista_colunas.Add("codigo_operador");
+            lista_colunas.Add("equipamento");
+            lista_colunas.Add("fabricante");
+            lista_colunas.Add("modelo");
+            lista_colunas.Add("tipo_motor");
+            lista_colunas.Add("quantidade_motores");
+            lista_colunas.Add("peso_maximo_decolagem");
+            lista_colunas.Add("quantidade_assentos");
+            lista_colunas.Add("ano_fabricacao");
+            lista_colunas.Add("pais_registro");
+            lista_colunas.Add("categoria_registro");
+            lista_colunas.Add("categoria_aviacao");
+            lista_colunas.Add("origem_voo");
+            lista_colunas.Add("destino_voo");
+            lista_colunas.Add("fase_operacao");
+            lista_colunas.Add("tipo_operacao");
+            lista_colunas.Add("nivel_dano");
+            lista_colunas.Add("quantidade_fatalidades");
+            lista_colunas.Add("dia_extracao");
+
+            DataGridViewTextBoxColumn novaColuna;
+
+            foreach (string coluna in lista_colunas)
+            {
+                novaColuna = new DataGridViewTextBoxColumn
+                {
+                    HeaderText = coluna
+                };
+                this.gridListaCompleta.Columns.Add(novaColuna); //1
+            } //foreach   
+
+            this.populaDados(lista_aeronaves);
+
+        }//Form_ListaCompleta()
 
         public Form_ListaCompleta(List<FatorContribuinte> fatores)
         {
@@ -170,8 +215,15 @@ namespace Ocorrências_Aeronáuticas
 
         private void btnSort_Click(object sender, EventArgs e)
         {
-            Form_Sort form_sort = new Form_Sort();
-            form_sort.ShowDialog();
-        }
+            if(lista_aeronaves != null)
+            {
+                Form_Sort form_sort = new Form_Sort(lista_aeronaves);
+                form_sort.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Sort funciona apenas com aeronaves, por enquanto", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        } //btnSort_Click()
     }
 }

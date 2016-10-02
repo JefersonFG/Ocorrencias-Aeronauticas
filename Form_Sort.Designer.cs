@@ -31,6 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSortGo = new System.Windows.Forms.Button();
             this.comboAlgoritmos = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboCampo = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -44,7 +46,7 @@
             // 
             // btnSortGo
             // 
-            this.btnSortGo.Location = new System.Drawing.Point(274, 29);
+            this.btnSortGo.Location = new System.Drawing.Point(289, 88);
             this.btnSortGo.Name = "btnSortGo";
             this.btnSortGo.Size = new System.Drawing.Size(67, 32);
             this.btnSortGo.TabIndex = 2;
@@ -70,11 +72,33 @@
             this.comboAlgoritmos.Sorted = true;
             this.comboAlgoritmos.TabIndex = 3;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 65);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(117, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Campo a ser ordenado:";
+            // 
+            // comboCampo
+            // 
+            this.comboCampo.FormattingEnabled = true;
+            this.comboCampo.Items.AddRange(new object[] {
+            "codigo_ocorrencia",
+            "fabricante"});
+            this.comboCampo.Location = new System.Drawing.Point(15, 81);
+            this.comboCampo.Name = "comboCampo";
+            this.comboCampo.Size = new System.Drawing.Size(223, 21);
+            this.comboCampo.TabIndex = 5;
+            // 
             // Form_Sort
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(368, 73);
+            this.ClientSize = new System.Drawing.Size(368, 132);
+            this.Controls.Add(this.comboCampo);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.comboAlgoritmos);
             this.Controls.Add(this.btnSortGo);
             this.Controls.Add(this.label1);
@@ -90,5 +114,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSortGo;
         private System.Windows.Forms.ComboBox comboAlgoritmos;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboCampo;
     }
 }
