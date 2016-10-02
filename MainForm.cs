@@ -66,7 +66,7 @@ namespace Ocorrências_Aeronáuticas
 
         private void goBtn_Click(object sender, EventArgs e)
         {
-            CsvLeitura leitor = new CsvLeitura(textBox1.Text);
+            CsvLeitura leitor;
             CsvLinha linha = new CsvLinha();
             //bool leu_linha = false;
             //bool continuar = true;
@@ -75,11 +75,19 @@ namespace Ocorrências_Aeronáuticas
             List<Ocorrencia> ocorrencias = new List<Ocorrencia>();
             List<FatorContribuinte> fatores = new List<FatorContribuinte>();
 
+            if(textBox1.Text.Trim() == "")
+            {
+                outputBox.Text = "Selecione um arquivo CSV.";
+                return;
+            }
+
+            leitor = new CsvLeitura(textBox1.Text);
+
             outputBox.Text = "Populando classes...\r\n";
 
             if (textBox1.Text.EndsWith("ocorrencia.csv"))
             {
-                ListaCompleta listaCompleta = new ListaCompleta(ocorrencias);
+                Form_ListaCompleta listaCompleta = new Form_ListaCompleta(ocorrencias);
                 leitor.LeLinha(linha);
                 listaCompleta.populaColunas(linha);
 
@@ -104,7 +112,7 @@ namespace Ocorrências_Aeronáuticas
             }
             else if (textBox1.Text.EndsWith("aeronave.csv"))
             {
-                ListaCompleta listaCompleta = new ListaCompleta(aeronaves);
+                Form_ListaCompleta listaCompleta = new Form_ListaCompleta(aeronaves);
                 leitor.LeLinha(linha);
                 listaCompleta.populaColunas(linha);
 
@@ -129,7 +137,7 @@ namespace Ocorrências_Aeronáuticas
             }
             else if (textBox1.Text.EndsWith("fator_contribuinte.csv"))
             {
-                ListaCompleta listaCompleta = new ListaCompleta(fatores);
+                Form_ListaCompleta listaCompleta = new Form_ListaCompleta(fatores);
                 leitor.LeLinha(linha);
                 listaCompleta.populaColunas(linha);
 

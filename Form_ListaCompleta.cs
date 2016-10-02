@@ -10,25 +10,25 @@ using System.Windows.Forms;
 
 namespace Ocorrências_Aeronáuticas
 {
-    public partial class ListaCompleta : Form
+    public partial class Form_ListaCompleta : Form
     {
         private List<Ocorrencia> lista_ocorrencias;
         private List<Aeronave> lista_aeronaves;
         private List<FatorContribuinte> lista_fatores;
 
-        public ListaCompleta(List<Ocorrencia> ocorrencias)
+        public Form_ListaCompleta(List<Ocorrencia> ocorrencias)
         {
             InitializeComponent();
             lista_ocorrencias = ocorrencias;
         }
 
-        public ListaCompleta(List<Aeronave> aeronaves)
+        public Form_ListaCompleta(List<Aeronave> aeronaves)
         {
             InitializeComponent();
             lista_aeronaves = aeronaves;
         }
 
-        public ListaCompleta(List<FatorContribuinte> fatores)
+        public Form_ListaCompleta(List<FatorContribuinte> fatores)
         {
             InitializeComponent();
             lista_fatores = fatores;
@@ -168,82 +168,10 @@ namespace Ocorrências_Aeronáuticas
             }
         }
 
-        private void ListaCompleta_Load(object sender, EventArgs e)
+        private void btnSort_Click(object sender, EventArgs e)
         {
-            /*
-            if (lista_aeronaves.Count > 0)
-            {
-                for (int i = 0; i < lista_aeronaves.Count; i++)
-                {
-                    this.gridListaCompleta.Rows.Add("" + lista_aeronaves[i].codigo_aeronave,
-                                                    lista_aeronaves[i].codigo_ocorrencia,
-                                                    lista_aeronaves[i].matricula,
-                                                    lista_aeronaves[i].codigo_operador,
-                                                    lista_aeronaves[i].equipamento,
-                                                    lista_aeronaves[i].fabricante,
-                                                    lista_aeronaves[i].modelo,
-                                                    lista_aeronaves[i].tipo_motor,
-                                                    lista_aeronaves[i].quantidade_motores,
-                                                    lista_aeronaves[i].peso_maximo_decolagem,
-                                                    lista_aeronaves[i].quantidade_assentos,
-                                                    lista_aeronaves[i].ano_fabricacao,
-                                                    lista_aeronaves[i].pais_registro,
-                                                    lista_aeronaves[i].categoria_registro,
-                                                    lista_aeronaves[i].categoria_aviacao,
-                                                    lista_aeronaves[i].origem_voo,
-                                                    lista_aeronaves[i].destino_voo,
-                                                    lista_aeronaves[i].fase_operacao,
-                                                    lista_aeronaves[i].tipo_operacao,
-                                                    lista_aeronaves[i].nivel_dano,
-                                                    lista_aeronaves[i].quantidade_fatalidades,
-                                                    lista_aeronaves[i].dia_extracao);
-                }
-            }
-            if (lista_ocorrencias.Count > 0)
-            {
-                for (int i = 0; i < lista_ocorrencias.Count; i++)
-                {
-                    this.gridListaCompleta.Rows.Add("" + lista_ocorrencias[i].codigo_ocorrencia,
-                                                    lista_ocorrencias[1].classificacao,
-                                                    lista_ocorrencias[i].tipo,
-                                                    lista_ocorrencias[i].localidade,
-                                                    lista_ocorrencias[i].uf,
-                                                    lista_ocorrencias[i].pais,
-                                                    lista_ocorrencias[i].aerodromo,
-                                                    lista_ocorrencias[i].dia_ocorrencia,
-                                                    lista_ocorrencias[i].horario_utc,
-                                                    lista_ocorrencias[i].sera_investigada,
-                                                    lista_ocorrencias[i].comando_investigador,
-                                                    lista_ocorrencias[i].status_investigacao,
-                                                    lista_ocorrencias[i].numero_relatorio,
-                                                    lista_ocorrencias[i].relatorio_publicado,
-                                                    lista_ocorrencias[i].dia_publicacao,
-                                                    lista_ocorrencias[i].quantidade_recomendacoes,
-                                                    lista_ocorrencias[i].aeronaves_envolvidas,
-                                                    lista_ocorrencias[i].saida_pista,
-                                                    lista_ocorrencias[i].dia_extracao);
-                }
-            }
-            if (lista_fatores.Count > 0)
-            {
-                for (int i = 0; i < lista_fatores.Count; i++)
-                {
-                    this.gridListaCompleta.Rows.Add("" + lista_fatores[i].codigo_fator,
-                                                    lista_fatores[1].codigo_ocorrencia,
-                                                    lista_fatores[i].fator,
-                                                    lista_fatores[i].aspecto,
-                                                    lista_fatores[i].condicionante,
-                                                    lista_fatores[i].area,
-                                                    //lista_fatores[i].nivel_contribuicao,
-                                                    lista_fatores[i].detalhe_fator,
-                                                    lista_fatores[i].dia_extracao);
-                }
-            }
-            */
-        }
-
-        private void ListaCompleta_FormClosed(object sender, FormClosedEventArgs e)
-        {       
+            Form_Sort form_sort = new Form_Sort();
+            form_sort.ShowDialog();
         }
     }
 }
