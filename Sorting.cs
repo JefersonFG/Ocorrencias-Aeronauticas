@@ -116,8 +116,10 @@ namespace Ocorrências_Aeronáuticas
                 temp = lista_ordenada[i];
                 for (j = i - 1; j >= 0; --j)
                 {
-                    if (temp.ocorrencia.localidade.CompareTo(lista_ordenada[j].ocorrencia.localidade) < 0) lista_ordenada[j + 1] = lista_ordenada[j];
-                    else break;
+                    if (temp.ocorrencia.localidade.CompareTo(lista_ordenada[j].ocorrencia.localidade) < 0)
+                        lista_ordenada[j + 1] = lista_ordenada[j];
+                    else
+                        break;
                 }
                 lista_ordenada[j + 1] = temp;
             }
@@ -164,25 +166,33 @@ namespace Ocorrências_Aeronáuticas
 
         #region Shell Sort
 
-        public static void ShellSort(ref int[] x)
+        public static List<DadosOcorrencia> ShellSort_codigo_ocorrencia(List<DadosOcorrencia> lista_desordenada)
         {
-            int i, j, temp;
-            int increment = 3;
+            int i, j;
+            int increment = 4;
+
+            DadosOcorrencia temp;
+
+            List<DadosOcorrencia> lista_ordenada = new List<DadosOcorrencia>();
+            foreach (DadosOcorrencia dados_ocorrencia in lista_desordenada)
+            {
+                lista_ordenada.Add(dados_ocorrencia);
+            }
 
             while (increment > 0)
             {
-                for (i = 0; i < x.Length; i++)
+                for (i = 0; i < lista_ordenada.Count; i++)
                 {
                     j = i;
-                    temp = x[i];
+                    temp = lista_ordenada[i];
 
-                    while ((j >= increment) && (x[j - increment] > temp))
+                    while ((j >= increment) && (lista_ordenada[j - increment].codigo_ocorrencia > temp.codigo_ocorrencia))
                     {
-                        x[j] = x[j - increment];
+                        lista_ordenada[j] = lista_ordenada[j - increment];
                         j = j - increment;
                     }
 
-                    x[j] = temp;
+                    lista_ordenada[j] = temp;
                 }
 
                 if (increment / 2 != 0)
@@ -198,6 +208,54 @@ namespace Ocorrências_Aeronáuticas
                     increment = 1;
                 }
             }
+
+            return lista_ordenada;
+        }
+
+        public static List<DadosOcorrencia> ShellSort_localidade(List<DadosOcorrencia> lista_desordenada)
+        {
+            int i, j;
+            int increment = 4;
+
+            DadosOcorrencia temp;
+
+            List<DadosOcorrencia> lista_ordenada = new List<DadosOcorrencia>();
+            foreach (DadosOcorrencia dados_ocorrencia in lista_desordenada)
+            {
+                lista_ordenada.Add(dados_ocorrencia);
+            }
+
+            while (increment > 0)
+            {
+                for (i = 0; i < lista_ordenada.Count; i++)
+                {
+                    j = i;
+                    temp = lista_ordenada[i];
+
+                    while ((j >= increment) && (lista_ordenada[j - increment].ocorrencia.localidade.CompareTo(temp.ocorrencia.localidade) > 0))
+                    {
+                        lista_ordenada[j] = lista_ordenada[j - increment];
+                        j = j - increment;
+                    }
+
+                    lista_ordenada[j] = temp;
+                }
+
+                if (increment / 2 != 0)
+                {
+                    increment = increment / 2;
+                }
+                else if (increment == 1)
+                {
+                    increment = 0;
+                }
+                else
+                {
+                    increment = 1;
+                }
+            }
+
+            return lista_ordenada;
         }
         #endregion
 
