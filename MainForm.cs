@@ -87,7 +87,7 @@ namespace Ocorrências_Aeronáuticas
 
             if (textBox1.Text.EndsWith("ocorrencia.csv"))
             {
-                ListaCompleta listaCompleta = new ListaCompleta(ocorrencias);
+                Form_ListaCompleta listaCompleta = new Form_ListaCompleta(ocorrencias);
                 leitor.LeLinha(linha);
                 listaCompleta.populaColunas(linha);
 
@@ -112,7 +112,7 @@ namespace Ocorrências_Aeronáuticas
             }
             else if (textBox1.Text.EndsWith("aeronave.csv"))
             {
-                ListaCompleta listaCompleta = new ListaCompleta(aeronaves);
+                Form_ListaCompleta listaCompleta = new Form_ListaCompleta(aeronaves);
                 leitor.LeLinha(linha);
                 listaCompleta.populaColunas(linha);
 
@@ -137,7 +137,7 @@ namespace Ocorrências_Aeronáuticas
             }
             else if (textBox1.Text.EndsWith("fator_contribuinte.csv"))
             {
-                ListaCompleta listaCompleta = new ListaCompleta(fatores);
+                Form_ListaCompleta listaCompleta = new Form_ListaCompleta(fatores);
                 leitor.LeLinha(linha);
                 listaCompleta.populaColunas(linha);
 
