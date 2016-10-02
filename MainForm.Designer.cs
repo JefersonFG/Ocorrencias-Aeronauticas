@@ -83,7 +83,8 @@
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.DefaultExt = "csv";
+            this.openFileDialog1.Filter = "Arquivo CSV|*.csv";
             // 
             // goBtn
             // 

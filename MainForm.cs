@@ -66,38 +66,14 @@ namespace Ocorrências_Aeronáuticas
 
         private void goBtn_Click(object sender, EventArgs e)
         {
-            CsvLeitura leitor;
+            CsvLeitura leitor = new CsvLeitura(textBox1.Text);
             CsvLinha linha = new CsvLinha();
-            bool leu_linha = false;
-            bool continuar = true;
-            int linha_atual = 0;
+            //bool leu_linha = false;
+            //bool continuar = true;
+            int linha_atual = 1;
             List<Aeronave> aeronaves = new List<Aeronave>();
             List<Ocorrencia> ocorrencias = new List<Ocorrencia>();
             List<FatorContribuinte> fatores = new List<FatorContribuinte>();
-
-            if (textBox1.Text.Trim() == "" || !(textBox1.Text.EndsWith(".csv")))
-            {
-                MessageBox.Show("Selecione um arquivo CSV", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            leitor = new CsvLeitura(textBox1.Text);
-
-            /*
-            while(continuar && (leu_linha = leitor.LeLinha(linha))) //bota a chamada de leitura dentro do while
-            {
-                linha_mensagem = "";
-                for(int i = 0; i < linha.Count; i++)
-                {
-                    linha_mensagem += linha[i];
-                    linha_mensagem += " | ";
-                }
-                var resposta = MessageBox.Show(linha_mensagem, "Mensagem", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                if (resposta == DialogResult.Cancel)
-                {
-                    continuar = false;
-                    break;
-                }
-            } */
 
             if (textBox1.Text.EndsWith("ocorrencia.csv"))
             {
@@ -116,6 +92,7 @@ namespace Ocorrências_Aeronáuticas
                         Ocorrencia ocorrencia = new Ocorrencia();
                         ocorrencia.fromCSV(linha);
                         ocorrencias.Add(ocorrencia);
+                        ++linha_atual;
                     }
                 }
                 leitor.Close();
@@ -139,6 +116,7 @@ namespace Ocorrências_Aeronáuticas
                         Aeronave aeronave = new Aeronave();
                         aeronave.fromCSV(linha);
                         aeronaves.Add(aeronave);
+                        ++linha_atual;
                     }
                 }
                 leitor.Close();
@@ -162,6 +140,7 @@ namespace Ocorrências_Aeronáuticas
                         FatorContribuinte fator = new FatorContribuinte();
                         fator.fromCSV(linha);
                         fatores.Add(fator);
+                        ++linha_atual;
                     }
                 }
                 leitor.Close();
