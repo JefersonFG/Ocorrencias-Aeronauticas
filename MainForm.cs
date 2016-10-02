@@ -111,9 +111,12 @@ namespace Ocorrências_Aeronáuticas
                     {
                         MessageBox.Show("Quantidade de campos na linha " + linha_atual + " é inválida", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    Ocorrencia ocorrencia = new Ocorrencia();
-                    ocorrencia.fromCSV(linha);
-                    ocorrencias.Add(ocorrencia);
+                    else
+                    {
+                        Ocorrencia ocorrencia = new Ocorrencia();
+                        ocorrencia.fromCSV(linha);
+                        ocorrencias.Add(ocorrencia);
+                    }
                 }
                 leitor.Close();
                 listaCompleta.populaDados(ocorrencias);
@@ -127,9 +130,16 @@ namespace Ocorrências_Aeronáuticas
 
                 while (leitor.LeLinha(linha))
                 {
-                    Aeronave aeronave = new Aeronave();
-                    aeronave.fromCSV(linha);
-                    aeronaves.Add(aeronave);
+                    if (linha.Count != 22)
+                    {
+                        MessageBox.Show("Quantidade de campos na linha " + linha_atual + " é inválida", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        Aeronave aeronave = new Aeronave();
+                        aeronave.fromCSV(linha);
+                        aeronaves.Add(aeronave);
+                    }
                 }
                 leitor.Close();
                 listaCompleta.populaDados(aeronaves);
@@ -143,9 +153,16 @@ namespace Ocorrências_Aeronáuticas
 
                 while (leitor.LeLinha(linha))
                 {
-                    FatorContribuinte fator = new FatorContribuinte();
-                    fator.fromCSV(linha);
-                    fatores.Add(fator);
+                    if (linha.Count != 8)
+                    {
+                        MessageBox.Show("Quantidade de campos na linha " + linha_atual + " é inválida", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        FatorContribuinte fator = new FatorContribuinte();
+                        fator.fromCSV(linha);
+                        fatores.Add(fator);
+                    }
                 }
                 leitor.Close();
                 listaCompleta.populaDados(fatores);
