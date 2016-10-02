@@ -126,6 +126,38 @@ namespace Ocorrências_Aeronáuticas
 
             return lista_ordenada;
         }
+
+
+        public static List<DadosOcorrencia> BinaryInsertionSort_codigo_ocorrencia(List<DadosOcorrencia> lista_desordenada)
+        {
+            List<DadosOcorrencia> lista_ordenada = new List<DadosOcorrencia>();
+            foreach (DadosOcorrencia dados_ocorrencia in lista_desordenada)
+            {
+                lista_ordenada.Add(dados_ocorrencia);
+            }
+
+            for (int i = 1; i < lista_ordenada.Count; i++)
+            {
+                int low = 0;
+                int high = i - 1;
+                DadosOcorrencia temp = lista_ordenada[i];
+                //Find
+                while (low <= high)
+                {
+                    int mid = (low + high) / 2;
+                    if (temp.codigo_ocorrencia < lista_ordenada[mid].codigo_ocorrencia)
+                        high = mid - 1;
+                    else
+                        low = mid + 1;
+                }
+                //backward shift
+                for (int j = i - 1; j >= low; j--)
+                    lista_ordenada[j + 1] = lista_ordenada[j];
+                lista_ordenada[low] = temp;
+            }
+            return lista_ordenada;
+        }
+
         #endregion
 
         #region Quick Sort
