@@ -66,7 +66,7 @@ namespace Ocorrências_Aeronáuticas
 
         private void goBtn_Click(object sender, EventArgs e)
         {
-            CsvLeitura leitor = new CsvLeitura(textBox1.Text);
+            CsvLeitura leitor;
             CsvLinha linha = new CsvLinha();
             //bool leu_linha = false;
             //bool continuar = true;
@@ -74,6 +74,14 @@ namespace Ocorrências_Aeronáuticas
             List<Aeronave> aeronaves = new List<Aeronave>();
             List<Ocorrencia> ocorrencias = new List<Ocorrencia>();
             List<FatorContribuinte> fatores = new List<FatorContribuinte>();
+
+            if(textBox1.Text.Trim() == "")
+            {
+                outputBox.Text = "Selecione um arquivo CSV.";
+                return;
+            }
+
+            leitor = new CsvLeitura(textBox1.Text);
 
             outputBox.Text = "Populando classes...\r\n";
 
