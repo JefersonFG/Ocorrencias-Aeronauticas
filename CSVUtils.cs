@@ -34,7 +34,7 @@ namespace Ocorrências_Aeronáuticas
         /// <summary>
         /// Escreve uma única linha no CSV
         /// </summary>
-        /// <param name="row">A linha a ser escrita</param>
+        /// <param name="linha">A linha a ser escrita</param>
         public void EscreveLinha(CsvLinha linha)
         {
             StringBuilder builder = new StringBuilder();
@@ -44,7 +44,7 @@ namespace Ocorrências_Aeronáuticas
                 // Separa se não é o primeiro valor
                 if (!firstColumn)
                     builder.Append(',');
-                // Como lidar com valores que incluem vírgulas?
+                // Como lidar com valores que incluem vírgulas ou aspas?
                 // Bota dentro de aspas e adapta o que for necessário
                 if (value.IndexOfAny(new char[] { '"', ',' }) != -1)
                     builder.AppendFormat("\"{0}\"", value.Replace("\"", "\"\""));
@@ -76,7 +76,9 @@ namespace Ocorrências_Aeronáuticas
         /// Lê uma linha do CSV
         /// </summary>
         /// <param name="linha">A linha a ser lida</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Retorna verdadeiro se uma coluna foi lida, falso caso contrário
+        /// </returns>
         public bool LeLinha(CsvLinha linha)
         {
             linha.LineText = ReadLine();
