@@ -10,7 +10,7 @@ namespace Ocorrências_Aeronáuticas
     /// Classe contendo as informações da ocorrência, lidas do arquivo ocorrencias.csv
     /// O campo chave é codigo_ocorrencia
     /// </summary>
-    class Ocorrencia
+    public class Ocorrencia
     {
         /// <summary>
         /// Código de identificação de ocorrência
@@ -163,5 +163,34 @@ namespace Ocorrências_Aeronáuticas
         /// Data no formato dd/mm/aaaa
         /// </value>
         public DateTime dia_extracao { get; set; }
+
+        /// <summary>
+        /// Preenche um objeto da classe a partir de uma linha lida do arquivo CSV.
+        /// </summary>
+        /// <param name="linha">Linha a ser lida</param>
+        /// <returns>Objeto do tipo Ocorrência</returns>
+        public Ocorrencia fromCSV(CsvLinha linha)
+        {
+            this.codigo_ocorrencia = Convert.ToInt32(linha[0]);
+            this.classificacao = linha[1];
+            this.tipo = linha[2];
+            this.localidade = linha[3];
+            this.uf = linha[4];
+            this.pais = linha[5];
+            this.aerodromo = linha[6];
+            this.dia_ocorrencia = Convert.ToDateTime(linha[7]);
+            this.horario_utc = Convert.ToDateTime(linha[8]);
+            this.sera_investigada = linha[9];
+            this.comando_investigador = linha[10];
+            this.status_investigacao = linha[11];
+            this.numero_relatorio = linha[12];
+            this.relatorio_publicado = linha[13];
+            this.dia_publicacao = (linha[14] == "NULL" ? Convert.ToDateTime("01-01-1901") : Convert.ToDateTime(linha[14]));
+            this.quantidade_recomendacoes = (linha[15] == "NULL" ? 0 : Convert.ToInt32(linha[15]));
+            this.aeronaves_envolvidas = (linha[16] == "NULL" ? 0 : Convert.ToInt32(linha[16]));
+            this.saida_pista = (linha[17] == "NULL" ? 0 : Convert.ToInt32(linha[17]));
+            this.dia_extracao = Convert.ToDateTime(linha[18]);
+            return this;
+        }
     }
 }

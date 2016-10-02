@@ -10,108 +10,32 @@ namespace Ocorrências_Aeronáuticas
 {
     public static class Sorting //mamãe
     {
-        #region Bubble Sorts
-
-        public static void bubbleSort1(ref int[] x)
+        #region Bubble Sort
+        public static List<Aeronave> bubbleSort_CodigoOcorrencia(List<Aeronave> aeronaves)
         {
+            List<Aeronave> lista_ordenada = new List<Aeronave>();
+            foreach (Aeronave aeronave in aeronaves)
+            {
+                lista_ordenada.Add(aeronave);
+            }
             bool exchanges;
             do
             {
                 exchanges = false;
-                for (int i = 0; i < x.Length - 1; i++)
+                for (int i = 0; i < lista_ordenada.Count - 1; i++)
                 {
-                    if (x[i] > x[i + 1])
+                    if (lista_ordenada[i].codigo_ocorrencia > lista_ordenada[i + 1].codigo_ocorrencia)
                     {
                         // Exchange elements
-                        int temp = x[i];
-                        x[i] = x[i + 1];
-                        x[i + 1] = temp;
+                        Aeronave temp = lista_ordenada[i];
+                        lista_ordenada[i] = lista_ordenada[i + 1];
+                        lista_ordenada[i + 1] = temp;
                         exchanges = true;
                     }
                 }
             } while (exchanges);
-        }
 
-        public static void bubbleSort2(ref int[] x)
-        {
-            for (int pass = 1; pass < x.Length - 1; pass++)
-            {
-                // Count how many times this next loop
-                // becomes shorter and shorter
-                for (int i = 0; i < x.Length - pass; i++)
-                {
-                    if (x[i] > x[i + 1])
-                    {
-                        // Exchange elements
-                        int temp = x[i];
-                        x[i] = x[i + 1];
-                        x[i + 1] = temp;
-                    }
-                }
-            }
-        }
-
-        public static void bubbleSort3(ref int[] x)
-        {
-            bool exchanges;
-            int n = x.Length;
-            do
-            {
-                n--; // Make loop smaller each time.
-                     // and assume this is last pass over array
-                exchanges = false;
-                for (int i = 0; i < x.Length - 1; i++)
-                {
-                    if (x[i] > x[i + 1])
-                    {
-                        // Exchange elements
-                        int temp = x[i];
-                        x[i] = x[i + 1];
-                        x[i + 1] = temp;
-                        exchanges = true;
-                    }
-                }
-            } while (exchanges);
-        }
-
-        public static void bubbleSortRange(ref int[] x)
-        {
-            int lowerBound = 0; // First position to compare.
-            int upperBound = x.Length - 1; // First position NOT to compare.
-            int n = x.Length - 1;
-
-            // Continue making passes while there is a potential exchange.
-            while (lowerBound <= upperBound)
-            {
-                int firstExchange = n;  // assume impossibly high index for low end.
-                int lastExchange = -1; // assume impossibly low index for high end.
-
-                // Make a pass over the appropriate range.
-                for (int i = lowerBound; i < upperBound; i++)
-                {
-                    if (x[i] > x[i + 1])
-                    {
-                        // Exchange elements
-                        int temp = x[i];
-                        x[i] = x[i + 1];
-                        x[i + 1] = temp;
-                        // Remember first and last exchange indexes.
-                        if (i < firstExchange)
-                        {   // True only for first exchange.
-                            firstExchange = i;
-                        }
-                        lastExchange = i;
-                    }
-                }
-
-                //--- Prepare limits for next pass.
-                lowerBound = firstExchange - 1;
-                if (lowerBound < 0)
-                {
-                    lowerBound = 0;
-                }
-                upperBound = lastExchange;
-            }
+            return lista_ordenada;
         }
         #endregion
 

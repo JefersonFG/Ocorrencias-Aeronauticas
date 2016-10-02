@@ -46,7 +46,7 @@ namespace Ocorrências_Aeronáuticas
             Gmap.Position = new PointLatLng(-30.0364242, -51.2191413);  //Posição por coordenadas
             Gmap.ShowCenter = false;                                    //Remove a cruz que indica o centro do mapa
 
-            //Inserção de um marcado de local
+            //Inserção de um marcador de local
 
             GMapOverlay markers = new GMapOverlay("markers");           //Overlay é uma camada onde colocamos marcadores e rotas
             GMapMarker marker = new GMarkerGoogle(
@@ -55,5 +55,115 @@ namespace Ocorrências_Aeronáuticas
             markers.Markers.Add(marker);                                //Adicionado o marcador ao overlay
             Gmap.Overlays.Add(markers);                                 //Adicionado overlay ao mapa
         }
+
+        private void browseBtn_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                textBox1.Text = openFileDialog1.FileName;
+            }
+        }//browseBtn Click
+
+        private void goBtn_Click(object sender, EventArgs e)
+        {
+            CsvLeitura leitor;
+            CsvLinha linha = new CsvLinha();
+            //bool leu_linha = false;
+            //bool continuar = true;
+            int linha_atual = 1;
+            List<Aeronave> aeronaves = new List<Aeronave>();
+            List<Ocorrencia> ocorrencias = new List<Ocorrencia>();
+            List<FatorContribuinte> fatores = new List<FatorContribuinte>();
+
+            if(textBox1.Text.Trim() == "")
+            {
+                outputBox.Text = "Selecione um arquivo CSV.";
+                return;
+            }
+
+            leitor = new CsvLeitura(textBox1.Text);
+
+            outputBox.Text = "Populando classes...\r\n";
+
+            if (textBox1.Text.EndsWith("ocorrencia.csv"))
+            {
+                Form_ListaCompleta listaCompleta = new Form_ListaCompleta(ocorrencias);
+                leitor.LeLinha(linha);
+                listaCompleta.populaColunas(linha);
+
+                while (leitor.LeLinha(linha))
+                {
+                    if (linha.Count != 19)
+                    {
+                        MessageBox.Show("Quantidade de campos na linha " + linha_atual + " é inválida", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        Ocorrencia ocorrencia = new Ocorrencia();
+                        ocorrencia.fromCSV(linha);
+                        ocorrencias.Add(ocorrencia);
+                        ++linha_atual;
+                    }
+                }
+                leitor.Close();
+                listaCompleta.populaDados(ocorrencias);
+                outputBox.Text += "Foram criadas " + linha_atual + " entradas.\r\n";
+                listaCompleta.ShowDialog(); 
+            }
+            else if (textBox1.Text.EndsWith("aeronave.csv"))
+            {
+                Form_ListaCompleta listaCompleta = new Form_ListaCompleta(aeronaves);
+                leitor.LeLinha(linha);
+                listaCompleta.populaColunas(linha);
+
+                while (leitor.LeLinha(linha))
+                {
+                    if (linha.Count != 22)
+                    {
+                        MessageBox.Show("Quantidade de campos na linha " + linha_atual + " é inválida", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        Aeronave aeronave = new Aeronave();
+                        aeronave.fromCSV(linha);
+                        aeronaves.Add(aeronave);
+                        ++linha_atual;
+                    }
+                }
+                leitor.Close();
+                listaCompleta.populaDados(aeronaves);
+                outputBox.Text += "Foram criadas " + linha_atual + " entradas.\r\n";
+                listaCompleta.ShowDialog();
+            }
+            else if (textBox1.Text.EndsWith("fator_contribuinte.csv"))
+            {
+                Form_ListaCompleta listaCompleta = new Form_ListaCompleta(fatores);
+                leitor.LeLinha(linha);
+                listaCompleta.populaColunas(linha);
+
+                while (leitor.LeLinha(linha))
+                {
+                    if (linha.Count != 8)
+                    {
+                        MessageBox.Show("Quantidade de campos na linha " + linha_atual + " é inválida", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        FatorContribuinte fator = new FatorContribuinte();
+                        fator.fromCSV(linha);
+                        fatores.Add(fator);
+                        ++linha_atual;
+                    }
+                }
+                leitor.Close();
+                listaCompleta.populaDados(fatores);
+                outputBox.Text += "Foram criadas " + linha_atual + " entradas.\r\n";
+                listaCompleta.ShowDialog();
+            }
+            else
+            {
+                outputBox.Text += "ERRO: O arquivo selecionado não é do tipo esperado.\r\n";
+            }
+        }//goBtn Click
     }
 }
