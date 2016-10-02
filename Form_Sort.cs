@@ -28,7 +28,14 @@ namespace Ocorrências_Aeronáuticas
 
                 if(comboCampo.GetItemText(this.comboCampo.SelectedItem).Equals("codigo_ocorrencia"))
                 {
-                    List<Aeronave> lista_aeronaves_ordenada = Sorting.bubbleSort_CodigoOcorrencia(lista_aeronaves);
+                    List<Aeronave> lista_aeronaves_ordenada = Sorting.bubbleSort_codigo_ocorrencia(lista_aeronaves);
+
+                    Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(lista_aeronaves_ordenada);
+                    form_listacompleta.ShowDialog();
+                }
+                else if (comboCampo.GetItemText(this.comboCampo.SelectedItem).Equals("fabricante"))
+                {
+                    List<Aeronave> lista_aeronaves_ordenada = Sorting.bubbleSort_fabricante(lista_aeronaves);
 
                     Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(lista_aeronaves_ordenada);
                     form_listacompleta.ShowDialog();
