@@ -29,11 +29,18 @@
         private void InitializeComponent()
         {
             this.Gmap = new GMap.NET.WindowsForms.GMapControl();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.browseBtn = new System.Windows.Forms.Button();
+            this.textAeronaves = new System.Windows.Forms.TextBox();
+            this.btnBrowseAeronaves = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.goBtn = new System.Windows.Forms.Button();
             this.outputBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnBrowseOcorrencias = new System.Windows.Forms.Button();
+            this.textOcorrencias = new System.Windows.Forms.TextBox();
+            this.textFatorContribuinte = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnFatoresContribuintes = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Gmap
@@ -63,23 +70,23 @@
             this.Gmap.Zoom = 13D;
             this.Gmap.Load += new System.EventHandler(this.Gmap_Load);
             // 
-            // textBox1
+            // textAeronaves
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 281);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(379, 20);
-            this.textBox1.TabIndex = 1;
+            this.textAeronaves.Location = new System.Drawing.Point(12, 306);
+            this.textAeronaves.Name = "textAeronaves";
+            this.textAeronaves.ReadOnly = true;
+            this.textAeronaves.Size = new System.Drawing.Size(379, 20);
+            this.textAeronaves.TabIndex = 1;
             // 
-            // browseBtn
+            // btnBrowseAeronaves
             // 
-            this.browseBtn.Location = new System.Drawing.Point(397, 279);
-            this.browseBtn.Name = "browseBtn";
-            this.browseBtn.Size = new System.Drawing.Size(75, 23);
-            this.browseBtn.TabIndex = 2;
-            this.browseBtn.Text = "Browse";
-            this.browseBtn.UseVisualStyleBackColor = true;
-            this.browseBtn.Click += new System.EventHandler(this.browseBtn_Click);
+            this.btnBrowseAeronaves.Location = new System.Drawing.Point(397, 304);
+            this.btnBrowseAeronaves.Name = "btnBrowseAeronaves";
+            this.btnBrowseAeronaves.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowseAeronaves.TabIndex = 2;
+            this.btnBrowseAeronaves.Text = "Browse";
+            this.btnBrowseAeronaves.UseVisualStyleBackColor = true;
+            this.btnBrowseAeronaves.Click += new System.EventHandler(this.btnBrowseAeronaves_Click);
             // 
             // openFileDialog1
             // 
@@ -88,7 +95,7 @@
             // 
             // goBtn
             // 
-            this.goBtn.Location = new System.Drawing.Point(12, 307);
+            this.goBtn.Location = new System.Drawing.Point(12, 420);
             this.goBtn.Name = "goBtn";
             this.goBtn.Size = new System.Drawing.Size(460, 23);
             this.goBtn.TabIndex = 3;
@@ -100,7 +107,7 @@
             // 
             this.outputBox.AcceptsReturn = true;
             this.outputBox.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.outputBox.Location = new System.Drawing.Point(12, 336);
+            this.outputBox.Location = new System.Drawing.Point(12, 449);
             this.outputBox.Multiline = true;
             this.outputBox.Name = "outputBox";
             this.outputBox.ReadOnly = true;
@@ -108,15 +115,85 @@
             this.outputBox.Size = new System.Drawing.Size(460, 90);
             this.outputBox.TabIndex = 4;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 290);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(114, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Arquivo de aeronaves:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 329);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(119, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Arquivo de ocorrências:";
+            // 
+            // btnBrowseOcorrencias
+            // 
+            this.btnBrowseOcorrencias.Location = new System.Drawing.Point(397, 343);
+            this.btnBrowseOcorrencias.Name = "btnBrowseOcorrencias";
+            this.btnBrowseOcorrencias.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowseOcorrencias.TabIndex = 8;
+            this.btnBrowseOcorrencias.Text = "Browse";
+            this.btnBrowseOcorrencias.UseVisualStyleBackColor = true;
+            this.btnBrowseOcorrencias.Click += new System.EventHandler(this.btnBrowseOcorrencias_Click);
+            // 
+            // textOcorrencias
+            // 
+            this.textOcorrencias.Location = new System.Drawing.Point(12, 345);
+            this.textOcorrencias.Name = "textOcorrencias";
+            this.textOcorrencias.ReadOnly = true;
+            this.textOcorrencias.Size = new System.Drawing.Size(379, 20);
+            this.textOcorrencias.TabIndex = 7;
+            // 
+            // textFatorContribuinte
+            // 
+            this.textFatorContribuinte.Location = new System.Drawing.Point(12, 384);
+            this.textFatorContribuinte.Name = "textFatorContribuinte";
+            this.textFatorContribuinte.ReadOnly = true;
+            this.textFatorContribuinte.Size = new System.Drawing.Size(379, 20);
+            this.textFatorContribuinte.TabIndex = 10;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 368);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(159, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Arquivo de fatores contribuintes:";
+            // 
+            // btnFatoresContribuintes
+            // 
+            this.btnFatoresContribuintes.Location = new System.Drawing.Point(397, 382);
+            this.btnFatoresContribuintes.Name = "btnFatoresContribuintes";
+            this.btnFatoresContribuintes.Size = new System.Drawing.Size(75, 23);
+            this.btnFatoresContribuintes.TabIndex = 11;
+            this.btnFatoresContribuintes.Text = "Browse";
+            this.btnFatoresContribuintes.UseVisualStyleBackColor = true;
+            this.btnFatoresContribuintes.Click += new System.EventHandler(this.btnFatoresContribuintes_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 438);
+            this.ClientSize = new System.Drawing.Size(484, 568);
+            this.Controls.Add(this.btnFatoresContribuintes);
+            this.Controls.Add(this.textFatorContribuinte);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnBrowseOcorrencias);
+            this.Controls.Add(this.textOcorrencias);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.outputBox);
             this.Controls.Add(this.goBtn);
-            this.Controls.Add(this.browseBtn);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnBrowseAeronaves);
+            this.Controls.Add(this.textAeronaves);
             this.Controls.Add(this.Gmap);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -133,11 +210,18 @@
         #endregion
 
         private GMap.NET.WindowsForms.GMapControl Gmap;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button browseBtn;
+        private System.Windows.Forms.TextBox textAeronaves;
+        private System.Windows.Forms.Button btnBrowseAeronaves;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button goBtn;
         private System.Windows.Forms.TextBox outputBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnBrowseOcorrencias;
+        private System.Windows.Forms.TextBox textOcorrencias;
+        private System.Windows.Forms.TextBox textFatorContribuinte;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnFatoresContribuintes;
     }
 }
 
