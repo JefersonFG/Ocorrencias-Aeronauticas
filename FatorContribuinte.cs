@@ -62,11 +62,13 @@ namespace Ocorrências_Aeronáuticas
 
         /// <summary>
         /// Nível de contribuição do fator contribuinte
+        /// 
+        /// OBS: NÃO APARECE NO CSV
         /// </summary>
         /// <value>
         /// Descrição da contribuição por extenso
         /// </value>
-        public string nivel_contribuicao { get; set; }
+        //public string nivel_contribuicao { get; set; }
 
         /// <summary>
         /// Detalhe do fator contribuinte
@@ -83,5 +85,24 @@ namespace Ocorrências_Aeronáuticas
         /// Data no formato dd/mm/aaaa
         /// </value>
         public DateTime dia_extracao { get; set; }
+
+        /// <summary>
+        /// Preenche um objeto da classe a partir de uma linha lida do arquivo CSV.
+        /// </summary>
+        /// <param name="linha">Linha a ser lida</param>
+        /// <returns>Objeto do tipo FatorContribuinte</returns>
+        public FatorContribuinte fromCSV(CsvLinha linha)
+        {
+            this.codigo_fator = Convert.ToInt32(linha[0]);
+            this.codigo_ocorrencia = Convert.ToInt32(linha[1]);
+            this.fator = linha[2];
+            this.aspecto = linha[3];
+            this.condicionante = linha[4];
+            this.area = linha[5];
+            //this.nivel_contribuicao = linha[6];   //não é utilizado no csv
+            this.detalhe_fator = linha[6];
+            this.dia_extracao = Convert.ToDateTime(linha[7]);
+            return this;
+        }
     }
 }

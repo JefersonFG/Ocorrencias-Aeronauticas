@@ -188,9 +188,13 @@ namespace Ocorrências_Aeronáuticas
         /// </value>
         public DateTime dia_extracao { get; set; }
 
+        /// <summary>
+        /// Preenche um objeto da classe a partir de uma linha lida do arquivo CSV.
+        /// </summary>
+        /// <param name="linha">Linha a ser lida</param>
+        /// <returns>Objeto do tipo Aeronave</returns>
         public Aeronave fromCSV(CsvLinha linha)
         {
-            //Aeronave aeronave = new Aeronave();
             this.codigo_aeronave = Convert.ToInt32(linha[0]);
             this.codigo_ocorrencia = Convert.ToInt32(linha[1]);
             this.matricula = linha[2];

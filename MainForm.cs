@@ -72,14 +72,15 @@ namespace Ocorrências_Aeronáuticas
             bool continuar = true;
             int linha_atual = 0;
             List<Aeronave> aeronaves = new List<Aeronave>();
+            List<Ocorrencia> ocorrencias = new List<Ocorrencia>();
+            List<FatorContribuinte> fatores = new List<FatorContribuinte>();
 
-            if(textBox1.Text.Trim() == "" | ! (textBox1.Text.EndsWith(".csv")))
+            if (textBox1.Text.Trim() == "" || !(textBox1.Text.EndsWith(".csv")))
             {
                 MessageBox.Show("Selecione um arquivo CSV", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             leitor = new CsvLeitura(textBox1.Text);
-
 
             /*
             while(continuar && (leu_linha = leitor.LeLinha(linha))) //bota a chamada de leitura dentro do while
@@ -98,41 +99,57 @@ namespace Ocorrências_Aeronáuticas
                 }
             } */
 
-            List<Ocorrencia> ocorrencias = new List<Ocorrencia>();
-
-            while (continuar && (leu_linha = leitor.LeLinha(linha)))
+            if (textBox1.Text.EndsWith("ocorrencia.csv"))
             {
-                if(linha.Count != 19)
+                ListaCompleta listaCompleta = new ListaCompleta(ocorrencias);
+                leitor.LeLinha(linha);
+                listaCompleta.populaColunas(linha);
+
+                while (leitor.LeLinha(linha))
                 {
-                    MessageBox.Show("Quantidade de campos na linha "+linha_atual+" é inválida", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    if (linha_atual > 0)
+                    if (linha.Count != 19)
                     {
-                        Ocorrencia ocorrencia = new Ocorrencia();
-                        ocorrencia.codigo_ocorrencia = Int32.Parse(linha[0]);
-                        ocorrencia.classificacao = linha[1];
-                        ocorrencia.tipo = linha[2];
-                        ocorrencia.localidade = linha[3];
-                        ocorrencias.Add(ocorrencia);
+                        MessageBox.Show("Quantidade de campos na linha " + linha_atual + " é inválida", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                    Ocorrencia ocorrencia = new Ocorrencia();
+                    ocorrencia.fromCSV(linha);
+                    ocorrencias.Add(ocorrencia);
                 }
-                
-                linha_atual++;
+                leitor.Close();
+                listaCompleta.populaDados(ocorrencias);
+                listaCompleta.ShowDialog(); 
             }
-
-            leitor.Close();
-
-            ListaCompleta listaCompleta = new ListaCompleta(ocorrencias);
-            listaCompleta.ShowDialog();
-            */
-
-            while (leitor.LeLinha(linha))
+            else if (textBox1.Text.EndsWith("aeronave.csv"))
             {
-                Aeronave aeronave = new Aeronave();
-                aeronave.fromCSV(linha);
-                aeronaves.Add(aeronave);
+                ListaCompleta listaCompleta = new ListaCompleta(aeronaves);
+                leitor.LeLinha(linha);
+                listaCompleta.populaColunas(linha);
+
+                while (leitor.LeLinha(linha))
+                {
+                    Aeronave aeronave = new Aeronave();
+                    aeronave.fromCSV(linha);
+                    aeronaves.Add(aeronave);
+                }
+                leitor.Close();
+                listaCompleta.populaDados(aeronaves);
+                listaCompleta.ShowDialog();
+            }
+            else if (textBox1.Text.EndsWith("fator_contribuinte.csv"))
+            {
+                ListaCompleta listaCompleta = new ListaCompleta(fatores);
+                leitor.LeLinha(linha);
+                listaCompleta.populaColunas(linha);
+
+                while (leitor.LeLinha(linha))
+                {
+                    FatorContribuinte fator = new FatorContribuinte();
+                    fator.fromCSV(linha);
+                    fatores.Add(fator);
+                }
+                leitor.Close();
+                listaCompleta.populaDados(fatores);
+                listaCompleta.ShowDialog();
             }
         }//goBtn Click
     }
