@@ -56,11 +56,11 @@ namespace Ocorrências_Aeronáuticas
             Gmap.Overlays.Add(markers);                                 //Adicionado overlay ao mapa
         }
 
-        private void browseBtn_Click(object sender, EventArgs e)
+        private void btnBrowseAeronaves_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                textBox1.Text = openFileDialog1.FileName;
+                textAeronaves.Text = openFileDialog1.FileName;
             }
         }//browseBtn Click
 
@@ -75,52 +75,30 @@ namespace Ocorrências_Aeronáuticas
             List<Ocorrencia> ocorrencias = new List<Ocorrencia>();
             List<FatorContribuinte> fatores = new List<FatorContribuinte>();
 
-            if(textBox1.Text.Trim() == "")
+            Dictionary<int, DadosOcorrencia> dados_ocorrencias = new Dictionary<int, DadosOcorrencia>();
+
+            if(textAeronaves.Text.Trim() == "")
             {
                 outputBox.Text = "Selecione um arquivo CSV.";
                 return;
             }
 
-            leitor = new CsvLeitura(textBox1.Text);
+            
 
             outputBox.Text = "Populando classes...\r\n";
 
-            if (textBox1.Text.EndsWith("ocorrencia.csv"))
+            if(textAeronaves.Text.EndsWith(".csv") && textOcorrencias.Text.EndsWith(".csv") 
+                && textFatorContribuinte.Text.EndsWith(".csv"))
             {
-                Form_ListaCompleta listaCompleta = new Form_ListaCompleta(ocorrencias);
-                leitor.LeLinha(linha);
-                listaCompleta.populaColunas(linha);
-
-                while (leitor.LeLinha(linha))
-                {
-                    if (linha.Count != 19)
-                    {
-                        MessageBox.Show("Quantidade de campos na linha " + linha_atual + " é inválida", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        Ocorrencia ocorrencia = new Ocorrencia();
-                        ocorrencia.fromCSV(linha);
-                        ocorrencias.Add(ocorrencia);
-                        ++linha_atual;
-                    }
-                }
-                leitor.Close();
-                listaCompleta.populaDados(ocorrencias);
-                outputBox.Text += "Foram criadas " + linha_atual + " entradas.\r\n";
-                listaCompleta.ShowDialog(); 
-            }
-            else if (textBox1.Text.EndsWith("aeronave.csv"))
-            {
-                Form_ListaCompleta listaCompleta = new Form_ListaCompleta(aeronaves);
-                leitor.LeLinha(linha);
-                listaCompleta.populaColunas(linha);
+                //aeronaves
+                leitor = new CsvLeitura(textAeronaves.Text);
+                leitor.LeLinha(linha); //pula a linha de colunas
 
                 while (leitor.LeLinha(linha))
                 {
                     if (linha.Count != 22)
                     {
-                        MessageBox.Show("Quantidade de campos na linha " + linha_atual + " é inválida", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Aeronaves: Quantidade de campos na linha " + linha_atual + " é inválida", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
@@ -130,22 +108,45 @@ namespace Ocorrências_Aeronáuticas
                         ++linha_atual;
                     }
                 }
+
+                outputBox.Text += "Aeronaves lidas. Qtde: "+linha_atual+"\r\n";
                 leitor.Close();
-                listaCompleta.populaDados(aeronaves);
-                outputBox.Text += "Foram criadas " + linha_atual + " entradas.\r\n";
-                listaCompleta.ShowDialog();
-            }
-            else if (textBox1.Text.EndsWith("fator_contribuinte.csv"))
-            {
-                Form_ListaCompleta listaCompleta = new Form_ListaCompleta(fatores);
-                leitor.LeLinha(linha);
-                listaCompleta.populaColunas(linha);
+
+                //ocorrencias
+                leitor = new CsvLeitura(textOcorrencias.Text);
+                leitor.LeLinha(linha); //pula a linha de colunas
+
+                linha_atual = 1;
+
+                while (leitor.LeLinha(linha))
+                {
+                    if (linha.Count != 19)
+                    {
+                        MessageBox.Show("Ocorrencias: Quantidade de campos na linha " + linha_atual + " é inválida", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        Ocorrencia ocorrencia = new Ocorrencia();
+                        ocorrencia.fromCSV(linha);
+                        ocorrencias.Add(ocorrencia);
+                        ++linha_atual;
+                    }
+                }
+
+                outputBox.Text += "Ocorrencias lidas. Qtde: " + linha_atual + "\r\n";
+                leitor.Close();
+
+                //fatores
+                leitor = new CsvLeitura(textFatorContribuinte.Text);
+                leitor.LeLinha(linha); //pula a linha de colunas
+
+                linha_atual = 1;
 
                 while (leitor.LeLinha(linha))
                 {
                     if (linha.Count != 8)
                     {
-                        MessageBox.Show("Quantidade de campos na linha " + linha_atual + " é inválida", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Fatores Contrib: Quantidade de campos na linha " + linha_atual + " é inválida", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
@@ -155,15 +156,73 @@ namespace Ocorrências_Aeronáuticas
                         ++linha_atual;
                     }
                 }
+
+                outputBox.Text += "Fatores contribuintes lidos. Qtde: " + linha_atual + "\r\n";
                 leitor.Close();
-                listaCompleta.populaDados(fatores);
-                outputBox.Text += "Foram criadas " + linha_atual + " entradas.\r\n";
-                listaCompleta.ShowDialog();
+
+                DadosOcorrencia dado_existente;
+
+                //unificação em um Dicionário
+
+                foreach (Aeronave aeronave in aeronaves)
+                {
+                    if (dados_ocorrencias.TryGetValue(aeronave.codigo_ocorrencia, out dado_existente))
+                    {
+                        dado_existente.aeronave = aeronave;
+                    }
+                    else
+                    {
+                        dados_ocorrencias.Add(aeronave.codigo_ocorrencia, new DadosOcorrencia(aeronave.codigo_ocorrencia, aeronave, null, null));
+                    }
+                } //foreach aeronave
+
+                foreach (Ocorrencia ocorrencia in ocorrencias)
+                {
+                    if (dados_ocorrencias.TryGetValue(ocorrencia.codigo_ocorrencia, out dado_existente))
+                    {
+                        dado_existente.ocorrencia = ocorrencia;
+                    }
+                    else
+                    {
+                        dados_ocorrencias.Add(ocorrencia.codigo_ocorrencia, new DadosOcorrencia(ocorrencia.codigo_ocorrencia, null, ocorrencia, null));
+                    }
+                } //foreach ocorrencias
+
+                foreach (FatorContribuinte fator in fatores)
+                {
+                    if (dados_ocorrencias.TryGetValue(fator.codigo_ocorrencia, out dado_existente))
+                    {
+                        dado_existente.fator = fator;
+                    }
+                    else
+                    {
+                        dados_ocorrencias.Add(fator.codigo_ocorrencia, new DadosOcorrencia(fator.codigo_ocorrencia, null, null, fator));
+                    }
+                } //foreach fatores
+
+                Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(dados_ocorrencias);
+                form_listacompleta.ShowDialog();
             }
             else
             {
                 outputBox.Text += "ERRO: O arquivo selecionado não é do tipo esperado.\r\n";
             }
         }//goBtn Click
+
+        private void btnBrowseOcorrencias_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                textOcorrencias.Text = openFileDialog1.FileName;
+            }
+        }
+
+        private void btnFatoresContribuintes_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                textFatorContribuinte.Text = openFileDialog1.FileName;
+            }
+        }
     }
 }

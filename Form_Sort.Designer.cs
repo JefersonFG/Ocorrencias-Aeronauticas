@@ -86,7 +86,7 @@
             this.comboCampo.FormattingEnabled = true;
             this.comboCampo.Items.AddRange(new object[] {
             "codigo_ocorrencia",
-            "fabricante"});
+            "localidade"});
             this.comboCampo.Location = new System.Drawing.Point(15, 81);
             this.comboCampo.Name = "comboCampo";
             this.comboCampo.Size = new System.Drawing.Size(223, 21);

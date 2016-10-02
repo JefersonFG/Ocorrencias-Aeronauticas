@@ -11,12 +11,12 @@ namespace Ocorrências_Aeronáuticas
     public static class Sorting //mamãe
     {
         #region Bubble Sort
-        public static List<Aeronave> bubbleSort_codigo_ocorrencia(List<Aeronave> aeronaves)
+        public static List<DadosOcorrencia> bubbleSort_codigo_ocorrencia(List<DadosOcorrencia> lista_desordenada)
         {
-            List<Aeronave> lista_ordenada = new List<Aeronave>();
-            foreach (Aeronave aeronave in aeronaves)
+            List<DadosOcorrencia> lista_ordenada = new List<DadosOcorrencia>();
+            foreach (DadosOcorrencia dados_ocorrencia in lista_desordenada)
             {
-                lista_ordenada.Add(aeronave);
+                lista_ordenada.Add(dados_ocorrencia);
             }
             bool exchanges;
             do
@@ -27,7 +27,7 @@ namespace Ocorrências_Aeronáuticas
                     if (lista_ordenada[i].codigo_ocorrencia > lista_ordenada[i + 1].codigo_ocorrencia)
                     {
                         // Exchange elements
-                        Aeronave temp = lista_ordenada[i];
+                        DadosOcorrencia temp = lista_ordenada[i];
                         lista_ordenada[i] = lista_ordenada[i + 1];
                         lista_ordenada[i + 1] = temp;
                         exchanges = true;
@@ -38,12 +38,12 @@ namespace Ocorrências_Aeronáuticas
             return lista_ordenada;
         }
 
-        public static List<Aeronave> bubbleSort_fabricante(List<Aeronave> aeronaves)
+        public static List<DadosOcorrencia> bubbleSort_localidade(List<DadosOcorrencia> lista_desordenada)
         {
-            List<Aeronave> lista_ordenada = new List<Aeronave>();
-            foreach (Aeronave aeronave in aeronaves)
+            List<DadosOcorrencia> lista_ordenada = new List<DadosOcorrencia>();
+            foreach (DadosOcorrencia dados_ocorrencia in lista_desordenada)
             {
-                lista_ordenada.Add(aeronave);
+                lista_ordenada.Add(dados_ocorrencia);
             }
             bool exchanges;
             do
@@ -51,13 +51,16 @@ namespace Ocorrências_Aeronáuticas
                 exchanges = false;
                 for (int i = 0; i < lista_ordenada.Count - 1; i++)
                 {
-                    if(lista_ordenada[i].fabricante.CompareTo(lista_ordenada[i + 1].fabricante) > 0)
+                    if(lista_ordenada[i].ocorrencia != null)
                     {
-                        // Exchange elements
-                        Aeronave temp = lista_ordenada[i];
-                        lista_ordenada[i] = lista_ordenada[i + 1];
-                        lista_ordenada[i + 1] = temp;
-                        exchanges = true;
+                        if (lista_ordenada[i].ocorrencia.localidade.CompareTo(lista_ordenada[i + 1].ocorrencia.localidade) > 0)
+                        {
+                            // Exchange elements
+                            DadosOcorrencia temp = lista_ordenada[i];
+                            lista_ordenada[i] = lista_ordenada[i + 1];
+                            lista_ordenada[i + 1] = temp;
+                            exchanges = true;
+                        }
                     }
                 }
             } while (exchanges);
