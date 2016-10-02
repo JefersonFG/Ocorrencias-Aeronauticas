@@ -56,6 +56,11 @@ namespace Ocorrências_Aeronáuticas
             Gmap.Overlays.Add(markers);                                 //Adicionado overlay ao mapa
         }
 
+        /// <summary>
+        /// OnClick do botão de busca do arquivo de dados para leitura
+        /// </summary>
+        /// <param name="sender">Origem do evento</param>
+        /// <param name="e">Instância <see cref="EventArgs"/> que contém as informações do evento</param>
         private void browseBtn_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -64,6 +69,11 @@ namespace Ocorrências_Aeronáuticas
             }
         }//browseBtn Click
 
+        /// <summary>
+        /// OnClick do botão de leitura do arquivo selecionado
+        /// </summary>
+        /// <param name="sender">Origem do evento</param>
+        /// <param name="e">Instância <see cref="EventArgs"/> que contém as informações do evento</param>
         private void goBtn_Click(object sender, EventArgs e)
         {
             CsvLeitura leitor;
@@ -75,6 +85,7 @@ namespace Ocorrências_Aeronáuticas
             List<Ocorrencia> ocorrencias = new List<Ocorrencia>();
             List<FatorContribuinte> fatores = new List<FatorContribuinte>();
 
+            //Verifica se a caixa de texto está vazia, se sim informa o usuário para que selecione um arquivo para leitura
             if(textBox1.Text.Trim() == "")
             {
                 outputBox.Text = "Selecione um arquivo CSV.";
@@ -87,6 +98,7 @@ namespace Ocorrências_Aeronáuticas
 
             if (textBox1.Text.EndsWith("ocorrencia.csv"))
             {
+                //Arquivo de ocorrências
                 Form_ListaCompleta listaCompleta = new Form_ListaCompleta(ocorrencias);
                 leitor.LeLinha(linha);
                 listaCompleta.populaColunas(linha);
@@ -112,6 +124,7 @@ namespace Ocorrências_Aeronáuticas
             }
             else if (textBox1.Text.EndsWith("aeronave.csv"))
             {
+                //Arquivo de aeronaves
                 Form_ListaCompleta listaCompleta = new Form_ListaCompleta(aeronaves);
                 leitor.LeLinha(linha);
                 listaCompleta.populaColunas(linha);
@@ -137,6 +150,7 @@ namespace Ocorrências_Aeronáuticas
             }
             else if (textBox1.Text.EndsWith("fator_contribuinte.csv"))
             {
+                //Arquivo de fatores contribuintes
                 Form_ListaCompleta listaCompleta = new Form_ListaCompleta(fatores);
                 leitor.LeLinha(linha);
                 listaCompleta.populaColunas(linha);
@@ -162,6 +176,7 @@ namespace Ocorrências_Aeronáuticas
             }
             else
             {
+                //Se o não for um dos três arquivos de dados exibe um erro
                 outputBox.Text += "ERRO: O arquivo selecionado não é do tipo esperado.\r\n";
             }
         }//goBtn Click
