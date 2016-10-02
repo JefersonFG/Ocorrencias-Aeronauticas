@@ -64,6 +64,11 @@ namespace Ocorrências_Aeronáuticas
             }
         }//browseBtn Click
 
+        /// <summary>
+        /// OnClick do botão de leitura do arquivo selecionado
+        /// </summary>
+        /// <param name="sender">Origem do evento</param>
+        /// <param name="e">Instância <see cref="EventArgs"/> que contém as informações do evento</param>
         private void goBtn_Click(object sender, EventArgs e)
         {
             CsvLeitura leitor;
@@ -205,6 +210,7 @@ namespace Ocorrências_Aeronáuticas
             }
             else
             {
+                //Se o não for um dos três arquivos de dados exibe um erro
                 outputBox.Text += "ERRO: O arquivo selecionado não é do tipo esperado.\r\n";
             }
         }//goBtn Click

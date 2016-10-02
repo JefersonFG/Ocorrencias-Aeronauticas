@@ -100,7 +100,6 @@
     <Compile Include="Ocorrencia.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Registro.cs" />
     <Compile Include="Sorting.cs" />
     <EmbeddedResource Include="Form_Aguarde.resx">
       <DependentUpon>Form_Aguarde.cs</DependentUpon>
