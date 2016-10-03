@@ -114,6 +114,80 @@ namespace Ocorrências_Aeronáuticas
                     form_listacompleta.ShowDialog();
                 }
             }
+            else if (comboAlgoritmos.GetItemText(this.comboAlgoritmos.SelectedItem).Equals("Insertion Sort com Busca Linear (ISBL)"))
+            {
+                if (comboCampo.GetItemText(this.comboCampo.SelectedItem).Equals("codigo_ocorrencia"))
+                {
+                    List<DadosOcorrencia> lista_dados_ordenada = Sorting.InsertionSort_codigo_ocorrencia(lista_dados_ocorrencias);
+
+                    Dictionary<int, DadosOcorrencia> lista_dados_resultado = new Dictionary<int, DadosOcorrencia>();
+                    foreach (DadosOcorrencia dados in lista_dados_ordenada)
+                    {
+                        lista_dados_resultado.Add(dados.codigo_ocorrencia, dados);
+                    }
+
+                    pleaseWait.Close();
+                    this.Enabled = true;
+                    this.Show();
+
+                    Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(lista_dados_resultado);
+                    form_listacompleta.ShowDialog();
+                }
+                else if (comboCampo.GetItemText(this.comboCampo.SelectedItem).Equals("localidade"))
+                {
+                    List<DadosOcorrencia> lista_dados_ordenada = Sorting.InsertionSort_localidade(lista_dados_ocorrencias);
+
+                    Dictionary<int, DadosOcorrencia> lista_dados_resultado = new Dictionary<int, DadosOcorrencia>();
+                    foreach (DadosOcorrencia dados in lista_dados_ordenada)
+                    {
+                        lista_dados_resultado.Add(dados.codigo_ocorrencia, dados);
+                    }
+
+                    pleaseWait.Close();
+                    this.Enabled = true;
+                    this.Show();
+
+                    Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(lista_dados_resultado);
+                    form_listacompleta.ShowDialog();
+                }
+            }
+            else if (comboAlgoritmos.GetItemText(this.comboAlgoritmos.SelectedItem).Equals("Shell Sort (SHST)"))
+            {
+                if (comboCampo.GetItemText(this.comboCampo.SelectedItem).Equals("codigo_ocorrencia"))
+                {
+                    List<DadosOcorrencia> lista_dados_ordenada = Sorting.ShellSort_codigo_ocorrencia(lista_dados_ocorrencias);
+
+                    Dictionary<int, DadosOcorrencia> lista_dados_resultado = new Dictionary<int, DadosOcorrencia>();
+                    foreach (DadosOcorrencia dados in lista_dados_ordenada)
+                    {
+                        lista_dados_resultado.Add(dados.codigo_ocorrencia, dados);
+                    }
+
+                    pleaseWait.Close();
+                    this.Enabled = true;
+                    this.Show();
+
+                    Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(lista_dados_resultado);
+                    form_listacompleta.ShowDialog();
+                }
+                else if (comboCampo.GetItemText(this.comboCampo.SelectedItem).Equals("localidade"))
+                {
+                    List<DadosOcorrencia> lista_dados_ordenada = Sorting.ShellSort_localidade(lista_dados_ocorrencias);
+
+                    Dictionary<int, DadosOcorrencia> lista_dados_resultado = new Dictionary<int, DadosOcorrencia>();
+                    foreach (DadosOcorrencia dados in lista_dados_ordenada)
+                    {
+                        lista_dados_resultado.Add(dados.codigo_ocorrencia, dados);
+                    }
+
+                    pleaseWait.Close();
+                    this.Enabled = true;
+                    this.Show();
+
+                    Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(lista_dados_resultado);
+                    form_listacompleta.ShowDialog();
+                }
+            }
             #endregion
             else
             {
