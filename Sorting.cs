@@ -53,6 +53,112 @@ namespace Ocorrências_Aeronáuticas
 
         #region Quick Sort
 
+        public static List<DadosOcorrencia> QSRM_Ocorrencia (List<DadosOcorrencia> listaDesordenada)
+        {
+            List<DadosOcorrencia> listaOrdenada = new List<DadosOcorrencia>();
+            listaOrdenada = listaDesordenada;
+            RandomizedQuickSortOcorrencia(listaOrdenada, 0, listaOrdenada.Count - 1);
+            return listaOrdenada;
+        }
+
+        public static List<DadosOcorrencia> QSRM_Localizacao(List<DadosOcorrencia> listaDesordenada)
+        {
+            List<DadosOcorrencia> listaOrdenada = new List<DadosOcorrencia>();
+            listaOrdenada = listaDesordenada;
+            RandomizedQuickSortLocalizacao(listaOrdenada, 0, listaOrdenada.Count - 1);
+            return listaOrdenada;
+        }
+
+        public static void RandomizedQuickSortOcorrencia(List<DadosOcorrencia> input, int left, int right)
+        {
+            if (left < right)
+            {
+                int q = RandomizedPartitionOcorrencia(input, left, right);
+                RandomizedQuickSortOcorrencia(input, left, q - 1);
+                RandomizedQuickSortOcorrencia(input, q + 1, right);
+            }
+        }
+
+        public static void RandomizedQuickSortLocalizacao(List<DadosOcorrencia> input, int left, int right)
+        {
+            if (left < right)
+            {
+                int q = RandomizedPartitionLocalizacao(input, left, right);
+                RandomizedQuickSortLocalizacao(input, left, q - 1);
+                RandomizedQuickSortLocalizacao(input, q + 1, right);
+            }
+        }
+
+        private static int RandomizedPartitionOcorrencia(List<DadosOcorrencia> input, int left, int right)
+        {
+            Random random = new Random();
+            int i = random.Next(left, right);
+
+            DadosOcorrencia pivot = input[i];
+            input[i] = input[right];
+            input[right] = pivot;
+
+            return PartitionOcorrencia(input, left, right);
+        }
+
+        private static int RandomizedPartitionLocalizacao(List<DadosOcorrencia> input, int left, int right)
+        {
+            Random random = new Random();
+            int i = random.Next(left, right);
+
+            DadosOcorrencia pivot = input[i];
+            input[i] = input[right];
+            input[right] = pivot;
+
+            return PartitionLocalizacao(input, left, right);
+        }
+
+        private static int PartitionOcorrencia(List<DadosOcorrencia> input, int left, int right)
+        {
+            DadosOcorrencia pivot = input[right];
+            DadosOcorrencia temp;
+
+            int i = left;
+            for (int j = left; j < right; j++)
+            {
+                if (input[j].codigo_ocorrencia <= pivot.codigo_ocorrencia)
+                {
+                    temp = input[j];
+                    input[j] = input[i];
+                    input[i] = temp;
+                    i++;
+                }
+            }
+
+            input[right] = input[i];
+            input[i] = pivot;
+
+            return i;
+        }
+
+        private static int PartitionLocalizacao(List<DadosOcorrencia> input, int left, int right)
+        {
+            DadosOcorrencia pivot = input[right];
+            DadosOcorrencia temp;
+
+            int i = left;
+            for (int j = left; j < right; j++)
+            {
+                if (input[j].ocorrencia.localidade.CompareTo(pivot.ocorrencia.localidade) <= 0)
+                {
+                    temp = input[j];
+                    input[j] = input[i];
+                    input[i] = temp;
+                    i++;
+                }
+            }
+
+            input[right] = input[i];
+            input[i] = pivot;
+
+            return i;
+        }
+        /*
         public static void QuickSort(ref int[] x)
         {
             qs(x, 0, x.Length - 1);
@@ -84,7 +190,7 @@ namespace Ocorrências_Aeronáuticas
             if (left < j) qs(x, left, j);
             if (i < right) qs(x, i, right);
         }
-
+        */
         #endregion
 
         #region Shell Sort
@@ -345,7 +451,7 @@ namespace Ocorrências_Aeronáuticas
         #endregion
 
         #region Nth Largest
-
+        /*
         public static int NthLargest1(int[] array, int n)
         {
             //Copy input data array into a temporary array
@@ -427,6 +533,7 @@ namespace Ocorrências_Aeronáuticas
             }
             return tempArray[m - 1];
         }
+        */
         #endregion
 
         #region Miscellaneous Utilities
