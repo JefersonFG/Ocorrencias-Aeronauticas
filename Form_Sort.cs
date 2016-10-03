@@ -366,7 +366,7 @@ namespace Ocorrências_Aeronáuticas
             #endregion
             else
             {
-                MessageBox.Show("Apenas o Bubble Sort (BBST) funciona por enquanto", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Este sort não funciona no momento.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 pleaseWait.Close();
                 this.Enabled = true;
                 this.Show();
