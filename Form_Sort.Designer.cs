@@ -33,6 +33,8 @@
             this.comboAlgoritmos = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboCampo = new System.Windows.Forms.ComboBox();
+            this.textBenchmarks = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -46,7 +48,7 @@
             // 
             // btnSortGo
             // 
-            this.btnSortGo.Location = new System.Drawing.Point(289, 88);
+            this.btnSortGo.Location = new System.Drawing.Point(289, 81);
             this.btnSortGo.Name = "btnSortGo";
             this.btnSortGo.Size = new System.Drawing.Size(67, 32);
             this.btnSortGo.TabIndex = 2;
@@ -92,11 +94,31 @@
             this.comboCampo.Size = new System.Drawing.Size(223, 21);
             this.comboCampo.TabIndex = 5;
             // 
+            // textBenchmarks
+            // 
+            this.textBenchmarks.Location = new System.Drawing.Point(15, 132);
+            this.textBenchmarks.Multiline = true;
+            this.textBenchmarks.Name = "textBenchmarks";
+            this.textBenchmarks.ReadOnly = true;
+            this.textBenchmarks.Size = new System.Drawing.Size(341, 112);
+            this.textBenchmarks.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 116);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(69, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Benchmarks:";
+            // 
             // Form_Sort
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(368, 132);
+            this.ClientSize = new System.Drawing.Size(368, 256);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBenchmarks);
             this.Controls.Add(this.comboCampo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboAlgoritmos);
@@ -116,5 +138,7 @@
         private System.Windows.Forms.ComboBox comboAlgoritmos;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboCampo;
+        private System.Windows.Forms.TextBox textBenchmarks;
+        private System.Windows.Forms.Label label3;
     }
 }

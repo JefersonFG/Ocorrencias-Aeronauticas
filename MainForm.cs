@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 //Namespaces do GMap.NET
 
@@ -92,7 +93,11 @@ namespace Ocorrências_Aeronáuticas
 
             outputBox.Text = "Populando classes...\r\n";
 
-            if(textAeronaves.Text.EndsWith(".csv") && textOcorrencias.Text.EndsWith(".csv") 
+            Stopwatch sw = new Stopwatch();
+
+            sw.Start();
+
+            if (textAeronaves.Text.EndsWith(".csv") && textOcorrencias.Text.EndsWith(".csv") 
                 && textFatorContribuinte.Text.EndsWith(".csv"))
             {
                 //aeronaves
@@ -204,6 +209,10 @@ namespace Ocorrências_Aeronáuticas
                         dados_ocorrencias.Add(fator.codigo_ocorrencia, new DadosOcorrencia(fator.codigo_ocorrencia, null, null, fator));
                     }
                 } //foreach fatores
+
+                sw.Stop();
+
+                outputBox.Text += "Tempo decorrido para leitura dos arquivos: "+ sw.Elapsed + "\r\n";
 
                 Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(dados_ocorrencias);
                 form_listacompleta.ShowDialog();

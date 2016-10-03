@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Ocorrências_Aeronáuticas
 {
@@ -77,10 +78,20 @@ namespace Ocorrências_Aeronáuticas
             else if (comboAlgoritmos.GetItemText(this.comboAlgoritmos.SelectedItem).Equals("Quick Sort Randomizado (QSRM)"))
             {
 
+                textBenchmarks.AppendText("Quick Sort Randomizado (QSRM): \r\n");
+
+                
+
                 //MessageBox.Show("Bubble Sort selecionado", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 if (comboCampo.GetItemText(this.comboCampo.SelectedItem).Equals("codigo_ocorrencia"))
                 {
+                    textBenchmarks.AppendText(" sort \"codigo_ocorrencia\":\r\n");
+
+                    Stopwatch sw = new Stopwatch();
+
+                    sw.Start();
+
                     List<DadosOcorrencia> lista_dados_ordenada = Sorting.QSRM_Ocorrencia(lista_dados_ocorrencias);
 
                     Dictionary<int, DadosOcorrencia> lista_dados_resultado = new Dictionary<int, DadosOcorrencia>();
@@ -88,6 +99,10 @@ namespace Ocorrências_Aeronáuticas
                     {
                         lista_dados_resultado.Add(dados.codigo_ocorrencia, dados);
                     }
+
+                    sw.Stop();
+
+                    textBenchmarks.AppendText("  Time Elapsed: " + sw.Elapsed + "\r\n");
 
                     pleaseWait.Close();
                     this.Enabled = true;
@@ -98,6 +113,12 @@ namespace Ocorrências_Aeronáuticas
                 }
                 else if (comboCampo.GetItemText(this.comboCampo.SelectedItem).Equals("localidade"))
                 {
+                    textBenchmarks.AppendText(" sort \"localidade\":\r\n");
+
+                    Stopwatch sw = new Stopwatch();
+
+                    sw.Start();
+
                     List<DadosOcorrencia> lista_dados_ordenada = Sorting.QSRM_Localizacao(lista_dados_ocorrencias);
 
                     Dictionary<int, DadosOcorrencia> lista_dados_resultado = new Dictionary<int, DadosOcorrencia>();
@@ -105,6 +126,10 @@ namespace Ocorrências_Aeronáuticas
                     {
                         lista_dados_resultado.Add(dados.codigo_ocorrencia, dados);
                     }
+
+                    sw.Stop();
+
+                    textBenchmarks.AppendText("  Time Elapsed: " + sw.Elapsed + "\r\n");
 
                     pleaseWait.Close();
                     this.Enabled = true;
@@ -118,8 +143,18 @@ namespace Ocorrências_Aeronáuticas
             #region Insertion Sort
             else if (comboAlgoritmos.GetItemText(this.comboAlgoritmos.SelectedItem).Equals("Insertion Sort com Busca Linear (ISBL)"))
             {
+                textBenchmarks.AppendText("Insertion Sort com Busca Linear (ISBL): \r\n");
+
+                
+
                 if (comboCampo.GetItemText(this.comboCampo.SelectedItem).Equals("codigo_ocorrencia"))
                 {
+                    textBenchmarks.AppendText(" sort \"codigo_ocorrencia\":\r\n");
+
+                    Stopwatch sw = new Stopwatch();
+
+                    sw.Start();
+
                     List<DadosOcorrencia> lista_dados_ordenada = Sorting.InsertionSort_codigo_ocorrencia(lista_dados_ocorrencias);
 
                     Dictionary<int, DadosOcorrencia> lista_dados_resultado = new Dictionary<int, DadosOcorrencia>();
@@ -127,6 +162,10 @@ namespace Ocorrências_Aeronáuticas
                     {
                         lista_dados_resultado.Add(dados.codigo_ocorrencia, dados);
                     }
+
+                    sw.Stop();
+
+                    textBenchmarks.AppendText("  Time Elapsed: " + sw.Elapsed + "\r\n");
 
                     pleaseWait.Close();
                     this.Enabled = true;
@@ -137,6 +176,12 @@ namespace Ocorrências_Aeronáuticas
                 }
                 else if (comboCampo.GetItemText(this.comboCampo.SelectedItem).Equals("localidade"))
                 {
+                    textBenchmarks.AppendText(" sort \"localidade\":\r\n");
+
+                    Stopwatch sw = new Stopwatch();
+
+                    sw.Start();
+
                     List<DadosOcorrencia> lista_dados_ordenada = Sorting.InsertionSort_localidade(lista_dados_ocorrencias);
 
                     Dictionary<int, DadosOcorrencia> lista_dados_resultado = new Dictionary<int, DadosOcorrencia>();
@@ -144,6 +189,10 @@ namespace Ocorrências_Aeronáuticas
                     {
                         lista_dados_resultado.Add(dados.codigo_ocorrencia, dados);
                     }
+
+                    sw.Stop();
+
+                    textBenchmarks.AppendText("  Time Elapsed: " + sw.Elapsed + "\r\n");
 
                     pleaseWait.Close();
                     this.Enabled = true;
@@ -157,8 +206,16 @@ namespace Ocorrências_Aeronáuticas
             #region Shell Sort
             else if (comboAlgoritmos.GetItemText(this.comboAlgoritmos.SelectedItem).Equals("Shell Sort (SHST)"))
             {
+                textBenchmarks.AppendText("Shell Sort (SHST): \r\n");
+
                 if (comboCampo.GetItemText(this.comboCampo.SelectedItem).Equals("codigo_ocorrencia"))
                 {
+                    textBenchmarks.AppendText(" sort \"codigo_ocorrencia\":\r\n");
+
+                    Stopwatch sw = new Stopwatch();
+
+                    sw.Start();
+
                     List<DadosOcorrencia> lista_dados_ordenada = Sorting.ShellSort_codigo_ocorrencia(lista_dados_ocorrencias);
 
                     Dictionary<int, DadosOcorrencia> lista_dados_resultado = new Dictionary<int, DadosOcorrencia>();
@@ -166,6 +223,10 @@ namespace Ocorrências_Aeronáuticas
                     {
                         lista_dados_resultado.Add(dados.codigo_ocorrencia, dados);
                     }
+
+                    sw.Stop();
+
+                    textBenchmarks.AppendText("  Time Elapsed: " + sw.Elapsed + "\r\n");
 
                     pleaseWait.Close();
                     this.Enabled = true;
@@ -176,6 +237,12 @@ namespace Ocorrências_Aeronáuticas
                 }
                 else if (comboCampo.GetItemText(this.comboCampo.SelectedItem).Equals("localidade"))
                 {
+                    textBenchmarks.AppendText(" sort \"localidade\":\r\n");
+
+                    Stopwatch sw = new Stopwatch();
+
+                    sw.Start();
+
                     List<DadosOcorrencia> lista_dados_ordenada = Sorting.ShellSort_localidade(lista_dados_ocorrencias);
 
                     Dictionary<int, DadosOcorrencia> lista_dados_resultado = new Dictionary<int, DadosOcorrencia>();
@@ -183,6 +250,10 @@ namespace Ocorrências_Aeronáuticas
                     {
                         lista_dados_resultado.Add(dados.codigo_ocorrencia, dados);
                     }
+
+                    sw.Stop();
+
+                    textBenchmarks.AppendText("  Time Elapsed: " + sw.Elapsed + "\r\n");
 
                     pleaseWait.Close();
                     this.Enabled = true;
@@ -196,8 +267,16 @@ namespace Ocorrências_Aeronáuticas
             #region Heap Sort
             else if (comboAlgoritmos.GetItemText(this.comboAlgoritmos.SelectedItem).Equals("Heap Sort (HPST)"))
             {
+                textBenchmarks.AppendText("Heap Sort (HPST): \r\n");
+
                 if (comboCampo.GetItemText(this.comboCampo.SelectedItem).Equals("codigo_ocorrencia"))
                 {
+                    textBenchmarks.AppendText(" sort \"codigo_ocorrencia\":\r\n");
+
+                    Stopwatch sw = new Stopwatch();
+
+                    sw.Start();
+
                     List<DadosOcorrencia> lista_dados_ordenada = Sorting.HeapsortOcorrencia(lista_dados_ocorrencias);
 
                     Dictionary<int, DadosOcorrencia> lista_dados_resultado = new Dictionary<int, DadosOcorrencia>();
@@ -205,6 +284,10 @@ namespace Ocorrências_Aeronáuticas
                     {
                         lista_dados_resultado.Add(dados.codigo_ocorrencia, dados);
                     }
+
+                    sw.Stop();
+
+                    textBenchmarks.AppendText("  Time Elapsed: " + sw.Elapsed + "\r\n");
 
                     pleaseWait.Close();
                     this.Enabled = true;
@@ -215,6 +298,12 @@ namespace Ocorrências_Aeronáuticas
                 }
                 else if (comboCampo.GetItemText(this.comboCampo.SelectedItem).Equals("localidade"))
                 {
+                    textBenchmarks.AppendText(" sort \"localidade\":\r\n");
+
+                    Stopwatch sw = new Stopwatch();
+
+                    sw.Start();
+
                     List<DadosOcorrencia> lista_dados_ordenada = Sorting.HeapsortLocalizacao(lista_dados_ocorrencias);
 
                     Dictionary<int, DadosOcorrencia> lista_dados_resultado = new Dictionary<int, DadosOcorrencia>();
@@ -222,6 +311,10 @@ namespace Ocorrências_Aeronáuticas
                     {
                         lista_dados_resultado.Add(dados.codigo_ocorrencia, dados);
                     }
+
+                    sw.Stop();
+
+                    textBenchmarks.AppendText("  Time Elapsed: " + sw.Elapsed + "\r\n");
 
                     pleaseWait.Close();
                     this.Enabled = true;
