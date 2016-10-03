@@ -212,7 +212,7 @@ namespace Ocorrências_Aeronáuticas
 
                 sw.Stop();
 
-                outputBox.Text += "Tempo decorrido para leitura dos arquivos: "+ sw.Elapsed + "\r\n";
+                outputBox.Text += "Tempo decorrido para leitura dos arquivos: "+ sw.ElapsedMilliseconds.ToString() +"ms.\r\n";
 
                 Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(dados_ocorrencias);
                 form_listacompleta.ShowDialog();
