@@ -436,6 +436,111 @@ namespace Ocorrências_Aeronáuticas
 
         #region Heap Sort
 
+        public static List<DadosOcorrencia> HeapsortOcorrencia(List<DadosOcorrencia> x)
+        {
+            int i;
+            DadosOcorrencia temp;
+            int n = x.Count - 1;
+            List<DadosOcorrencia> listaOrdenada = new List<DadosOcorrencia>();
+            listaOrdenada = x;
+
+            for (i = (n / 2) - 1; i >= 0; i--)
+            {
+                siftDownOcorrencia(listaOrdenada, i, n);
+            }
+
+            for (i = n; i >= 1; i--)
+            {
+                temp = listaOrdenada[0];
+                listaOrdenada[0] = listaOrdenada[i];
+                listaOrdenada[i] = temp;
+                siftDownOcorrencia(listaOrdenada, 0, i - 1);
+            }
+            return listaOrdenada;
+        }
+
+        public static void siftDownOcorrencia(List<DadosOcorrencia> x, int root, int bottom)
+        {
+            bool done = false;
+            int maxChild;
+            DadosOcorrencia temp;
+
+            while ((root * 2 <= bottom) && (!done))
+            {
+                if (root * 2 == bottom)
+                    maxChild = root * 2;
+                else if (x[root * 2].codigo_ocorrencia > x[root * 2 + 1].codigo_ocorrencia)
+                    maxChild = root * 2;
+                else
+                    maxChild = root * 2 + 1;
+
+                if (x[root].codigo_ocorrencia < x[maxChild].codigo_ocorrencia)
+                {
+                    temp = x[root];
+                    x[root] = x[maxChild];
+                    x[maxChild] = temp;
+                    root = maxChild;
+                }
+                else
+                {
+                    done = true;
+                }
+            }
+        }
+
+        public static List<DadosOcorrencia> HeapsortLocalizacao(List<DadosOcorrencia> x)
+        {
+            int i;
+            DadosOcorrencia temp;
+            int n = x.Count - 1;
+            List<DadosOcorrencia> listaOrdenada = new List<DadosOcorrencia>();
+            listaOrdenada = x;
+
+            for (i = (n / 2) - 1; i >= 0; i--)
+            {
+                siftDownLocalizacao(listaOrdenada, i, n);
+            }
+
+            for (i = n; i >= 1; i--)
+            {
+                temp = listaOrdenada[0];
+                listaOrdenada[0] = listaOrdenada[i];
+                listaOrdenada[i] = temp;
+                siftDownLocalizacao(listaOrdenada, 0, i - 1);
+            }
+            return listaOrdenada;
+        }
+
+        public static void siftDownLocalizacao(List<DadosOcorrencia> x, int root, int bottom)
+        {
+            bool done = false;
+            int maxChild;
+            DadosOcorrencia temp;
+
+            while ((root * 2 <= bottom) && (!done))
+            {
+                if (root * 2 == bottom)
+                    maxChild = root * 2;
+                else if (x[root * 2].ocorrencia.localidade.CompareTo(x[root * 2 + 1].ocorrencia.localidade) > 0)
+                    maxChild = root * 2;
+                else
+                    maxChild = root * 2 + 1;
+
+                if (x[root].ocorrencia.localidade.CompareTo(x[maxChild].ocorrencia.localidade) < 0)
+                {
+                    temp = x[root];
+                    x[root] = x[maxChild];
+                    x[maxChild] = temp;
+                    root = maxChild;
+                }
+                else
+                {
+                    done = true;
+                }
+            }
+        }
+
+        /*
         public static void Heapsort(ref int[] x)
         {
             int i;
@@ -484,6 +589,7 @@ namespace Ocorrências_Aeronáuticas
                 }
             }
         }
+        */
         #endregion
 
         #region Radix Sort
