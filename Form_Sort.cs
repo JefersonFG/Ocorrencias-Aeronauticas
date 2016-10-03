@@ -325,6 +325,45 @@ namespace Ocorrências_Aeronáuticas
                 }
             }
             #endregion
+            #region Merge Sort
+            else if (comboAlgoritmos.GetItemText(this.comboAlgoritmos.SelectedItem).Equals("Merge Sort (MGST)"))
+            {
+                if (comboCampo.GetItemText(this.comboCampo.SelectedItem).Equals("codigo_ocorrencia"))
+                {
+                    List<DadosOcorrencia> lista_dados_ordenada = Sorting.MGST_Ocorrencia(lista_dados_ocorrencias);
+
+                    Dictionary<int, DadosOcorrencia> lista_dados_resultado = new Dictionary<int, DadosOcorrencia>();
+                    foreach (DadosOcorrencia dados in lista_dados_ordenada)
+                    {
+                        lista_dados_resultado.Add(dados.codigo_ocorrencia, dados);
+                    }
+
+                    pleaseWait.Close();
+                    this.Enabled = true;
+                    this.Show();
+
+                    Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(lista_dados_resultado);
+                    form_listacompleta.ShowDialog();
+                }
+                else if (comboCampo.GetItemText(this.comboCampo.SelectedItem).Equals("localidade"))
+                {
+                    List<DadosOcorrencia> lista_dados_ordenada = Sorting.HeapsortLocalizacao(lista_dados_ocorrencias);
+
+                    Dictionary<int, DadosOcorrencia> lista_dados_resultado = new Dictionary<int, DadosOcorrencia>();
+                    foreach (DadosOcorrencia dados in lista_dados_ordenada)
+                    {
+                        lista_dados_resultado.Add(dados.codigo_ocorrencia, dados);
+                    }
+
+                    pleaseWait.Close();
+                    this.Enabled = true;
+                    this.Show();
+
+                    Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(lista_dados_resultado);
+                    form_listacompleta.ShowDialog();
+                }
+            }
+            #endregion
             else
             {
                 MessageBox.Show("Apenas o Bubble Sort (BBST) funciona por enquanto", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
