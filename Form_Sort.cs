@@ -54,6 +54,8 @@ namespace Ocorrências_Aeronáuticas
 
                     Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(lista_dados_resultado);
                     form_listacompleta.ShowDialog();
+
+                    Persistencia.escreveResultado("BBST", "numerico", lista_dados_ordenada.Count, 0.0);
                 }
                 else if (comboCampo.GetItemText(this.comboCampo.SelectedItem).Equals("localidade"))
                 {
