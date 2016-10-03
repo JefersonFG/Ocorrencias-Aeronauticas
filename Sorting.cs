@@ -128,7 +128,7 @@ namespace Ocorrências_Aeronáuticas
             return lista_ordenada;
         }
 
-
+        /*
         public static List<DadosOcorrencia> BinaryInsertionSort_codigo_ocorrencia(List<DadosOcorrencia> lista_desordenada)
         {
             List<DadosOcorrencia> lista_ordenada = new List<DadosOcorrencia>();
@@ -158,7 +158,7 @@ namespace Ocorrências_Aeronáuticas
             }
             return lista_ordenada;
         }
-
+        */
         #endregion
 
         #region Quick Sort
@@ -364,8 +364,53 @@ namespace Ocorrências_Aeronáuticas
         }
         #endregion
 
-        #region Merge Sort
+        #region Merge Sort (NÃO FUNCIONA)
 
+        public static List<DadosOcorrencia> MGST_Ocorrencia (List<DadosOcorrencia> listaDesordenada)
+        {
+            List<DadosOcorrencia> listaOrdenada = new List<DadosOcorrencia>();
+            listaOrdenada = listaDesordenada;
+            MergeSort(listaOrdenada, 0, listaOrdenada.Count - 1);
+            return listaOrdenada;
+        }
+
+        public static void MergeSort(List<DadosOcorrencia> x, int left, int right)
+        {
+            if (left < right)
+            {
+                int middle = (left + right) / 2;
+                MergeSort(x, left, middle);
+                MergeSort(x, middle + 1, right);
+                Merge(x, left, middle, middle + 1, right);
+            }
+        }
+
+        public static void Merge(List<DadosOcorrencia> x, int left, int middle, int middle1, int right)
+        {
+            int oldPosition = left;
+            int size = right - left + 1;
+            List<DadosOcorrencia> temp = new List<DadosOcorrencia>();
+            int i = 0;
+
+            while (left <= middle && middle1 <= right)
+            {
+                if (x[left].codigo_ocorrencia <= x[middle1].codigo_ocorrencia)
+                    temp.Add(x[left++]);
+                else
+                    temp.Add(x[middle1++]);
+            }
+            if (left > middle)
+                for (int j = middle1; j <= right; j++)
+                    temp.Add(x[middle1++]);
+            else
+                for (int j = left; j <= middle; j++)
+                    temp.Add(x[left++]);
+            //temp.CopyTo(0, x.ToArray(), oldPosition, size);
+            temp.AddRange(x);
+            x = temp;
+        }
+
+        /*
         public static void MergeSort(ref int[] x, int left, int right)
         {
             if (left < right)
@@ -399,6 +444,7 @@ namespace Ocorrências_Aeronáuticas
                     temp[i++] = x[left++];
             Array.Copy(temp, 0, x, oldPosition, size);
         }
+        */
         #endregion
 
         #region Heap Sort
@@ -507,7 +553,7 @@ namespace Ocorrências_Aeronáuticas
         }
         #endregion
 
-        #region Radix Sort
+        #region Radix Sort (NÃO FUNCIONA)
 
         //RadixSort takes an array and the number of bits used as 
         //the key in each iteration.
@@ -557,54 +603,6 @@ namespace Ocorrências_Aeronáuticas
                 //which is now partially sorted.
                 int[] temp = b; b = x; x = temp;
             }
-        }
-
-        public static void RadixSortLSB_Ocorrencia(int[] a)
-        {
-            // our helper array 
-            int[] t = new int[a.Length];
-
-            // number of bits our group will be long 
-            int r = 4; // try to set this also to 2, 8 or 16 to see if it is quicker or not 
-
-            // number of bits of a C# int 
-            int b = 32;
-
-            // counting and prefix arrays
-            // (note dimensions 2^r which is the number of all possible values of a r-bit number) 
-            int[] count = new int[1 << r];
-            int[] pref = new int[1 << r];
-
-            // number of groups 
-            int groups = (int)Math.Ceiling((double)b / (double)r);
-
-            // the mask to identify groups 
-            int mask = (1 << r) - 1;
-
-            // the algorithm: 
-            for (int c = 0, shift = 0; c < groups; c++, shift += r)
-            {
-                // reset count array 
-                for (int j = 0; j < count.Length; j++)
-                    count[j] = 0;
-
-                // counting elements of the c-th group 
-                for (int i = 0; i < a.Length; i++)
-                    count[(a[i] >> shift) & mask]++;
-
-                // calculating prefixes 
-                pref[0] = 0;
-                for (int i = 1; i < count.Length; i++)
-                    pref[i] = pref[i - 1] + count[i - 1];
-
-                // from a[] to t[] elements ordered by c-th group 
-                for (int i = 0; i < a.Length; i++)
-                    t[pref[(a[i] >> shift) & mask]++] = a[i];
-
-                // a[]=t[] and start again until the last group 
-                t.CopyTo(a, 0);
-            }
-            // a is sorted 
         }
         #endregion
 
