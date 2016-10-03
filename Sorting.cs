@@ -24,7 +24,7 @@ namespace Ocorrências_Aeronáuticas
                 exchanges = false;
                 for (int i = 0; i < lista_ordenada.Count - 1; i++)
                 {
-                    if (lista_ordenada[i].codigo_ocorrencia > lista_ordenada[i + 1].codigo_ocorrencia)
+                    if (lista_ordenada[i].codigo_ocorrencia < lista_ordenada[i + 1].codigo_ocorrencia)
                     {
                         // Exchange elements
                         DadosOcorrencia temp = lista_ordenada[i];
@@ -53,7 +53,7 @@ namespace Ocorrências_Aeronáuticas
                 {
                     if(lista_ordenada[i].ocorrencia != null)
                     {
-                        if (lista_ordenada[i].ocorrencia.localidade.CompareTo(lista_ordenada[i + 1].ocorrencia.localidade) > 0)
+                        if (lista_ordenada[i].ocorrencia.localidade.CompareTo(lista_ordenada[i + 1].ocorrencia.localidade) < 0)
                         {
                             // Exchange elements
                             DadosOcorrencia temp = lista_ordenada[i];
@@ -89,7 +89,8 @@ namespace Ocorrências_Aeronáuticas
                 temp = lista_ordenada[i];
                 for (j = i - 1; j >= 0; --j)
                 {
-                    if (temp.codigo_ocorrencia < lista_ordenada[j].codigo_ocorrencia) lista_ordenada[j + 1] = lista_ordenada[j];
+                    if (temp.codigo_ocorrencia > lista_ordenada[j].codigo_ocorrencia)
+                        lista_ordenada[j + 1] = lista_ordenada[j];
                     else break;
                 }
                 lista_ordenada[j + 1] = temp;
@@ -116,7 +117,7 @@ namespace Ocorrências_Aeronáuticas
                 temp = lista_ordenada[i];
                 for (j = i - 1; j >= 0; --j)
                 {
-                    if (temp.ocorrencia.localidade.CompareTo(lista_ordenada[j].ocorrencia.localidade) < 0)
+                    if (temp.ocorrencia.localidade.CompareTo(lista_ordenada[j].ocorrencia.localidade) > 0)
                         lista_ordenada[j + 1] = lista_ordenada[j];
                     else
                         break;
@@ -161,7 +162,6 @@ namespace Ocorrências_Aeronáuticas
         #endregion
 
         #region Quick Sort
-
         public static List<DadosOcorrencia> QSRM_Ocorrencia (List<DadosOcorrencia> listaDesordenada)
         {
             List<DadosOcorrencia> listaOrdenada = new List<DadosOcorrencia>();
@@ -230,7 +230,7 @@ namespace Ocorrências_Aeronáuticas
             int i = left;
             for (int j = left; j < right; j++)
             {
-                if (input[j].codigo_ocorrencia <= pivot.codigo_ocorrencia)
+                if (input[j].codigo_ocorrencia >= pivot.codigo_ocorrencia)
                 {
                     temp = input[j];
                     input[j] = input[i];
@@ -253,7 +253,7 @@ namespace Ocorrências_Aeronáuticas
             int i = left;
             for (int j = left; j < right; j++)
             {
-                if (input[j].ocorrencia.localidade.CompareTo(pivot.ocorrencia.localidade) <= 0)
+                if (input[j].ocorrencia.localidade.CompareTo(pivot.ocorrencia.localidade) >= 0)
                 {
                     temp = input[j];
                     input[j] = input[i];
@@ -267,39 +267,6 @@ namespace Ocorrências_Aeronáuticas
 
             return i;
         }
-        /*
-        public static void QuickSort(ref int[] x)
-        {
-            qs(x, 0, x.Length - 1);
-        }
-
-        public static void qs(int[] x, int left, int right)
-        {
-            int i, j;
-            int pivot, temp;
-
-            i = left;
-            j = right;
-            pivot = x[(left + right) / 2];
-
-            do
-            {
-                while ((x[i] < pivot) && (i < right)) i++;
-                while ((pivot < x[j]) && (j > left)) j--;
-
-                if (i <= j)
-                {
-                    temp = x[i];
-                    x[i] = x[j];
-                    x[j] = temp;
-                    i++; j--;
-                }
-            } while (i <= j);
-
-            if (left < j) qs(x, left, j);
-            if (i < right) qs(x, i, right);
-        }
-        */
         #endregion
 
         #region Shell Sort
@@ -324,7 +291,7 @@ namespace Ocorrências_Aeronáuticas
                     j = i;
                     temp = lista_ordenada[i];
 
-                    while ((j >= increment) && (lista_ordenada[j - increment].codigo_ocorrencia > temp.codigo_ocorrencia))
+                    while ((j >= increment) && (lista_ordenada[j - increment].codigo_ocorrencia < temp.codigo_ocorrencia))
                     {
                         lista_ordenada[j] = lista_ordenada[j - increment];
                         j = j - increment;
@@ -370,7 +337,7 @@ namespace Ocorrências_Aeronáuticas
                     j = i;
                     temp = lista_ordenada[i];
 
-                    while ((j >= increment) && (lista_ordenada[j - increment].ocorrencia.localidade.CompareTo(temp.ocorrencia.localidade) > 0))
+                    while ((j >= increment) && (lista_ordenada[j - increment].ocorrencia.localidade.CompareTo(temp.ocorrencia.localidade) < 0))
                     {
                         lista_ordenada[j] = lista_ordenada[j - increment];
                         j = j - increment;
@@ -435,7 +402,6 @@ namespace Ocorrências_Aeronáuticas
         #endregion
 
         #region Heap Sort
-
         public static List<DadosOcorrencia> HeapsortOcorrencia(List<DadosOcorrencia> x)
         {
             int i;
@@ -469,12 +435,12 @@ namespace Ocorrências_Aeronáuticas
             {
                 if (root * 2 == bottom)
                     maxChild = root * 2;
-                else if (x[root * 2].codigo_ocorrencia > x[root * 2 + 1].codigo_ocorrencia)
+                else if (x[root * 2].codigo_ocorrencia < x[root * 2 + 1].codigo_ocorrencia)
                     maxChild = root * 2;
                 else
                     maxChild = root * 2 + 1;
 
-                if (x[root].codigo_ocorrencia < x[maxChild].codigo_ocorrencia)
+                if (x[root].codigo_ocorrencia > x[maxChild].codigo_ocorrencia)
                 {
                     temp = x[root];
                     x[root] = x[maxChild];
@@ -521,12 +487,12 @@ namespace Ocorrências_Aeronáuticas
             {
                 if (root * 2 == bottom)
                     maxChild = root * 2;
-                else if (x[root * 2].ocorrencia.localidade.CompareTo(x[root * 2 + 1].ocorrencia.localidade) > 0)
+                else if (x[root * 2].ocorrencia.localidade.CompareTo(x[root * 2 + 1].ocorrencia.localidade) < 0)
                     maxChild = root * 2;
                 else
                     maxChild = root * 2 + 1;
 
-                if (x[root].ocorrencia.localidade.CompareTo(x[maxChild].ocorrencia.localidade) < 0)
+                if (x[root].ocorrencia.localidade.CompareTo(x[maxChild].ocorrencia.localidade) > 0)
                 {
                     temp = x[root];
                     x[root] = x[maxChild];
@@ -539,57 +505,6 @@ namespace Ocorrências_Aeronáuticas
                 }
             }
         }
-
-        /*
-        public static void Heapsort(ref int[] x)
-        {
-            int i;
-            int temp;
-            int n = x.Length;
-
-            for (i = (n / 2) - 1; i >= 0; i--)
-            {
-                siftDown(ref x, i, n);
-            }
-
-            for (i = n - 1; i >= 1; i--)
-            {
-                temp = x[0];
-                x[0] = x[i];
-                x[i] = temp;
-                siftDown(ref x, 0, i - 1);
-            }
-        }
-
-        public static void siftDown(ref int[] x, int root, int bottom)
-        {
-            bool done = false;
-            int maxChild;
-            int temp;
-
-            while ((root * 2 <= bottom) && (!done))
-            {
-                if (root * 2 == bottom)
-                    maxChild = root * 2;
-                else if (x[root * 2] > x[root * 2 + 1])
-                    maxChild = root * 2;
-                else
-                    maxChild = root * 2 + 1;
-
-                if (x[root] < x[maxChild])
-                {
-                    temp = x[root];
-                    x[root] = x[maxChild];
-                    x[maxChild] = temp;
-                    root = maxChild;
-                }
-                else
-                {
-                    done = true;
-                }
-            }
-        }
-        */
         #endregion
 
         #region Radix Sort
@@ -644,6 +559,53 @@ namespace Ocorrências_Aeronáuticas
             }
         }
 
+        public static void RadixSortLSB_Ocorrencia(int[] a)
+        {
+            // our helper array 
+            int[] t = new int[a.Length];
+
+            // number of bits our group will be long 
+            int r = 4; // try to set this also to 2, 8 or 16 to see if it is quicker or not 
+
+            // number of bits of a C# int 
+            int b = 32;
+
+            // counting and prefix arrays
+            // (note dimensions 2^r which is the number of all possible values of a r-bit number) 
+            int[] count = new int[1 << r];
+            int[] pref = new int[1 << r];
+
+            // number of groups 
+            int groups = (int)Math.Ceiling((double)b / (double)r);
+
+            // the mask to identify groups 
+            int mask = (1 << r) - 1;
+
+            // the algorithm: 
+            for (int c = 0, shift = 0; c < groups; c++, shift += r)
+            {
+                // reset count array 
+                for (int j = 0; j < count.Length; j++)
+                    count[j] = 0;
+
+                // counting elements of the c-th group 
+                for (int i = 0; i < a.Length; i++)
+                    count[(a[i] >> shift) & mask]++;
+
+                // calculating prefixes 
+                pref[0] = 0;
+                for (int i = 1; i < count.Length; i++)
+                    pref[i] = pref[i - 1] + count[i - 1];
+
+                // from a[] to t[] elements ordered by c-th group 
+                for (int i = 0; i < a.Length; i++)
+                    t[pref[(a[i] >> shift) & mask]++] = a[i];
+
+                // a[]=t[] and start again until the last group 
+                t.CopyTo(a, 0);
+            }
+            // a is sorted 
+        }
         #endregion
 
         #region Linear Search
