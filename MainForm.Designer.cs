@@ -214,7 +214,6 @@
         private System.Windows.Forms.Button btnBrowseAeronaves;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button goBtn;
-        private System.Windows.Forms.TextBox outputBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnBrowseOcorrencias;
@@ -222,6 +221,7 @@
         private System.Windows.Forms.TextBox textFatorContribuinte;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnFatoresContribuintes;
+        public System.Windows.Forms.TextBox outputBox;
     }
 }
 

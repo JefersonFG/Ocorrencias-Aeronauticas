@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 //Namespaces do GMap.NET
 
@@ -204,6 +205,10 @@ namespace Ocorrências_Aeronáuticas
                         dados_ocorrencias.Add(fator.codigo_ocorrencia, new DadosOcorrencia(fator.codigo_ocorrencia, null, null, fator));
                     }
                 } //foreach fatores
+
+                sw.Stop();
+
+                outputBox.Text += "Tempo decorrido para leitura dos arquivos: "+ sw.ElapsedMilliseconds.ToString() +"ms.\r\n";
 
                 Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(dados_ocorrencias);
                 form_listacompleta.ShowDialog();
