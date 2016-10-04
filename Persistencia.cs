@@ -7,15 +7,19 @@ using System.Threading.Tasks;
 
 namespace Ocorrências_Aeronáuticas
 {
-    class Persistencia
+    public static class Persistencia
     {
-        public static void escreveResultado(string algoritmo, string tipo_dado, int tamanho_array, double tempo_decorrido)
+        public static void inicializaResultados()
         {
-            StreamWriter sw = new StreamWriter("resultados_Aerosafe.txt");
+            File.WriteAllText("../../resultados_Aerosafe.txt", string.Empty);
+        }
 
-            string resultado = algoritmo + ", " + tipo_dado + ", " + tamanho_array + ", " + tempo_decorrido;
-
-            sw.WriteLine(resultado);
+        public static void escreveResultado(string resultado)
+        {
+            using (StreamWriter sw = new StreamWriter("../../resultados_Aerosafe.txt", true))
+            {
+                sw.WriteLine(resultado);
+            }
         }
     }
 }

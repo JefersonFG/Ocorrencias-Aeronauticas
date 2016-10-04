@@ -55,12 +55,13 @@ namespace Ocorrências_Aeronáuticas
                     this.Enabled = true;
                     this.Show();
                     timer.Stop();
-                    mainForm.outputBox.Text += "BBST, numerico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString() + "\r\n";
+                    string text_output = "BBST, numerico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString();
+                    mainForm.outputBox.Text += text_output + "\r\n";
+
+                    Persistencia.escreveResultado(text_output);
 
                     Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(lista_dados_resultado);
                     form_listacompleta.ShowDialog();
-
-                    Persistencia.escreveResultado("BBST", "numerico", lista_dados_ordenada.Count, 0.0);
                 }
                 else if (comboCampo.GetItemText(this.comboCampo.SelectedItem).Equals("localidade"))
                 {
@@ -76,7 +77,10 @@ namespace Ocorrências_Aeronáuticas
                     this.Enabled = true;
                     this.Show();
                     timer.Stop();
-                    mainForm.outputBox.Text += "BBST, categorico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString() + "\r\n";
+                    string text_output = "BBST, categorico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString();
+                    mainForm.outputBox.Text += text_output + "\r\n";
+
+                    Persistencia.escreveResultado(text_output);
 
                     Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(lista_dados_resultado);
                     form_listacompleta.ShowDialog();
@@ -118,7 +122,10 @@ namespace Ocorrências_Aeronáuticas
                     this.Enabled = true;
                     this.Show();
                     timer.Stop();
-                    mainForm.outputBox.Text += "QSRM, numerico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString() + "\r\n";
+                    string text_output = "QSRM, numerico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString();
+                    mainForm.outputBox.Text += text_output + "\r\n";
+
+                    Persistencia.escreveResultado(text_output);
 
                     Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(lista_dados_resultado);
                     form_listacompleta.ShowDialog();
@@ -147,7 +154,10 @@ namespace Ocorrências_Aeronáuticas
                     this.Enabled = true;
                     this.Show();
                     timer.Stop();
-                    mainForm.outputBox.Text += "QSRM, categorico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString() + "\r\n";
+                    string text_output = "QSRM, categorico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString();
+                    mainForm.outputBox.Text += text_output + "\r\n";
+
+                    Persistencia.escreveResultado(text_output);
 
                     Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(lista_dados_resultado);
                     form_listacompleta.ShowDialog();
@@ -185,7 +195,10 @@ namespace Ocorrências_Aeronáuticas
                     this.Enabled = true;
                     this.Show();
                     timer.Stop();
-                    mainForm.outputBox.Text += "ISBL, numerico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString() + "\r\n";
+                    string text_output = "ISBL, numerico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString();
+                    mainForm.outputBox.Text += text_output + "\r\n";
+
+                    Persistencia.escreveResultado(text_output);
 
                     Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(lista_dados_resultado);
                     form_listacompleta.ShowDialog();
@@ -214,7 +227,10 @@ namespace Ocorrências_Aeronáuticas
                     this.Enabled = true;
                     this.Show();
                     timer.Stop();
-                    mainForm.outputBox.Text += "ISBL, categorico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString() + "\r\n";
+                    string text_output = "ISBL, categorico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString();
+                    mainForm.outputBox.Text += text_output + "\r\n";
+
+                    Persistencia.escreveResultado(text_output);
 
                     Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(lista_dados_resultado);
                     form_listacompleta.ShowDialog();
@@ -250,7 +266,10 @@ namespace Ocorrências_Aeronáuticas
                     this.Enabled = true;
                     this.Show();
                     timer.Stop();
-                    mainForm.outputBox.Text += "SHST, numerico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString() + "\r\n";
+                    string text_output = "SHST, numerico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString();
+                    mainForm.outputBox.Text += text_output + "\r\n";
+
+                    Persistencia.escreveResultado(text_output);
 
                     Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(lista_dados_resultado);
                     form_listacompleta.ShowDialog();
@@ -279,7 +298,10 @@ namespace Ocorrências_Aeronáuticas
                     this.Enabled = true;
                     this.Show();
                     timer.Stop();
-                    mainForm.outputBox.Text += "SHST, categorico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString() + "\r\n";
+                    string text_output = "SHST, categorico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString();
+                    mainForm.outputBox.Text += text_output + "\r\n";
+
+                    Persistencia.escreveResultado(text_output);
 
                     Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(lista_dados_resultado);
                     form_listacompleta.ShowDialog();
@@ -315,7 +337,10 @@ namespace Ocorrências_Aeronáuticas
                     this.Enabled = true;
                     this.Show();
                     timer.Stop();
-                    mainForm.outputBox.Text += "HPST, numerico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString() + "\r\n";
+                    string text_output = "HPST, numerico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString();
+                    mainForm.outputBox.Text += text_output + "\r\n";
+
+                    Persistencia.escreveResultado(text_output);
 
                     Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(lista_dados_resultado);
                     form_listacompleta.ShowDialog();
@@ -344,7 +369,10 @@ namespace Ocorrências_Aeronáuticas
                     this.Enabled = true;
                     this.Show();
                     timer.Stop();
-                    mainForm.outputBox.Text += "HPST, categorico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString() + "\r\n";
+                    string text_output = "HPST, categorico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString();
+                    mainForm.outputBox.Text += text_output + "\r\n";
+
+                    Persistencia.escreveResultado(text_output);
 
                     Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(lista_dados_resultado);
                     form_listacompleta.ShowDialog();
@@ -368,7 +396,10 @@ namespace Ocorrências_Aeronáuticas
                     this.Enabled = true;
                     this.Show();
                     timer.Stop();
-                    mainForm.outputBox.Text += "MGST, numerico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString() + "\r\n";
+                    string text_output = "MGST, numerico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString();
+                    mainForm.outputBox.Text += text_output + "\r\n";
+
+                    Persistencia.escreveResultado(text_output);
 
                     Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(lista_dados_resultado);
                     form_listacompleta.ShowDialog();
@@ -387,7 +418,10 @@ namespace Ocorrências_Aeronáuticas
                     this.Enabled = true;
                     this.Show();
                     timer.Stop();
-                    mainForm.outputBox.Text += "MGST, categorico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString() + "\r\n";
+                    string text_output = "MGST, categorico, " + lista_dados_resultado.Count + ", " + timer.ElapsedMilliseconds.ToString();
+                    mainForm.outputBox.Text += text_output + "\r\n";
+
+                    Persistencia.escreveResultado(text_output);
 
                     Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(lista_dados_resultado);
                     form_listacompleta.ShowDialog();

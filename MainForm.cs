@@ -83,7 +83,9 @@ namespace Ocorrências_Aeronáuticas
 
             Dictionary<int, DadosOcorrencia> dados_ocorrencias = new Dictionary<int, DadosOcorrencia>();
 
-            if(textAeronaves.Text.Trim() == "")
+            Persistencia.inicializaResultados();
+
+            if (textAeronaves.Text.Trim() == "")
             {
                 outputBox.Text = "Selecione um arquivo CSV.";
                 return;
