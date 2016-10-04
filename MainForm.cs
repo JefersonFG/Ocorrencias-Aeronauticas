@@ -83,7 +83,9 @@ namespace Ocorrências_Aeronáuticas
 
             Dictionary<int, DadosOcorrencia> dados_ocorrencias = new Dictionary<int, DadosOcorrencia>();
 
-            if(textAeronaves.Text.Trim() == "")
+            Persistencia.inicializaResultados();
+
+            if (textAeronaves.Text.Trim() == "")
             {
                 outputBox.Text = "Selecione um arquivo CSV.";
                 return;
@@ -212,7 +214,7 @@ namespace Ocorrências_Aeronáuticas
 
                 sw.Stop();
 
-                outputBox.Text += "Tempo decorrido para leitura dos arquivos: "+ sw.Elapsed + "\r\n";
+                outputBox.Text += "Tempo decorrido para leitura dos arquivos: "+ sw.ElapsedMilliseconds.ToString() +"ms.\r\n";
 
                 Form_ListaCompleta form_listacompleta = new Form_ListaCompleta(dados_ocorrencias);
                 form_listacompleta.ShowDialog();
