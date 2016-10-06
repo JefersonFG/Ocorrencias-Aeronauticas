@@ -1,0 +1,50 @@
+<html xmlns:tomboy="http://beatniksoftware.com/tomboy" xmlns:size="http://beatniksoftware.com/tomboy/size" xmlns:link="http://beatniksoftware.com/tomboy/link"><head><META http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Trabalho CPD</title><style type="text/css">
+	body {  }
+	h1 { font-size: xx-large;
+     	     font-weight: bold;
+     	     border-bottom: 1px solid black; }
+	div.note {
+		   position: relative;
+		   display: block;
+		   padding: 5pt;
+		   margin: 5pt; 
+		   white-space: -moz-pre-wrap; /* Mozilla */
+ 	      	   white-space: -pre-wrap;     /* Opera 4 - 6 */
+ 	      	   white-space: -o-pre-wrap;   /* Opera 7 */
+ 	      	   white-space: pre-wrap;      /* CSS3 */
+ 	      	   word-wrap: break-word;      /* IE 5.5+ */ }
+	</style></head><body><div class="note" id="Trabalho CPD"><a name="trabalho cpd"></a><h1>Trabalho CPD</h1>
+<ul><li dir="ltr">Mostra todas as ocorrências envolvendo uma determinada localidade
+</li><li dir="ltr">Nomenclaturas:
+<ul><li dir="ltr">ExemploForm
+</li><li dir="ltr">ClasseExemplo
+</li><li dir="ltr">funcaoExemplo
+</li><li dir="ltr">var_exemplo
+</li></ul></li><li dir="ltr">Classes:
+<ul><li dir="ltr">public static Persistencia
+<ul><li dir="ltr">lerCSV(nome_arquivo)
+<ul><li dir="ltr">retorna dicionário
+</li><li dir="ltr">propaga exceções
+</li></ul></li><li dir="ltr">escreverResultados(tipo_sort, tipo_dado, qtd_dados, tempo_ms)
+<ul><li dir="ltr">void
+</li><li dir="ltr">Abre arquivo de resultados e escreve uma linha
+</li></ul></li></ul></li><li dir="ltr">public static OrdenaDados
+<ul><li dir="ltr">&lt;xxx&gt;Sort(dicionario, campo)
+<ul><li dir="ltr">retorna lista ordenada
+</li><li dir="ltr">campo -&gt; enum
+</li><li dir="ltr">Instancia uma lista com todos os itens do dicionário e os ordena
+</li></ul></li></ul></li><li dir="ltr">public static Controlador
+<ul><li dir="ltr">Dicionario
+</li><li dir="ltr">pesquisaCidade(nome_cidade)
+<ul><li dir="ltr">retorna lista de DadosOcorrencia
+</li><li dir="ltr">localidade = nome_cidade
+</li><li dir="ltr">Método principal, utilizado pelo campo de pesquisa.
+</li></ul></li><li dir="ltr">executaSort(nome_sort)
+<ul><li dir="ltr">void
+</li><li dir="ltr">chama função que escreve resultados em arquivo
+</li><li dir="ltr">Opções avançadas para testes de desempenho
+</li></ul></li></ul></li></ul></li><li dir="ltr">TODO:
+<ul><li dir="ltr">Validar campo de pesquisa
+</li><li dir="ltr">Fluxograma da classe de controle
+</li><li dir="ltr">Fluxograma da classe de persistência
+</li><li dir="ltr">Ver onde inicializar a leitura de dados</li></ul></li></ul></div></body></html>
