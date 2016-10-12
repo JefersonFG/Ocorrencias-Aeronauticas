@@ -122,6 +122,7 @@
   <ItemGroup>
     <Content Include="Gmap\GMap.NET.Core.dll" />
     <Content Include="Gmap\GMap.NET.WindowsForms.dll" />
+    <None Include="img\config.png" />
     <None Include="img\search.png" />
     <None Include="img\hamburger.png" />
   </ItemGroup>

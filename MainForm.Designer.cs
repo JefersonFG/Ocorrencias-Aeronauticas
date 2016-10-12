@@ -29,73 +29,89 @@
         private void InitializeComponent()
         {
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.gmapControl = new GMap.NET.WindowsForms.GMapControl();
+            this.btnConfig = new System.Windows.Forms.Button();
+            this.btnPesquisar = new System.Windows.Forms.Button();
+            this.checkHamburger = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(190, 12);
+            this.textBox1.Location = new System.Drawing.Point(285, 12);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(214, 26);
             this.textBox1.TabIndex = 1;
             // 
-            // gMapControl1
+            // gmapControl
             // 
-            this.gMapControl1.Bearing = 0F;
-            this.gMapControl1.CanDragMap = true;
-            this.gMapControl1.EmptyTileColor = System.Drawing.Color.Navy;
-            this.gMapControl1.GrayScaleMode = false;
-            this.gMapControl1.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
-            this.gMapControl1.LevelsKeepInMemmory = 5;
-            this.gMapControl1.Location = new System.Drawing.Point(13, 56);
-            this.gMapControl1.MarkersEnabled = true;
-            this.gMapControl1.MaxZoom = 2;
-            this.gMapControl1.MinZoom = 2;
-            this.gMapControl1.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
-            this.gMapControl1.Name = "gMapControl1";
-            this.gMapControl1.NegativeMode = false;
-            this.gMapControl1.PolygonsEnabled = true;
-            this.gMapControl1.RetryLoadTile = 0;
-            this.gMapControl1.RoutesEnabled = true;
-            this.gMapControl1.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
-            this.gMapControl1.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
-            this.gMapControl1.ShowTileGridLines = false;
-            this.gMapControl1.Size = new System.Drawing.Size(559, 332);
-            this.gMapControl1.TabIndex = 3;
-            this.gMapControl1.Zoom = 0D;
+            this.gmapControl.Bearing = 0F;
+            this.gmapControl.CanDragMap = true;
+            this.gmapControl.EmptyTileColor = System.Drawing.Color.Navy;
+            this.gmapControl.GrayScaleMode = false;
+            this.gmapControl.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+            this.gmapControl.LevelsKeepInMemmory = 5;
+            this.gmapControl.Location = new System.Drawing.Point(13, 56);
+            this.gmapControl.MarkersEnabled = true;
+            this.gmapControl.MaxZoom = 2;
+            this.gmapControl.MinZoom = 2;
+            this.gmapControl.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+            this.gmapControl.Name = "gmapControl";
+            this.gmapControl.NegativeMode = false;
+            this.gmapControl.PolygonsEnabled = true;
+            this.gmapControl.RetryLoadTile = 0;
+            this.gmapControl.RoutesEnabled = true;
+            this.gmapControl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            this.gmapControl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
+            this.gmapControl.ShowTileGridLines = false;
+            this.gmapControl.Size = new System.Drawing.Size(759, 332);
+            this.gmapControl.TabIndex = 3;
+            this.gmapControl.Zoom = 0D;
             // 
-            // button2
+            // btnConfig
             // 
-            this.button2.BackgroundImage = global::Ocorrências_Aeronáuticas.Properties.Resources.search;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button2.Location = new System.Drawing.Point(410, 10);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(30, 30);
-            this.button2.TabIndex = 2;
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnConfig.BackgroundImage = global::Ocorrências_Aeronáuticas.Properties.Resources.config;
+            this.btnConfig.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnConfig.Location = new System.Drawing.Point(742, 12);
+            this.btnConfig.Name = "btnConfig";
+            this.btnConfig.Size = new System.Drawing.Size(30, 30);
+            this.btnConfig.TabIndex = 4;
+            this.btnConfig.UseVisualStyleBackColor = true;
+            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
             // 
-            // button1
+            // btnPesquisar
             // 
-            this.button1.BackgroundImage = global::Ocorrências_Aeronáuticas.Properties.Resources.hamburger;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.Location = new System.Drawing.Point(154, 10);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(30, 30);
-            this.button1.TabIndex = 0;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnPesquisar.BackgroundImage = global::Ocorrências_Aeronáuticas.Properties.Resources.search;
+            this.btnPesquisar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnPesquisar.Location = new System.Drawing.Point(505, 10);
+            this.btnPesquisar.Name = "btnPesquisar";
+            this.btnPesquisar.Size = new System.Drawing.Size(30, 30);
+            this.btnPesquisar.TabIndex = 2;
+            this.btnPesquisar.UseVisualStyleBackColor = true;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
+            // 
+            // checkHamburger
+            // 
+            this.checkHamburger.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkHamburger.BackgroundImage = global::Ocorrências_Aeronáuticas.Properties.Resources.hamburger;
+            this.checkHamburger.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.checkHamburger.Location = new System.Drawing.Point(12, 10);
+            this.checkHamburger.Name = "checkHamburger";
+            this.checkHamburger.Size = new System.Drawing.Size(30, 30);
+            this.checkHamburger.TabIndex = 5;
+            this.checkHamburger.UseVisualStyleBackColor = true;
+            this.checkHamburger.CheckedChanged += new System.EventHandler(this.checkHamburger_CheckedChanged);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 411);
-            this.Controls.Add(this.gMapControl1);
-            this.Controls.Add(this.button2);
+            this.ClientSize = new System.Drawing.Size(784, 411);
+            this.Controls.Add(this.checkHamburger);
+            this.Controls.Add(this.btnConfig);
+            this.Controls.Add(this.gmapControl);
+            this.Controls.Add(this.btnPesquisar);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.ResumeLayout(false);
@@ -104,10 +120,10 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button2;
-        private GMap.NET.WindowsForms.GMapControl gMapControl1;
+        private System.Windows.Forms.Button btnPesquisar;
+        private GMap.NET.WindowsForms.GMapControl gmapControl;
+        private System.Windows.Forms.Button btnConfig;
+        private System.Windows.Forms.CheckBox checkHamburger;
     }
 }
