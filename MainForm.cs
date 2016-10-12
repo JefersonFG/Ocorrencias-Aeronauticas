@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Ocorrências_Aeronáuticas
 {
-    public partial class Form_Aguarde : Form
+    public partial class MainForm : Form
     {
-        public Form_Aguarde()
+        public MainForm()
         {
             InitializeComponent();
-        }
-
-        private void Form_Aguarde_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            
         }
     }
 }
