@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace Ocorrências_Aeronáuticas
 {
-    public partial class Form_ListaCompleta : Form
+    public partial class TabelaForm : Form
     {
         private Dictionary<int, DadosOcorrencia> lista_dados_ocorrencias = null;
 
-        public Form_ListaCompleta(Dictionary<int, DadosOcorrencia> ocorrencias)
+        public TabelaForm(Dictionary<int, DadosOcorrencia> ocorrencias)
         {
             InitializeComponent();
             this.lista_dados_ocorrencias = ocorrencias;

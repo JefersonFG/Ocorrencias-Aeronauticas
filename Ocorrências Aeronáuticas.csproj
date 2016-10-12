@@ -70,49 +70,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aeronave.cs" />
-    <Compile Include="Form_Aguarde.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form_Aguarde.Designer.cs">
-      <DependentUpon>Form_Aguarde.cs</DependentUpon>
-    </Compile>
     <Compile Include="CSVUtils.cs" />
     <Compile Include="DadosOcorrencia.cs" />
     <Compile Include="FatorContribuinte.cs" />
-    <Compile Include="Form_ListaCompleta.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form_ListaCompleta.Designer.cs">
-      <DependentUpon>Form_ListaCompleta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form_Sort.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form_Sort.Designer.cs">
-      <DependentUpon>Form_Sort.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TabelaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TabelaForm.Designer.cs">
+      <DependentUpon>TabelaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ocorrencia.cs" />
     <Compile Include="Persistencia.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sorting.cs" />
-    <EmbeddedResource Include="Form_Aguarde.resx">
-      <DependentUpon>Form_Aguarde.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form_ListaCompleta.resx">
-      <DependentUpon>Form_ListaCompleta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form_Sort.resx">
-      <DependentUpon>Form_Sort.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabelaForm.resx">
+      <DependentUpon>TabelaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -122,6 +104,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -139,6 +122,8 @@
   <ItemGroup>
     <Content Include="Gmap\GMap.NET.Core.dll" />
     <Content Include="Gmap\GMap.NET.WindowsForms.dll" />
+    <None Include="img\search.png" />
+    <None Include="img\hamburger.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
