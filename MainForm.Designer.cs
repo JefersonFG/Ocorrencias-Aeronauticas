@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.gmapControl = new GMap.NET.WindowsForms.GMapControl();
             this.btnConfig = new System.Windows.Forms.Button();
@@ -46,6 +47,7 @@
             // gmapControl
             // 
             this.gmapControl.Bearing = 0F;
+            this.gmapControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.gmapControl.CanDragMap = true;
             this.gmapControl.EmptyTileColor = System.Drawing.Color.Navy;
             this.gmapControl.GrayScaleMode = false;
@@ -113,8 +115,9 @@
             this.Controls.Add(this.gmapControl);
             this.Controls.Add(this.btnPesquisar);
             this.Controls.Add(this.textBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "Ocorrências Aeronáuticas";
             this.ResumeLayout(false);
             this.PerformLayout();
 
