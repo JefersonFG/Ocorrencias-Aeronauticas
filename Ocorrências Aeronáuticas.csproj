@@ -79,12 +79,6 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TabelaForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TabelaForm.Designer.cs">
-      <DependentUpon>TabelaForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Ocorrencia.cs" />
     <Compile Include="Persistencia.cs" />
     <Compile Include="Program.cs" />
@@ -92,9 +86,6 @@
     <Compile Include="Sorting.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TabelaForm.resx">
-      <DependentUpon>TabelaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -104,7 +95,6 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -122,9 +112,6 @@
   <ItemGroup>
     <Content Include="Gmap\GMap.NET.Core.dll" />
     <Content Include="Gmap\GMap.NET.WindowsForms.dll" />
-    <None Include="img\config.png" />
-    <None Include="img\search.png" />
-    <None Include="img\hamburger.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

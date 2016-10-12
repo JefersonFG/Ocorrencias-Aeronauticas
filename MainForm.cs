@@ -16,7 +16,6 @@ namespace Ocorrências_Aeronáuticas
 {
     public partial class MainForm : Form
     {
-        private bool hamburger_habilitado = false;
         System.Drawing.Size tamanho_mapa_diminuido = new Size(487, 332);
         System.Drawing.Size tamanho_mapa_normal = new Size(759, 332);
         System.Drawing.Point posicao_mapa_direita = new Point(285, 56);
@@ -58,7 +57,6 @@ namespace Ocorrências_Aeronáuticas
                 gmapControl.Location = posicao_mapa_direita;
 
                 checkHamburger.Checked = true;
-                hamburger_habilitado = true;
             }
             else
             {
@@ -66,7 +64,6 @@ namespace Ocorrências_Aeronáuticas
                 gmapControl.Location = posicao_mapa_normal;
 
                 checkHamburger.Checked = false;
-                hamburger_habilitado = true;
 
                 textPesquisar.SelectAll();
                 textPesquisar.Focus();
@@ -116,7 +113,6 @@ namespace Ocorrências_Aeronáuticas
         {
             labelValorCidade.Text = "Pesquise uma localidade";
             labelValorOcorrencias.Text = "Pesquise uma localidade";
-            textPesquisar.Focus();
         } //MainForm_Load()
 
         private void checkHamburger_CheckedChanged(object sender, EventArgs e)
@@ -139,5 +135,10 @@ namespace Ocorrências_Aeronáuticas
                 e.Handled = e.SuppressKeyPress = true;
             }
         } //textPesquisar_KeyDown()
-    }
-}
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            textPesquisar.Focus();
+        }
+    }//class
+} //namespace

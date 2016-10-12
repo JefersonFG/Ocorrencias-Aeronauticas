@@ -71,7 +71,7 @@
             this.gmapControl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gmapControl.ShowTileGridLines = false;
             this.gmapControl.Size = new System.Drawing.Size(756, 332);
-            this.gmapControl.TabIndex = 3;
+            this.gmapControl.TabIndex = 100;
             this.gmapControl.Zoom = 13D;
             this.gmapControl.Load += new System.EventHandler(this.gmapControl_Load);
             // 
@@ -82,7 +82,7 @@
             this.btnConfig.Location = new System.Drawing.Point(742, 12);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(30, 30);
-            this.btnConfig.TabIndex = 4;
+            this.btnConfig.TabIndex = 3;
             this.btnConfig.UseVisualStyleBackColor = true;
             this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
             // 
@@ -105,7 +105,7 @@
             this.checkHamburger.Location = new System.Drawing.Point(12, 10);
             this.checkHamburger.Name = "checkHamburger";
             this.checkHamburger.Size = new System.Drawing.Size(30, 30);
-            this.checkHamburger.TabIndex = 5;
+            this.checkHamburger.TabIndex = 0;
             this.checkHamburger.UseVisualStyleBackColor = true;
             this.checkHamburger.CheckedChanged += new System.EventHandler(this.checkHamburger_CheckedChanged);
             // 
@@ -116,7 +116,7 @@
             this.labelValorCidade.Location = new System.Drawing.Point(12, 56);
             this.labelValorCidade.Name = "labelValorCidade";
             this.labelValorCidade.Size = new System.Drawing.Size(113, 19);
-            this.labelValorCidade.TabIndex = 6;
+            this.labelValorCidade.TabIndex = 4;
             this.labelValorCidade.Text = "Porto Alegre";
             this.labelValorCidade.Visible = false;
             // 
@@ -126,7 +126,7 @@
             this.labelOcorrencias.Location = new System.Drawing.Point(13, 89);
             this.labelOcorrencias.Name = "labelOcorrencias";
             this.labelOcorrencias.Size = new System.Drawing.Size(67, 13);
-            this.labelOcorrencias.TabIndex = 7;
+            this.labelOcorrencias.TabIndex = 5;
             this.labelOcorrencias.Text = "Ocorrências:";
             this.labelOcorrencias.Visible = false;
             // 
@@ -136,7 +136,7 @@
             this.labelValorOcorrencias.Location = new System.Drawing.Point(86, 89);
             this.labelValorOcorrencias.Name = "labelValorOcorrencias";
             this.labelValorOcorrencias.Size = new System.Drawing.Size(19, 13);
-            this.labelValorOcorrencias.TabIndex = 8;
+            this.labelValorOcorrencias.TabIndex = 6;
             this.labelValorOcorrencias.Text = "10";
             this.labelValorOcorrencias.Visible = false;
             // 
@@ -158,6 +158,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ocorrências Aeronáuticas";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
