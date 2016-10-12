@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textPesquisar = new System.Windows.Forms.TextBox();
             this.gmapControl = new GMap.NET.WindowsForms.GMapControl();
             this.btnConfig = new System.Windows.Forms.Button();
             this.btnPesquisar = new System.Windows.Forms.Button();
             this.checkHamburger = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
-            // textBox1
+            // textPesquisar
             // 
-            this.textBox1.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(285, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(214, 26);
-            this.textBox1.TabIndex = 1;
+            this.textPesquisar.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textPesquisar.Location = new System.Drawing.Point(285, 12);
+            this.textPesquisar.Name = "textPesquisar";
+            this.textPesquisar.Size = new System.Drawing.Size(214, 26);
+            this.textPesquisar.TabIndex = 1;
             // 
             // gmapControl
             // 
@@ -107,6 +107,7 @@
             // 
             // MainForm
             // 
+            this.AcceptButton = this.btnPesquisar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 411);
@@ -114,17 +115,19 @@
             this.Controls.Add(this.btnConfig);
             this.Controls.Add(this.gmapControl);
             this.Controls.Add(this.btnPesquisar);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textPesquisar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ocorrências Aeronáuticas";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textPesquisar;
         private System.Windows.Forms.Button btnPesquisar;
         private GMap.NET.WindowsForms.GMapControl gmapControl;
         private System.Windows.Forms.Button btnConfig;

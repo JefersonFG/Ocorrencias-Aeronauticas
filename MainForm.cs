@@ -27,14 +27,22 @@ namespace Ocorrências_Aeronáuticas
             InitializeComponent();
         }
 
+        private void pesquisar()
+        {
+            if(textPesquisar.Text.Trim() != "")
+            {
+                gmapControl.SetPositionByKeywords(textPesquisar.Text);
+            }
+        }
+
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
-
+            pesquisar();
         }
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void checkHamburger_CheckedChanged(object sender, EventArgs e)
@@ -45,6 +53,9 @@ namespace Ocorrências_Aeronáuticas
                 gmapControl.Location = posicao_mapa_normal;
 
                 hamburger_habilitado = false;
+
+                textPesquisar.SelectAll();
+                textPesquisar.Focus();
             }//if
             else
             {
@@ -61,18 +72,24 @@ namespace Ocorrências_Aeronáuticas
 
             gmapControl.MapProvider = GoogleMapProvider.Instance;              //Utilizando Google Maps como provider
             GMaps.Instance.Mode = AccessMode.ServerOnly;                //Configurado para não criar cache, usar sempre informações do servidor
-            //Gmap.SetPositionByKeywords("Porto Alegre, Brazil");       //Posição por palavras chave
-            gmapControl.Position = new PointLatLng(-30.0364242, -51.2191413);  //Posição por coordenadas
+            gmapControl.SetPositionByKeywords("Porto Alegre, Brazil");       //Posição por palavras chave
+            //gmapControl.Position = new PointLatLng(-30.0364242, -51.2191413);  //Posição por coordenadas
             gmapControl.ShowCenter = false;                                    //Remove a cruz que indica o centro do mapa
 
             //Inserção de um marcador de local
-
+            /*
             GMapOverlay markers = new GMapOverlay("markers");           //Overlay é uma camada onde colocamos marcadores e rotas
             GMapMarker marker = new GMarkerGoogle(
                 new PointLatLng(-30.0364242, -51.2191413),
                 GMarkerGoogleType.red_small);                           //Configurado marcador por coordenada
             markers.Markers.Add(marker);                                //Adicionado o marcador ao overlay
             gmapControl.Overlays.Add(markers);                                 //Adicionado overlay ao mapa
+            */
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            textPesquisar.Focus();
         }
     }
 }
