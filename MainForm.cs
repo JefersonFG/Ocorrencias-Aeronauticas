@@ -32,6 +32,38 @@ namespace Ocorrências_Aeronáuticas
             if(textPesquisar.Text.Trim() != "")
             {
                 gmapControl.SetPositionByKeywords(textPesquisar.Text);
+
+                labelValorCidade.Text = textPesquisar.Text;
+                labelValorOcorrencias.Text = "?";
+
+                setModoHamburger(true);
+            }
+        }
+
+        private void setModoHamburger(bool modo)
+        {
+            labelValorCidade.Visible = modo;
+            labelOcorrencias.Visible = modo;
+            labelValorOcorrencias.Visible = modo;
+
+            if (modo == true)
+            {
+                gmapControl.Size = tamanho_mapa_diminuido;
+                gmapControl.Location = posicao_mapa_direita;
+
+                checkHamburger.Checked = true;
+                hamburger_habilitado = true;
+            }
+            else
+            {
+                gmapControl.Size = tamanho_mapa_normal;
+                gmapControl.Location = posicao_mapa_normal;
+
+                checkHamburger.Checked = false;
+                hamburger_habilitado = true;
+
+                textPesquisar.SelectAll();
+                textPesquisar.Focus();
             }
         }
 
@@ -45,31 +77,11 @@ namespace Ocorrências_Aeronáuticas
             
         }
 
-        private void checkHamburger_CheckedChanged(object sender, EventArgs e)
-        {
-            if (hamburger_habilitado)
-            {
-                gmapControl.Size = tamanho_mapa_normal;
-                gmapControl.Location = posicao_mapa_normal;
-
-                hamburger_habilitado = false;
-
-                textPesquisar.SelectAll();
-                textPesquisar.Focus();
-            }//if
-            else
-            {
-                gmapControl.Size = tamanho_mapa_diminuido;
-                gmapControl.Location = posicao_mapa_direita;
-
-                hamburger_habilitado = true;
-            } //else
-        }
-
         private void gmapControl_Load(object sender, EventArgs e)
         {
             //Setup inicial feito no evento OnLoad do componente de mapas
 
+            gmapControl.DisableFocusOnMouseEnter = true;
             gmapControl.MapProvider = GoogleMapProvider.Instance;              //Utilizando Google Maps como provider
             GMaps.Instance.Mode = AccessMode.ServerOnly;                //Configurado para não criar cache, usar sempre informações do servidor
             gmapControl.SetPositionByKeywords("Porto Alegre, Brazil");       //Posição por palavras chave
@@ -89,7 +101,14 @@ namespace Ocorrências_Aeronáuticas
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            labelValorCidade.Text = "Pesquise uma localidade";
+            labelValorOcorrencias.Text = "Pesquise uma localidade";
             textPesquisar.Focus();
+        }
+
+        private void checkHamburger_CheckedChanged(object sender, EventArgs e)
+        {
+            setModoHamburger(checkHamburger.Checked);
         }
     }
 }
