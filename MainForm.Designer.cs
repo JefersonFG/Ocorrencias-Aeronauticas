@@ -53,7 +53,7 @@
             this.gmapControl.LevelsKeepInMemmory = 5;
             this.gmapControl.Location = new System.Drawing.Point(13, 56);
             this.gmapControl.MarkersEnabled = true;
-            this.gmapControl.MaxZoom = 2;
+            this.gmapControl.MaxZoom = 18;
             this.gmapControl.MinZoom = 2;
             this.gmapControl.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
             this.gmapControl.Name = "gmapControl";
@@ -66,7 +66,7 @@
             this.gmapControl.ShowTileGridLines = false;
             this.gmapControl.Size = new System.Drawing.Size(759, 332);
             this.gmapControl.TabIndex = 3;
-            this.gmapControl.Zoom = 0D;
+            this.gmapControl.Zoom = 13D;
             this.gmapControl.Load += new System.EventHandler(this.gmapControl_Load);
             // 
             // btnConfig
