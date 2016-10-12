@@ -27,6 +27,12 @@ namespace Ocorrências_Aeronáuticas
             InitializeComponent();
         }
 
+        /*
+         * 
+         * CONTROLE
+         * 
+         */
+
         private void pesquisar()
         {
             if(textPesquisar.Text.Trim() != "")
@@ -36,9 +42,9 @@ namespace Ocorrências_Aeronáuticas
                 labelValorCidade.Text = textPesquisar.Text;
                 labelValorOcorrencias.Text = "?";
 
-                setModoHamburger(true);
+                checkHamburger.Checked = true;
             }
-        }
+        } //pesquisar()
 
         private void setModoHamburger(bool modo)
         {
@@ -65,7 +71,14 @@ namespace Ocorrências_Aeronáuticas
                 textPesquisar.SelectAll();
                 textPesquisar.Focus();
             }
-        }
+        } //setModoHamburger()
+
+
+        /*
+         * 
+         * EVENTOS
+         * 
+         */
 
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
@@ -104,11 +117,27 @@ namespace Ocorrências_Aeronáuticas
             labelValorCidade.Text = "Pesquise uma localidade";
             labelValorOcorrencias.Text = "Pesquise uma localidade";
             textPesquisar.Focus();
-        }
+        } //MainForm_Load()
 
         private void checkHamburger_CheckedChanged(object sender, EventArgs e)
         {
             setModoHamburger(checkHamburger.Checked);
-        }
+        } // checkHamburger_CheckedChanged()
+
+        private void textPesquisar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                checkHamburger.Checked = false;
+
+                e.Handled = e.SuppressKeyPress = true;
+            }
+            if(e.KeyCode == Keys.Enter)
+            {
+                pesquisar();
+
+                e.Handled = e.SuppressKeyPress = true;
+            }
+        } //textPesquisar_KeyDown()
     }
 }

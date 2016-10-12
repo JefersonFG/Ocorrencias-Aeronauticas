@@ -46,6 +46,7 @@
             this.textPesquisar.Name = "textPesquisar";
             this.textPesquisar.Size = new System.Drawing.Size(214, 26);
             this.textPesquisar.TabIndex = 1;
+            this.textPesquisar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textPesquisar_KeyDown);
             // 
             // gmapControl
             // 
@@ -141,7 +142,6 @@
             // 
             // MainForm
             // 
-            this.AcceptButton = this.btnPesquisar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 411);
