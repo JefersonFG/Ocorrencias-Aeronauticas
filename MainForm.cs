@@ -1,4 +1,8 @@
-﻿using System;
+﻿using GMap.NET;
+using GMap.NET.MapProviders;
+using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -49,6 +53,26 @@ namespace Ocorrências_Aeronáuticas
 
                 hamburger_habilitado = true;
             } //else
+        }
+
+        private void gmapControl_Load(object sender, EventArgs e)
+        {
+            //Setup inicial feito no evento OnLoad do componente de mapas
+
+            gmapControl.MapProvider = GoogleMapProvider.Instance;              //Utilizando Google Maps como provider
+            GMaps.Instance.Mode = AccessMode.ServerOnly;                //Configurado para não criar cache, usar sempre informações do servidor
+            //Gmap.SetPositionByKeywords("Porto Alegre, Brazil");       //Posição por palavras chave
+            gmapControl.Position = new PointLatLng(-30.0364242, -51.2191413);  //Posição por coordenadas
+            gmapControl.ShowCenter = false;                                    //Remove a cruz que indica o centro do mapa
+
+            //Inserção de um marcador de local
+
+            GMapOverlay markers = new GMapOverlay("markers");           //Overlay é uma camada onde colocamos marcadores e rotas
+            GMapMarker marker = new GMarkerGoogle(
+                new PointLatLng(-30.0364242, -51.2191413),
+                GMarkerGoogleType.red_small);                           //Configurado marcador por coordenada
+            markers.Markers.Add(marker);                                //Adicionado o marcador ao overlay
+            gmapControl.Overlays.Add(markers);                                 //Adicionado overlay ao mapa
         }
     }
 }

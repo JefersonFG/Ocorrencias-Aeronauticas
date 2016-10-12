@@ -67,6 +67,7 @@
             this.gmapControl.Size = new System.Drawing.Size(759, 332);
             this.gmapControl.TabIndex = 3;
             this.gmapControl.Zoom = 0D;
+            this.gmapControl.Load += new System.EventHandler(this.gmapControl_Load);
             // 
             // btnConfig
             // 
