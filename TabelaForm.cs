@@ -91,8 +91,8 @@ namespace Ocorrências_Aeronáuticas
             {
                 lista.Add(dados_ocorrencia.Value);
             }
-                Form_Sort form_sort = new Form_Sort(lista);
-            form_sort.ShowDialog();
+                
+            
         } //btnSort_Click()
     }
 }
