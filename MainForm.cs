@@ -21,6 +21,8 @@ namespace Ocorrências_Aeronáuticas
         System.Drawing.Point posicao_mapa_direita = new Point(285, 56);
         System.Drawing.Point posicao_mapa_normal = new Point(13, 56);
 
+        private List<DadosOcorrencia> resultado_pesquisa;
+
         public MainForm()
         {
             InitializeComponent();
@@ -34,22 +36,70 @@ namespace Ocorrências_Aeronáuticas
 
         private void pesquisar()
         {
-            if(textPesquisar.Text.Trim() != "")
+            string localidade = textPesquisar.Text;
+            string nome_cidade = localidade;
+            if (localidade.Contains(" -"))
             {
-                gmapControl.SetPositionByKeywords(textPesquisar.Text);
-
-                labelValorCidade.Text = textPesquisar.Text;
-                labelValorOcorrencias.Text = "?";
-
-                checkHamburger.Checked = true;
+                nome_cidade = localidade.Substring(0, localidade.IndexOf(" -"));
             }
+                
+
+            resultado_pesquisa = Controlador.pesquisaCidade(nome_cidade);
+
+            if(resultado_pesquisa.Count > 0)
+            {
+
+                labelCidadesEncontradas.Text = resultado_pesquisa.Count + " cidade(s) encontrada(s).";
+                labelSelecioneCidade.Text = "Lista de cidades (filtrada):";
+                   
+            }
+            else  // == 0
+            {
+                localidade = "";
+
+                resultado_pesquisa = Controlador.pesquisaCidade(localidade);
+
+                labelCidadesEncontradas.Text = "\'"+nome_cidade+"\' não foi encontrada.";
+                labelSelecioneCidade.Text = "Lista de cidades:";
+            }
+
+            List<string> lista_cidades = new List<string>();
+            foreach (DadosOcorrencia dados_ocorrencia in resultado_pesquisa)
+            {
+                lista_cidades.Add(dados_ocorrencia.ocorrencia.localidade + " - " +
+                                    dados_ocorrencia.ocorrencia.uf + "  (cód. " +
+                                    dados_ocorrencia.codigo_ocorrencia + ")");
+            } //foreach
+
+            string cidade_selecionada = resultado_pesquisa[0].ocorrencia.localidade + " - " +
+                                        resultado_pesquisa[0].ocorrencia.uf;
+            textPesquisar.Text = cidade_selecionada;
+
+            gmapControl.SetPositionByKeywords(lista_cidades[0]);
+
+            comboSelecioneCidade.DataSource = lista_cidades;
+
+            comboSelecioneCidade.Visible = true;
+            labelSelecioneCidade.Visible = true;
+            labelCidadesEncontradas.Visible = true;
+
+            checkHamburger.Checked = true;
         } //pesquisar()
+
+        private void pesquisar(DadosOcorrencia dado_selecionado)
+        {
+            string cidade_selecionada = resultado_pesquisa[comboSelecioneCidade.SelectedIndex].ocorrencia.localidade + " - " +
+                                           resultado_pesquisa[comboSelecioneCidade.SelectedIndex].ocorrencia.uf;
+            textPesquisar.Text = cidade_selecionada;
+            labelCidadesEncontradas.Text = resultado_pesquisa.Count + " cidade(s) encontrada(s).";
+            gmapControl.SetPositionByKeywords(cidade_selecionada);
+        }
 
         private void setModoHamburger(bool modo)
         {
-            labelValorCidade.Visible = modo;
-            labelOcorrencias.Visible = modo;
-            labelValorOcorrencias.Visible = modo;
+            labelSelecioneCidade.Visible = modo;
+            labelCidadesEncontradas.Visible = modo;
+            comboSelecioneCidade.Visible = modo;
 
             if (modo == true)
             {
@@ -114,8 +164,7 @@ namespace Ocorrências_Aeronáuticas
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            labelValorCidade.Text = "Pesquise uma localidade";
-            labelValorOcorrencias.Text = "Pesquise uma localidade";
+            
         } //MainForm_Load()
 
         private void checkHamburger_CheckedChanged(object sender, EventArgs e)
@@ -142,6 +191,11 @@ namespace Ocorrências_Aeronáuticas
         private void MainForm_Shown(object sender, EventArgs e)
         {
             textPesquisar.Focus();
+        }
+
+        private void comboSelecioneCidade_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            pesquisar(resultado_pesquisa[comboSelecioneCidade.SelectedIndex]);
         }
     }//class
 } //namespace

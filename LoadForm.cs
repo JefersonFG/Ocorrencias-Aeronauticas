@@ -112,6 +112,7 @@ namespace Ocorrências_Aeronáuticas
             this.Name = "LoadForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Selecione a pasta";
+            this.Shown += new System.EventHandler(this.LoadForm_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -206,5 +207,10 @@ namespace Ocorrências_Aeronáuticas
                 textCaminhoPasta.Focus();
             }
         } //checkUsarPadrao_CheckedChanged()
+
+        private void LoadForm_Shown(object sender, EventArgs e)
+        {
+            checkUsarPadrao.Checked = true;
+        }
     }//class
 }//namespace
