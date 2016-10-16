@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 
 namespace Ocorrências_Aeronáuticas
 {
-    public static class Sorting //mamãe
+    public enum TIPO_SORT { BUBBLE, INSERTION, QUICK, SHELL, MERGE, HEAP, RADIX, LINEAR, BINARY, INTERPOLATION, NTH };
+    public enum TIPO_DADO_SORT { CODIGO_OCORRENCIA, LOCALIDADE };
+
+    public static class OrdenaDados //mamãe
     {
         #region Bubble Sort
         public static List<DadosOcorrencia> bubbleSort_codigo_ocorrencia(List<DadosOcorrencia> lista_desordenada)

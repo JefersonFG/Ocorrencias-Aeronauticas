@@ -9,7 +9,17 @@ namespace Ocorrências_Aeronáuticas
 {
     public static class Persistencia
     {
-        public static void inicializaResultados()
+        public static Dictionary<int, DadosOcorrencia> lerCSV(string caminho_arquivo)
+        {
+            return null;
+        } //lerCSV()
+
+        public static void escreverResultados(TIPO_SORT tipo_sort, TIPO_DADO_SORT tipo_dado_sort, int qtde_dados, float tempo_ms)
+        {
+
+        } //escreverResultados()
+
+        /*public static void inicializaResultados()
         {
             File.WriteAllText("../../resultados_Aerosafe.txt", string.Empty);
         }
@@ -20,6 +30,6 @@ namespace Ocorrências_Aeronáuticas
             {
                 sw.WriteLine(resultado);
             }
-        }
-    }
-}
+        } */
+    }//class
+} //namespace

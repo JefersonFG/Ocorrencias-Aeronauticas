@@ -22,14 +22,6 @@ namespace Ocorrências_Aeronáuticas
         public int codigo_ocorrencia { get; set; }
 
         /// <summary>
-        /// Cidade / município onde houve a ocorrência, presente no objeto ocorrencia
-        /// </summary>
-        /// <value>
-        /// String contendo o nome do município por extenso
-        /// </value>
-        public string localidade { get; set; }
-
-        /// <summary>
         /// Objeto contendo os dados lidos do arquivo aeronave.csv com o codigo_ocorrencia acima
         /// </summary>
         /// <value>
