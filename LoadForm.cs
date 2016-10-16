@@ -72,7 +72,7 @@ namespace Ocorrências_Aeronáuticas
             this.btnOK.Location = new System.Drawing.Point(302, 85);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 3;
+            this.btnOK.TabIndex = 0;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -211,6 +211,7 @@ namespace Ocorrências_Aeronáuticas
         private void LoadForm_Shown(object sender, EventArgs e)
         {
             checkUsarPadrao.Checked = true;
+            btnOK.Focus();
         }
     }//class
 }//namespace
