@@ -32,6 +32,7 @@ namespace Ocorrências_Aeronáuticas
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoadForm));
             this.label1 = new System.Windows.Forms.Label();
             this.textCaminhoPasta = new System.Windows.Forms.TextBox();
             this.btnBrowse = new System.Windows.Forms.Button();
@@ -109,6 +110,7 @@ namespace Ocorrências_Aeronáuticas
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.textCaminhoPasta);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoadForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Selecione a pasta";

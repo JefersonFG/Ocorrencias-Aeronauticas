@@ -160,6 +160,7 @@
             this.textDadosOcorrencia.Location = new System.Drawing.Point(15, 159);
             this.textDadosOcorrencia.Multiline = true;
             this.textDadosOcorrencia.Name = "textDadosOcorrencia";
+            this.textDadosOcorrencia.ReadOnly = true;
             this.textDadosOcorrencia.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textDadosOcorrencia.Size = new System.Drawing.Size(246, 229);
             this.textDadosOcorrencia.TabIndex = 105;
