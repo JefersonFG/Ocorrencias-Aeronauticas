@@ -79,20 +79,89 @@ namespace Ocorrências_Aeronáuticas
 
             comboSelecioneCidade.DataSource = lista_cidades;
 
-            comboSelecioneCidade.Visible = true;
-            labelSelecioneCidade.Visible = true;
-            labelCidadesEncontradas.Visible = true;
+            preencherDadosOcorrencia(resultado_pesquisa[0]);
 
             checkHamburger.Checked = true;
         } //pesquisar()
 
         private void pesquisar(DadosOcorrencia dado_selecionado)
         {
-            string cidade_selecionada = resultado_pesquisa[comboSelecioneCidade.SelectedIndex].ocorrencia.localidade + " - " +
-                                           resultado_pesquisa[comboSelecioneCidade.SelectedIndex].ocorrencia.uf;
+            string cidade_selecionada = dado_selecionado.ocorrencia.localidade + " - " +
+                                           dado_selecionado.ocorrencia.uf;
             textPesquisar.Text = cidade_selecionada;
             labelCidadesEncontradas.Text = resultado_pesquisa.Count + " cidade(s) encontrada(s).";
+            preencherDadosOcorrencia(dado_selecionado);
             gmapControl.SetPositionByKeywords(cidade_selecionada);
+        }
+
+        private void preencherDadosOcorrencia(DadosOcorrencia dado_selecionado)
+        {
+            textDadosOcorrencia.Text = "";
+            if(dado_selecionado.ocorrencia != null)
+            {
+                textDadosOcorrencia.Text = "Ocorrência:\r\n";
+                textDadosOcorrencia.Text +=
+                    " Código: " + dado_selecionado.codigo_ocorrencia + "\r\n" +
+                    " Classificação: " + dado_selecionado.ocorrencia.classificacao + "\r\n" +
+                    " Tipo: " + dado_selecionado.ocorrencia.tipo + "\r\n" +
+                    " Localidade: " + dado_selecionado.ocorrencia.localidade + "\r\n" +
+                    " UF: " + dado_selecionado.ocorrencia.uf + "\r\n" +
+                    " País: " + dado_selecionado.ocorrencia.pais + "\r\n" +
+                    " Aerodromo: " + dado_selecionado.ocorrencia.aerodromo + "\r\n" +
+                    " Dia ocorrência: " + dado_selecionado.ocorrencia.dia_ocorrencia + "\r\n" +
+                    " Horário UTC: " + dado_selecionado.ocorrencia.horario_utc + "\r\n" +
+                    " Será investigada: " + dado_selecionado.ocorrencia.sera_investigada + "\r\n" +
+                    " Comando investigador: " + dado_selecionado.ocorrencia.comando_investigador + "\r\n" +
+                    " Status investigação: " + dado_selecionado.ocorrencia.status_investigacao + "\r\n" +
+                    " Número relatório: " + dado_selecionado.ocorrencia.numero_relatorio + "\r\n" +
+                    " Relatório publicado: " + dado_selecionado.ocorrencia.relatorio_publicado + "\r\n" +
+                    " Dia publicação: " + dado_selecionado.ocorrencia.dia_publicacao + "\r\n" +
+                    " Quantidade de recomendações: " + dado_selecionado.ocorrencia.quantidade_recomendacoes + "\r\n" +
+                    " Aeronaves envolvidas: " + dado_selecionado.ocorrencia.aeronaves_envolvidas + "\r\n" +
+                    " Saída pista: " + dado_selecionado.ocorrencia.saida_pista + "\r\n" +
+                    " Dia extração: " + dado_selecionado.ocorrencia.dia_extracao + "\r\n";
+            }
+            if(dado_selecionado.aeronave != null)
+            {
+                textDadosOcorrencia.Text += "\r\n";
+                textDadosOcorrencia.Text += "Aeronave:\r\n";
+                textDadosOcorrencia.Text +=
+                    " Código da aeronave: " + dado_selecionado.aeronave.codigo_aeronave + "\r\n" +
+                    " Matrícula: " + dado_selecionado.aeronave.matricula + "\r\n" +
+                    " Código do operador: " + dado_selecionado.aeronave.codigo_operador + "\r\n" +
+                    " Equipamento: " + dado_selecionado.aeronave.equipamento + "\r\n" +
+                    " Fabricante: " + dado_selecionado.aeronave.fabricante + "\r\n" +
+                    " Modelo: " + dado_selecionado.aeronave.modelo + "\r\n" +
+                    " Tipo motor: " + dado_selecionado.aeronave.tipo_motor + "\r\n" +
+                    " Quantidade motores: " + dado_selecionado.aeronave.quantidade_motores + "\r\n" +
+                    " Peso máximo decolagem: " + dado_selecionado.aeronave.peso_maximo_decolagem + "\r\n" +
+                    " Quantidade de assentos: " + dado_selecionado.aeronave.quantidade_assentos + "\r\n" +
+                    " Ano de fabricação: " + dado_selecionado.aeronave.ano_fabricacao + "\r\n" +
+                    " País de registro: " + dado_selecionado.aeronave.pais_registro + "\r\n" +
+                    " Categoria registro: " + dado_selecionado.aeronave.categoria_registro + "\r\n" +
+                    " Categoria aviação: " + dado_selecionado.aeronave.categoria_aviacao + "\r\n" +
+                    " Origem voo: " + dado_selecionado.aeronave.origem_voo + "\r\n" +
+                    " Destino voo: " + dado_selecionado.aeronave.destino_voo + "\r\n" +
+                    " Fase operação: " + dado_selecionado.aeronave.fase_operacao + "\r\n" +
+                    " Tipo operação: " + dado_selecionado.aeronave.tipo_operacao + "\r\n" +
+                    " Nível de dano: " + dado_selecionado.aeronave.nivel_dano + "\r\n" +
+                    " Quantidade de fatalidades: " + dado_selecionado.aeronave.quantidade_fatalidades + "\r\n" +
+                    " Dia de extração: " + dado_selecionado.aeronave.dia_extracao + "\r\n";
+            }
+            if(dado_selecionado.fator != null)
+            {
+                textDadosOcorrencia.Text += "\r\n";
+                textDadosOcorrencia.Text += "Fator contribuinte: \r\n";
+                textDadosOcorrencia.Text +=
+                    " Código do fator: " + dado_selecionado.fator.codigo_fator + "\r\n" +
+                    " Aspecto: " + dado_selecionado.fator.aspecto + "\r\n" +
+                    " Condicionante: " + dado_selecionado.fator.condicionante + "\r\n" +
+                    " Área: " + dado_selecionado.fator.area + "\r\n" +
+                    //" Nível de contribuição: " + dado_selecionado.fator. + "\r\n" +
+                    " Detalhe fator: " + dado_selecionado.fator.detalhe_fator + "\r\n" +
+                    " Dia extração: " + dado_selecionado.fator.dia_extracao;
+            }
+            
         }
 
         private void setModoHamburger(bool modo)
@@ -100,6 +169,8 @@ namespace Ocorrências_Aeronáuticas
             labelSelecioneCidade.Visible = modo;
             labelCidadesEncontradas.Visible = modo;
             comboSelecioneCidade.Visible = modo;
+            labelDadosOcorrencia.Visible = modo;
+            textDadosOcorrencia.Visible = modo;
 
             if (modo == true)
             {

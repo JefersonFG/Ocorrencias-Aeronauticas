@@ -37,6 +37,8 @@
             this.labelSelecioneCidade = new System.Windows.Forms.Label();
             this.comboSelecioneCidade = new System.Windows.Forms.ComboBox();
             this.labelCidadesEncontradas = new System.Windows.Forms.Label();
+            this.labelDadosOcorrencia = new System.Windows.Forms.Label();
+            this.textDadosOcorrencia = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // textPesquisar
@@ -142,11 +144,34 @@
             this.labelCidadesEncontradas.Text = "Pesquise uma cidade.";
             this.labelCidadesEncontradas.Visible = false;
             // 
+            // labelDadosOcorrencia
+            // 
+            this.labelDadosOcorrencia.AutoSize = true;
+            this.labelDadosOcorrencia.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDadosOcorrencia.Location = new System.Drawing.Point(12, 131);
+            this.labelDadosOcorrencia.Name = "labelDadosOcorrencia";
+            this.labelDadosOcorrencia.Size = new System.Drawing.Size(141, 16);
+            this.labelDadosOcorrencia.TabIndex = 104;
+            this.labelDadosOcorrencia.Text = "Dados da ocorrência";
+            this.labelDadosOcorrencia.Visible = false;
+            // 
+            // textDadosOcorrencia
+            // 
+            this.textDadosOcorrencia.Location = new System.Drawing.Point(15, 159);
+            this.textDadosOcorrencia.Multiline = true;
+            this.textDadosOcorrencia.Name = "textDadosOcorrencia";
+            this.textDadosOcorrencia.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textDadosOcorrencia.Size = new System.Drawing.Size(246, 229);
+            this.textDadosOcorrencia.TabIndex = 105;
+            this.textDadosOcorrencia.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 411);
+            this.Controls.Add(this.textDadosOcorrencia);
+            this.Controls.Add(this.labelDadosOcorrencia);
             this.Controls.Add(this.labelCidadesEncontradas);
             this.Controls.Add(this.comboSelecioneCidade);
             this.Controls.Add(this.labelSelecioneCidade);
@@ -175,5 +200,7 @@
         private System.Windows.Forms.Label labelSelecioneCidade;
         private System.Windows.Forms.ComboBox comboSelecioneCidade;
         private System.Windows.Forms.Label labelCidadesEncontradas;
+        private System.Windows.Forms.Label labelDadosOcorrencia;
+        private System.Windows.Forms.TextBox textDadosOcorrencia;
     }
 }
