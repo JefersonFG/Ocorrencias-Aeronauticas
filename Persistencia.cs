@@ -69,7 +69,7 @@ namespace Ocorrências_Aeronáuticas
                 }
                 catch (Exception exception)
                 {
-                    
+                    // o que fazer aqui ?
                 }
                 linha_atual++;
                
@@ -123,7 +123,7 @@ namespace Ocorrências_Aeronáuticas
                 }
                 catch (Exception exception)
                 {
-                    
+                    // o que fazer aqui ?
                 }
             }//while
 
@@ -162,7 +162,7 @@ namespace Ocorrências_Aeronáuticas
                 }
                 catch (Exception exception)
                 {
-                    
+                    // o que fazer aqui ?
                 }
             }//while
 

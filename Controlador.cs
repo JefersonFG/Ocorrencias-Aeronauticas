@@ -15,8 +15,10 @@ namespace Ocorrências_Aeronáuticas
             dic_dados_ocorrencia = dicionario;
         } //dicionarioInicial()
 
-        public static List<DadosOcorrencia> pesquisaCidade(string localidade)
+        //pesquisa cidades que contenham esta localidade no nome
+        public static List<DadosOcorrencia> pesquisaCidade(string localidade) 
         {
+
             List<DadosOcorrencia> lista = new List<DadosOcorrencia>();
 
             Ocorrencia ocorrencia;

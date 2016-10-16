@@ -21,7 +21,7 @@ namespace Ocorrências_Aeronáuticas
         System.Drawing.Point posicao_mapa_direita = new Point(285, 56);
         System.Drawing.Point posicao_mapa_normal = new Point(13, 56);
 
-        private List<DadosOcorrencia> resultado_pesquisa; //armazena os resultados de uma pesquisa
+        private List<DadosOcorrencia> resultados_pesquisa; //armazena os resultados de uma pesquisa
 
         public MainForm()
         {
@@ -36,43 +36,53 @@ namespace Ocorrências_Aeronáuticas
 
         private void pesquisar()  //pesquisa o que está escrito na caixa de pesquisa
         {
+            /* obtem o nome da cidade a ser pesquisada */
             string localidade = textPesquisar.Text;
             string nome_cidade = localidade;
             if (localidade.Contains(" -"))
             {
-                nome_cidade = localidade.Substring(0, localidade.IndexOf(" -"));
+                nome_cidade = localidade.Substring(0, localidade.IndexOf(" -")); //pega apenas o nome da cidade
             }
-                
 
-            resultado_pesquisa = Controlador.pesquisaCidade(nome_cidade);
+            //realiza a busca
+            resultados_pesquisa = Controlador.pesquisaCidade(nome_cidade);
 
+            //limpa o textbox que tem os dados da ocorrencia
             limparDadosOcorrencia();
 
-            if (resultado_pesquisa.Count > 0)
+            if (resultados_pesquisa.Count > 0) //retornou mais que 1 cidade
             {
-
-                labelCidadesEncontradas.Text = resultado_pesquisa.Count + " cidade(s) encontrada(s).";
-                labelSelecioneCidade.Text = "Resultados da busca (\'"+nome_cidade+"\'):";
-
-                string cidade_selecionada = resultado_pesquisa[0].ocorrencia.localidade + " - " +
-                                        resultado_pesquisa[0].ocorrencia.uf;
-                textPesquisar.Text = cidade_selecionada;
+                //formata o nome para CIDADE - ESTADO
+                string cidade_selecionada = resultados_pesquisa[0].ocorrencia.localidade + " - " +
+                                        resultados_pesquisa[0].ocorrencia.uf;
+                
+                //busca no mapa
                 gmapControl.SetPositionByKeywords(cidade_selecionada);
 
-                preencherDadosOcorrencia(resultado_pesquisa[0]);
+                //atualiza labels
+                labelCidadesEncontradas.Text = resultados_pesquisa.Count + " cidade(s) encontrada(s).";
+                labelSelecioneCidade.Text = "Resultados da busca (\'" + nome_cidade + "\'):";
+                textPesquisar.Text = cidade_selecionada;
+
+                //preenche os dados no textbox
+                preencherDadosOcorrencia(resultados_pesquisa[0]);
             }
             else  // == 0
             {
+                //filtro para mostrar todas
                 localidade = "";
 
-                resultado_pesquisa = Controlador.pesquisaCidade(localidade);
+                //busca todas
+                resultados_pesquisa = Controlador.pesquisaCidade(localidade);
 
+                //atualiza labels
                 labelCidadesEncontradas.Text = "\'"+nome_cidade+"\' não foi encontrada.";
-                labelSelecioneCidade.Text = "Lista de todas as cidades ("+resultado_pesquisa.Count+"):";
+                labelSelecioneCidade.Text = "Lista de todas as cidades ("+resultados_pesquisa.Count+"):";
             }
 
+            /* preenche combobox */
             List<string> lista_cidades = new List<string>();
-            foreach (DadosOcorrencia dados_ocorrencia in resultado_pesquisa)
+            foreach (DadosOcorrencia dados_ocorrencia in resultados_pesquisa)
             {
                 lista_cidades.Add(dados_ocorrencia.ocorrencia.localidade + " - " +
                                     dados_ocorrencia.ocorrencia.uf + "  (cód. " +
@@ -81,23 +91,33 @@ namespace Ocorrências_Aeronáuticas
 
             comboSelecioneCidade.DataSource = lista_cidades;
 
+            //ativa o menu hamburger
             checkHamburger.Checked = true;
         } //pesquisar()
 
         private void pesquisar(DadosOcorrencia dado_selecionado) //pesquisa o item selecionado no comboBox
         {
+            //formata para CIDADE - ESTADO
             string cidade_selecionada = dado_selecionado.ocorrencia.localidade + " - " +
                                            dado_selecionado.ocorrencia.uf;
+
+
+            //busca no mapa
+            gmapControl.SetPositionByKeywords(cidade_selecionada);
+
+            //preenche o textbox com os dados da ocorrencia
+            preencherDadosOcorrencia(dado_selecionado);
+            
+            //atualiza labels
             textPesquisar.Text = cidade_selecionada;
             labelCidadesEncontradas.Text = "\'"+cidade_selecionada+"\' selecionada.";
-            preencherDadosOcorrencia(dado_selecionado);
-            gmapControl.SetPositionByKeywords(cidade_selecionada);
-        }
 
-        private void limparDadosOcorrencia()
+        } // pesquisar(DadosOcorrencia dado_selecionado)
+
+        private void limparDadosOcorrencia() //limpa o textbox com os dados da ocorrencia selecionada
         {
             textDadosOcorrencia.Text = "";
-        }
+        } //limparDadosOcorrencia()
 
         private void preencherDadosOcorrencia(DadosOcorrencia dado_selecionado) //preenche os dados da ocorrência
         {
@@ -125,7 +145,7 @@ namespace Ocorrências_Aeronáuticas
                     "  Aeronaves envolvidas: " + dado_selecionado.ocorrencia.aeronaves_envolvidas + "\r\n" +
                     "  Saída pista: " + dado_selecionado.ocorrencia.saida_pista + "\r\n" +
                     "  Dia extração: " + dado_selecionado.ocorrencia.dia_extracao + "\r\n";
-            }
+            } //if
             if(dado_selecionado.aeronave != null)
             {
                 textDadosOcorrencia.Text += "\r\n\r\n";
@@ -152,7 +172,7 @@ namespace Ocorrências_Aeronáuticas
                     "  Nível de dano: " + dado_selecionado.aeronave.nivel_dano + "\r\n" +
                     "  Quantidade de fatalidades: " + dado_selecionado.aeronave.quantidade_fatalidades + "\r\n" +
                     "  Dia de extração: " + dado_selecionado.aeronave.dia_extracao + "\r\n";
-            }
+            } //if
             if(dado_selecionado.fator != null)
             {
                 textDadosOcorrencia.Text += "\r\n\r\n";
@@ -165,18 +185,20 @@ namespace Ocorrências_Aeronáuticas
                     //" Nível de contribuição: " + dado_selecionado.fator. + "\r\n" +
                     "  Detalhe fator: " + dado_selecionado.fator.detalhe_fator + "\r\n" +
                     "  Dia extração: " + dado_selecionado.fator.dia_extracao;
-            }
-            
-        }
+            } //if
+
+        } // preencherDadosOcorrencia()
 
         private void setModoHamburger(bool modo) //controle do menu hamburger
         {
+            /* visibilidade dos componentes */
             labelSelecioneCidade.Visible = modo;
             labelCidadesEncontradas.Visible = modo;
             comboSelecioneCidade.Visible = modo;
             labelDadosOcorrencia.Visible = modo;
             textDadosOcorrencia.Visible = modo;
 
+            /* ajusta tamanho do mapa */
             if (modo == true)
             {
                 gmapControl.Size = tamanho_mapa_diminuido;
@@ -202,7 +224,7 @@ namespace Ocorrências_Aeronáuticas
 
         /*
          * 
-         * EVENTOS
+         * EVENTOS ( ações da UI )
          * 
          */
 
@@ -250,13 +272,13 @@ namespace Ocorrências_Aeronáuticas
 
         private void textPesquisar_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape) // ESC -> fecha menu hamburger
             {
                 checkHamburger.Checked = false;
 
                 e.Handled = e.SuppressKeyPress = true;
             }
-            if(e.KeyCode == Keys.Enter)
+            if(e.KeyCode == Keys.Enter) // ENTER -> pesquisa o que está na caixa de texto
             {
                 pesquisar();
 
@@ -269,9 +291,9 @@ namespace Ocorrências_Aeronáuticas
             textPesquisar.Focus();
         }
 
-        private void comboSelecioneCidade_SelectionChangeCommitted(object sender, EventArgs e)
+        private void comboSelecioneCidade_SelectionChangeCommitted(object sender, EventArgs e) //selecionou cidade da lista
         {
-            pesquisar(resultado_pesquisa[comboSelecioneCidade.SelectedIndex]);
+            pesquisar(resultados_pesquisa[comboSelecioneCidade.SelectedIndex]); //pesquisa a cidade selecionada
         }
     }//class
 } //namespace
