@@ -21,9 +21,49 @@ namespace Ocorrências_Aeronáuticas
             FatorContribuinte fator_contribuinte;
 
             Dictionary<int, DadosOcorrencia> dicionario = new Dictionary<int, DadosOcorrencia>();
+            DadosOcorrencia dado_existente;
 
             /* leitura do arquivo de Ocorrencias */
             leitor = new CsvLeitura(caminho_csv_ocorrencias);
+            linha = new CsvLinha();
+            leitor.LeLinha(linha); //pula a linha de colunas
+            while (leitor.LeLinha(linha))
+            {
+                ocorrencia = new Ocorrencia();
+                ocorrencia.codigo_ocorrencia = Convert.ToInt32(linha[0]);
+                ocorrencia.classificacao = linha[1];
+                ocorrencia.tipo = linha[2];
+                ocorrencia.localidade = linha[3];
+                ocorrencia.uf = linha[4];
+                ocorrencia.pais = linha[5];
+                ocorrencia.aerodromo = linha[6];
+                ocorrencia.dia_ocorrencia = Convert.ToDateTime(linha[7]);
+                ocorrencia.horario_utc = Convert.ToDateTime(linha[8]);
+                ocorrencia.sera_investigada = linha[9];
+                ocorrencia.comando_investigador = linha[10];
+                ocorrencia.status_investigacao = linha[11];
+                ocorrencia.numero_relatorio = linha[12];
+                ocorrencia.relatorio_publicado = linha[13];
+                ocorrencia.dia_publicacao = (linha[14] == "NULL" ? Convert.ToDateTime("01-01-1901") : Convert.ToDateTime(linha[14]));
+                ocorrencia.quantidade_recomendacoes = (linha[15] == "NULL" ? 0 : Convert.ToInt32(linha[15]));
+                ocorrencia.aeronaves_envolvidas = (linha[16] == "NULL" ? 0 : Convert.ToInt32(linha[16]));
+                ocorrencia.saida_pista = (linha[17] == "NULL" ? 0 : Convert.ToInt32(linha[17]));
+                ocorrencia.dia_extracao = Convert.ToDateTime(linha[18]);
+
+                if (dicionario.TryGetValue(ocorrencia.codigo_ocorrencia, out dado_existente))
+                {
+                    dado_existente.ocorrencia = ocorrencia;
+                }
+                else
+                {
+                    dicionario.Add(ocorrencia.codigo_ocorrencia, new DadosOcorrencia(ocorrencia.codigo_ocorrencia, null, ocorrencia, null));
+                }
+            }//while
+
+            leitor.Close();
+
+            /* leitura do arquivo de Aeronaves */
+            leitor = new CsvLeitura(caminho_csv_aeronaves);
             linha = new CsvLinha();
             leitor.LeLinha(linha); //pula a linha de colunas
             while (leitor.LeLinha(linha))
@@ -52,10 +92,48 @@ namespace Ocorrências_Aeronáuticas
                 aeronave.quantidade_fatalidades = (linha[20] == "NULL" ? 0 : Convert.ToInt32(linha[20]));
                 aeronave.dia_extracao = Convert.ToDateTime(linha[21]);
 
-
-            }
+                if (dicionario.TryGetValue(aeronave.codigo_ocorrencia, out dado_existente))
+                {
+                    dado_existente.aeronave = aeronave;
+                }
+                else
+                {
+                    dicionario.Add(aeronave.codigo_ocorrencia, new DadosOcorrencia(aeronave.codigo_ocorrencia, aeronave, null, null));
+                }
+            }//while
 
             leitor.Close();
+
+            /* leitura do arquivo de Fatores Contribuintes */
+            leitor = new CsvLeitura(caminho_csv_fator_contribuinte);
+            linha = new CsvLinha();
+            leitor.LeLinha(linha); //pula a linha de colunas
+            while (leitor.LeLinha(linha))
+            {
+                fator_contribuinte = new FatorContribuinte();
+                fator_contribuinte.codigo_fator = Convert.ToInt32(linha[0]);
+                fator_contribuinte.codigo_ocorrencia = Convert.ToInt32(linha[1]);
+                fator_contribuinte.fator = linha[2];
+                fator_contribuinte.aspecto = linha[3];
+                fator_contribuinte.condicionante = linha[4];
+                fator_contribuinte.area = linha[5];
+                //fator_contribuinte.nivel_contribuicao = linha[6];   //não é utilizado no csv
+                fator_contribuinte.detalhe_fator = linha[6];
+                fator_contribuinte.dia_extracao = Convert.ToDateTime(linha[7]);
+
+                if (dicionario.TryGetValue(fator_contribuinte.codigo_ocorrencia, out dado_existente))
+                {
+                    dado_existente.fator = fator_contribuinte;
+                }
+                else
+                {
+                    dicionario.Add(fator_contribuinte.codigo_ocorrencia, new DadosOcorrencia(fator_contribuinte.codigo_ocorrencia, null, null, fator_contribuinte));
+                }
+            }//while
+
+            leitor.Close();
+
+            return dicionario;
 
         } //lerCSV()
 
