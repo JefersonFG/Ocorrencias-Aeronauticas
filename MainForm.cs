@@ -57,6 +57,9 @@ namespace Ocorrências_Aeronáuticas
                 gmapControl.Location = posicao_mapa_direita;
 
                 checkHamburger.Checked = true;
+
+                textPesquisar.SelectAll();
+                textPesquisar.Focus();
             }
             else
             {
