@@ -9,9 +9,28 @@ namespace Ocorrências_Aeronáuticas
 {
     public static class Persistencia
     {
-        public static Dictionary<int, DadosOcorrencia> lerCSV(string caminho_arquivo)
+        public static Dictionary<int, DadosOcorrencia> lerCSV(string caminho_csv_ocorrencias, 
+                                                                string caminho_csv_aeronaves,
+                                                                string caminho_csv_fator_contribuinte)
         {
-            return null;
+            CsvLinha linha;
+            CsvLeitura leitor;
+
+            Ocorrencia ocorrencia;
+            Aeronave aeronave;
+            FatorContribuinte fator_contribuinte;
+
+            /* leitura do arquivo de Ocorrencias */
+            leitor = new CsvLeitura(caminho_csv_ocorrencias);
+            linha = new CsvLinha();
+            leitor.LeLinha(linha); //pula a linha de colunas
+            while (leitor.LeLinha(linha))
+            {
+                aeronave.fromCSV(linha);
+            }
+
+            leitor.Close();
+
         } //lerCSV()
 
         public static void escreverResultados(TIPO_SORT tipo_sort, TIPO_DADO_SORT tipo_dado_sort, int qtde_dados, float tempo_ms)
