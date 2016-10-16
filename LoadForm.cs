@@ -15,6 +15,7 @@ namespace Ocorrências_Aeronáuticas
         private Label label1;
         private TextBox textCaminhoPasta;
         private Button btnBrowse;
+        private OpenFileDialog openFileDialog1;
         private Button btnOK;
 
         public LoadForm()
@@ -24,7 +25,7 @@ namespace Ocorrências_Aeronáuticas
 
         private void LoadForm_Load(object sender, EventArgs e)
         {
-            Dictionary<int, DadosOcorrencia> = 
+
         }
 
         private void InitializeComponent()
@@ -33,6 +34,7 @@ namespace Ocorrências_Aeronáuticas
             this.textCaminhoPasta = new System.Windows.Forms.TextBox();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // label1
@@ -70,6 +72,11 @@ namespace Ocorrências_Aeronáuticas
             this.btnOK.TabIndex = 3;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // LoadForm
             // 
@@ -87,7 +94,29 @@ namespace Ocorrências_Aeronáuticas
 
         private void btnBrowse_Click(object sender, EventArgs e)
         {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                textCaminhoPasta.Text = openFileDialog1.FileName;
+            }
+        }
 
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            string caminho_pasta;
+            string caminho_ocorrencias;
+            string caminho_aeronaves;
+            string caminho_fatores;
+
+            caminho_pasta = textCaminhoPasta.Text;
+
+            if(caminho_pasta.Trim().Equals("")
+            {
+
+            }
+
+            Dictionary < int, DadosOcorrencia > = Persistencia.lerCSV(caminho_pasta,
+                                                                        caminho_ocorrencias,
+                                                                        caminho_fatores);
         }
     }
 }
