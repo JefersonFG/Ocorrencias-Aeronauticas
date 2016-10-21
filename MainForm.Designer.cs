@@ -28,200 +28,180 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Gmap = new GMap.NET.WindowsForms.GMapControl();
-            this.textAeronaves = new System.Windows.Forms.TextBox();
-            this.btnBrowseAeronaves = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.goBtn = new System.Windows.Forms.Button();
-            this.outputBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnBrowseOcorrencias = new System.Windows.Forms.Button();
-            this.textOcorrencias = new System.Windows.Forms.TextBox();
-            this.textFatorContribuinte = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnFatoresContribuintes = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.textPesquisar = new System.Windows.Forms.TextBox();
+            this.gmapControl = new GMap.NET.WindowsForms.GMapControl();
+            this.btnConfig = new System.Windows.Forms.Button();
+            this.btnPesquisar = new System.Windows.Forms.Button();
+            this.checkHamburger = new System.Windows.Forms.CheckBox();
+            this.labelSelecioneCidade = new System.Windows.Forms.Label();
+            this.comboSelecioneCidade = new System.Windows.Forms.ComboBox();
+            this.labelCidadesEncontradas = new System.Windows.Forms.Label();
+            this.labelDadosOcorrencia = new System.Windows.Forms.Label();
+            this.textDadosOcorrencia = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // Gmap
+            // textPesquisar
             // 
-            this.Gmap.Bearing = 0F;
-            this.Gmap.CanDragMap = true;
-            this.Gmap.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Gmap.EmptyTileColor = System.Drawing.Color.RoyalBlue;
-            this.Gmap.GrayScaleMode = false;
-            this.Gmap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
-            this.Gmap.LevelsKeepInMemmory = 5;
-            this.Gmap.Location = new System.Drawing.Point(0, 0);
-            this.Gmap.MarkersEnabled = true;
-            this.Gmap.MaxZoom = 18;
-            this.Gmap.MinZoom = 2;
-            this.Gmap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
-            this.Gmap.Name = "Gmap";
-            this.Gmap.NegativeMode = false;
-            this.Gmap.PolygonsEnabled = true;
-            this.Gmap.RetryLoadTile = 0;
-            this.Gmap.RoutesEnabled = true;
-            this.Gmap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
-            this.Gmap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
-            this.Gmap.ShowTileGridLines = false;
-            this.Gmap.Size = new System.Drawing.Size(484, 273);
-            this.Gmap.TabIndex = 0;
-            this.Gmap.Zoom = 13D;
-            this.Gmap.Load += new System.EventHandler(this.Gmap_Load);
+            this.textPesquisar.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textPesquisar.Location = new System.Drawing.Point(285, 12);
+            this.textPesquisar.Name = "textPesquisar";
+            this.textPesquisar.Size = new System.Drawing.Size(214, 26);
+            this.textPesquisar.TabIndex = 1;
+            this.textPesquisar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textPesquisar_KeyDown);
             // 
-            // textAeronaves
+            // gmapControl
             // 
-            this.textAeronaves.Location = new System.Drawing.Point(12, 306);
-            this.textAeronaves.Name = "textAeronaves";
-            this.textAeronaves.ReadOnly = true;
-            this.textAeronaves.Size = new System.Drawing.Size(379, 20);
-            this.textAeronaves.TabIndex = 1;
+            this.gmapControl.Bearing = 0F;
+            this.gmapControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gmapControl.CanDragMap = true;
+            this.gmapControl.EmptyTileColor = System.Drawing.Color.Navy;
+            this.gmapControl.GrayScaleMode = false;
+            this.gmapControl.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+            this.gmapControl.LevelsKeepInMemmory = 5;
+            this.gmapControl.Location = new System.Drawing.Point(13, 56);
+            this.gmapControl.MarkersEnabled = true;
+            this.gmapControl.MaxZoom = 18;
+            this.gmapControl.MinZoom = 2;
+            this.gmapControl.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+            this.gmapControl.Name = "gmapControl";
+            this.gmapControl.NegativeMode = false;
+            this.gmapControl.PolygonsEnabled = true;
+            this.gmapControl.RetryLoadTile = 0;
+            this.gmapControl.RoutesEnabled = true;
+            this.gmapControl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            this.gmapControl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
+            this.gmapControl.ShowTileGridLines = false;
+            this.gmapControl.Size = new System.Drawing.Size(759, 332);
+            this.gmapControl.TabIndex = 100;
+            this.gmapControl.Zoom = 13D;
+            this.gmapControl.Load += new System.EventHandler(this.gmapControl_Load);
             // 
-            // btnBrowseAeronaves
+            // btnConfig
             // 
-            this.btnBrowseAeronaves.Location = new System.Drawing.Point(397, 304);
-            this.btnBrowseAeronaves.Name = "btnBrowseAeronaves";
-            this.btnBrowseAeronaves.Size = new System.Drawing.Size(75, 23);
-            this.btnBrowseAeronaves.TabIndex = 2;
-            this.btnBrowseAeronaves.Text = "Browse";
-            this.btnBrowseAeronaves.UseVisualStyleBackColor = true;
-            this.btnBrowseAeronaves.Click += new System.EventHandler(this.btnBrowseAeronaves_Click);
+            this.btnConfig.BackgroundImage = global::Ocorrências_Aeronáuticas.Properties.Resources.config;
+            this.btnConfig.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnConfig.Location = new System.Drawing.Point(742, 12);
+            this.btnConfig.Name = "btnConfig";
+            this.btnConfig.Size = new System.Drawing.Size(30, 30);
+            this.btnConfig.TabIndex = 3;
+            this.btnConfig.UseVisualStyleBackColor = true;
+            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
             // 
-            // openFileDialog1
+            // btnPesquisar
             // 
-            this.openFileDialog1.DefaultExt = "csv";
-            this.openFileDialog1.Filter = "Arquivo CSV|*.csv";
+            this.btnPesquisar.BackgroundImage = global::Ocorrências_Aeronáuticas.Properties.Resources.search;
+            this.btnPesquisar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnPesquisar.Location = new System.Drawing.Point(505, 10);
+            this.btnPesquisar.Name = "btnPesquisar";
+            this.btnPesquisar.Size = new System.Drawing.Size(30, 30);
+            this.btnPesquisar.TabIndex = 2;
+            this.btnPesquisar.UseVisualStyleBackColor = true;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
             // 
-            // goBtn
+            // checkHamburger
             // 
-            this.goBtn.Location = new System.Drawing.Point(12, 420);
-            this.goBtn.Name = "goBtn";
-            this.goBtn.Size = new System.Drawing.Size(460, 23);
-            this.goBtn.TabIndex = 3;
-            this.goBtn.Text = "Go";
-            this.goBtn.UseVisualStyleBackColor = true;
-            this.goBtn.Click += new System.EventHandler(this.goBtn_Click);
+            this.checkHamburger.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkHamburger.BackgroundImage = global::Ocorrências_Aeronáuticas.Properties.Resources.hamburger;
+            this.checkHamburger.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.checkHamburger.Location = new System.Drawing.Point(12, 10);
+            this.checkHamburger.Name = "checkHamburger";
+            this.checkHamburger.Size = new System.Drawing.Size(30, 30);
+            this.checkHamburger.TabIndex = 0;
+            this.checkHamburger.UseVisualStyleBackColor = true;
+            this.checkHamburger.CheckedChanged += new System.EventHandler(this.checkHamburger_CheckedChanged);
             // 
-            // outputBox
+            // labelSelecioneCidade
             // 
-            this.outputBox.AcceptsReturn = true;
-            this.outputBox.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.outputBox.Location = new System.Drawing.Point(12, 449);
-            this.outputBox.Multiline = true;
-            this.outputBox.Name = "outputBox";
-            this.outputBox.ReadOnly = true;
-            this.outputBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.outputBox.Size = new System.Drawing.Size(460, 90);
-            this.outputBox.TabIndex = 4;
+            this.labelSelecioneCidade.AutoSize = true;
+            this.labelSelecioneCidade.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSelecioneCidade.Location = new System.Drawing.Point(12, 75);
+            this.labelSelecioneCidade.Name = "labelSelecioneCidade";
+            this.labelSelecioneCidade.Size = new System.Drawing.Size(104, 16);
+            this.labelSelecioneCidade.TabIndex = 101;
+            this.labelSelecioneCidade.Text = "Lista de cidades:";
+            this.labelSelecioneCidade.Visible = false;
             // 
-            // label1
+            // comboSelecioneCidade
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 290);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(114, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Arquivo de aeronaves:";
+            this.comboSelecioneCidade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboSelecioneCidade.FormattingEnabled = true;
+            this.comboSelecioneCidade.Location = new System.Drawing.Point(15, 96);
+            this.comboSelecioneCidade.Name = "comboSelecioneCidade";
+            this.comboSelecioneCidade.Size = new System.Drawing.Size(246, 21);
+            this.comboSelecioneCidade.TabIndex = 102;
+            this.comboSelecioneCidade.Visible = false;
+            this.comboSelecioneCidade.SelectionChangeCommitted += new System.EventHandler(this.comboSelecioneCidade_SelectionChangeCommitted);
             // 
-            // label2
+            // labelCidadesEncontradas
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 329);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(119, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Arquivo de ocorrências:";
+            this.labelCidadesEncontradas.AutoSize = true;
+            this.labelCidadesEncontradas.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCidadesEncontradas.Location = new System.Drawing.Point(12, 56);
+            this.labelCidadesEncontradas.Name = "labelCidadesEncontradas";
+            this.labelCidadesEncontradas.Size = new System.Drawing.Size(132, 16);
+            this.labelCidadesEncontradas.TabIndex = 103;
+            this.labelCidadesEncontradas.Text = "Pesquise uma cidade.";
+            this.labelCidadesEncontradas.Visible = false;
             // 
-            // btnBrowseOcorrencias
+            // labelDadosOcorrencia
             // 
-            this.btnBrowseOcorrencias.Location = new System.Drawing.Point(397, 343);
-            this.btnBrowseOcorrencias.Name = "btnBrowseOcorrencias";
-            this.btnBrowseOcorrencias.Size = new System.Drawing.Size(75, 23);
-            this.btnBrowseOcorrencias.TabIndex = 8;
-            this.btnBrowseOcorrencias.Text = "Browse";
-            this.btnBrowseOcorrencias.UseVisualStyleBackColor = true;
-            this.btnBrowseOcorrencias.Click += new System.EventHandler(this.btnBrowseOcorrencias_Click);
+            this.labelDadosOcorrencia.AutoSize = true;
+            this.labelDadosOcorrencia.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDadosOcorrencia.Location = new System.Drawing.Point(12, 131);
+            this.labelDadosOcorrencia.Name = "labelDadosOcorrencia";
+            this.labelDadosOcorrencia.Size = new System.Drawing.Size(141, 16);
+            this.labelDadosOcorrencia.TabIndex = 104;
+            this.labelDadosOcorrencia.Text = "Dados da ocorrência";
+            this.labelDadosOcorrencia.Visible = false;
             // 
-            // textOcorrencias
+            // textDadosOcorrencia
             // 
-            this.textOcorrencias.Location = new System.Drawing.Point(12, 345);
-            this.textOcorrencias.Name = "textOcorrencias";
-            this.textOcorrencias.ReadOnly = true;
-            this.textOcorrencias.Size = new System.Drawing.Size(379, 20);
-            this.textOcorrencias.TabIndex = 7;
-            // 
-            // textFatorContribuinte
-            // 
-            this.textFatorContribuinte.Location = new System.Drawing.Point(12, 384);
-            this.textFatorContribuinte.Name = "textFatorContribuinte";
-            this.textFatorContribuinte.ReadOnly = true;
-            this.textFatorContribuinte.Size = new System.Drawing.Size(379, 20);
-            this.textFatorContribuinte.TabIndex = 10;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 368);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(159, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Arquivo de fatores contribuintes:";
-            // 
-            // btnFatoresContribuintes
-            // 
-            this.btnFatoresContribuintes.Location = new System.Drawing.Point(397, 382);
-            this.btnFatoresContribuintes.Name = "btnFatoresContribuintes";
-            this.btnFatoresContribuintes.Size = new System.Drawing.Size(75, 23);
-            this.btnFatoresContribuintes.TabIndex = 11;
-            this.btnFatoresContribuintes.Text = "Browse";
-            this.btnFatoresContribuintes.UseVisualStyleBackColor = true;
-            this.btnFatoresContribuintes.Click += new System.EventHandler(this.btnFatoresContribuintes_Click);
+            this.textDadosOcorrencia.Location = new System.Drawing.Point(15, 159);
+            this.textDadosOcorrencia.Multiline = true;
+            this.textDadosOcorrencia.Name = "textDadosOcorrencia";
+            this.textDadosOcorrencia.ReadOnly = true;
+            this.textDadosOcorrencia.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textDadosOcorrencia.Size = new System.Drawing.Size(246, 229);
+            this.textDadosOcorrencia.TabIndex = 105;
+            this.textDadosOcorrencia.Visible = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 568);
-            this.Controls.Add(this.btnFatoresContribuintes);
-            this.Controls.Add(this.textFatorContribuinte);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnBrowseOcorrencias);
-            this.Controls.Add(this.textOcorrencias);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.outputBox);
-            this.Controls.Add(this.goBtn);
-            this.Controls.Add(this.btnBrowseAeronaves);
-            this.Controls.Add(this.textAeronaves);
-            this.Controls.Add(this.Gmap);
-            this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
+            this.ClientSize = new System.Drawing.Size(784, 411);
+            this.Controls.Add(this.textDadosOcorrencia);
+            this.Controls.Add(this.labelDadosOcorrencia);
+            this.Controls.Add(this.labelCidadesEncontradas);
+            this.Controls.Add(this.comboSelecioneCidade);
+            this.Controls.Add(this.labelSelecioneCidade);
+            this.Controls.Add(this.checkHamburger);
+            this.Controls.Add(this.btnConfig);
+            this.Controls.Add(this.gmapControl);
+            this.Controls.Add(this.btnPesquisar);
+            this.Controls.Add(this.textPesquisar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ocorrências Aeronáuticas";
+            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private GMap.NET.WindowsForms.GMapControl Gmap;
-        private System.Windows.Forms.TextBox textAeronaves;
-        private System.Windows.Forms.Button btnBrowseAeronaves;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Button goBtn;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnBrowseOcorrencias;
-        private System.Windows.Forms.TextBox textOcorrencias;
-        private System.Windows.Forms.TextBox textFatorContribuinte;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnFatoresContribuintes;
-        public System.Windows.Forms.TextBox outputBox;
+        private System.Windows.Forms.TextBox textPesquisar;
+        private System.Windows.Forms.Button btnPesquisar;
+        private GMap.NET.WindowsForms.GMapControl gmapControl;
+        private System.Windows.Forms.Button btnConfig;
+        private System.Windows.Forms.CheckBox checkHamburger;
+        private System.Windows.Forms.Label labelSelecioneCidade;
+        private System.Windows.Forms.ComboBox comboSelecioneCidade;
+        private System.Windows.Forms.Label labelCidadesEncontradas;
+        private System.Windows.Forms.Label labelDadosOcorrencia;
+        private System.Windows.Forms.TextBox textDadosOcorrencia;
     }
 }
-
