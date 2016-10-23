@@ -269,13 +269,9 @@ namespace Ocorrências_Aeronáuticas
                 caminho_pasta += "\\";
             caminho_pasta += "..\\..\\data\\";
 
-            string caminho_ocorrencias = caminho_pasta + "ocorrencia.csv";
-            string caminho_aeronaves = caminho_pasta + "aeronave.csv";
-            string caminho_fatores = caminho_pasta + "fator_contribuinte.csv";
-
             try
             {
-                dicionario = Persistencia.lerCSV(caminho_ocorrencias, caminho_aeronaves, caminho_fatores);
+                dicionario = Controlador.carregarDicionario(caminho_pasta);
 
                 if (dicionario.Count < 1)
                 {
