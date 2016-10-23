@@ -262,7 +262,34 @@ namespace Ocorrências_Aeronáuticas
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            
+            Dictionary<int, DadosOcorrencia> dicionario;
+
+            string caminho_pasta = AppDomain.CurrentDomain.BaseDirectory;
+            if (!caminho_pasta.EndsWith("\\"))
+                caminho_pasta += "\\";
+            caminho_pasta += "..\\..\\data\\";
+
+            string caminho_ocorrencias = caminho_pasta + "ocorrencia.csv";
+            string caminho_aeronaves = caminho_pasta + "aeronave.csv";
+            string caminho_fatores = caminho_pasta + "fator_contribuinte.csv";
+
+            try
+            {
+                dicionario = Persistencia.lerCSV(caminho_ocorrencias, caminho_aeronaves, caminho_fatores);
+
+                if (dicionario.Count < 1)
+                {
+                    MessageBox.Show("Nenhum registro foi lido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.StackTrace, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            } //catch
+
+            Controlador.dicionarioInicial(dicionario);
         } //MainForm_Load()
 
         private void checkHamburger_CheckedChanged(object sender, EventArgs e)
