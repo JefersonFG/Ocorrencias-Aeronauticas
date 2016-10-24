@@ -262,7 +262,30 @@ namespace Ocorrências_Aeronáuticas
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            
+            Dictionary<int, DadosOcorrencia> dicionario;
+
+            string caminho_pasta = AppDomain.CurrentDomain.BaseDirectory;
+            if (!caminho_pasta.EndsWith("\\"))
+                caminho_pasta += "\\";
+            caminho_pasta += "..\\..\\data\\";
+
+            try
+            {
+                dicionario = Controlador.carregarDicionario(caminho_pasta);
+
+                if (dicionario.Count < 1)
+                {
+                    MessageBox.Show("Nenhum registro foi lido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.StackTrace, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            } //catch
+
+            Controlador.dicionarioInicial(dicionario);
         } //MainForm_Load()
 
         private void checkHamburger_CheckedChanged(object sender, EventArgs e)

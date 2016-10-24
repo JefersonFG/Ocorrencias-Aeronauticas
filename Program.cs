@@ -19,7 +19,7 @@ namespace Ocorrências_Aeronáuticas
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoadForm());
+            Application.Run(new MainForm());
         }
     }
 }

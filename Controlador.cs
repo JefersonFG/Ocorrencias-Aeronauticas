@@ -36,5 +36,15 @@ namespace Ocorrências_Aeronáuticas
 
             return lista;
         } //pesquisaCidade()
+
+        public static Dictionary<int, DadosOcorrencia> carregarDicionario(string caminho_pasta_com_csvs)
+        {
+            string caminho_ocorrencias = caminho_pasta_com_csvs + "ocorrencia.csv";
+            string caminho_aeronaves = caminho_pasta_com_csvs + "aeronave.csv";
+            string caminho_fatores = caminho_pasta_com_csvs + "fator_contribuinte.csv";
+
+            return Persistencia.lerCSV(caminho_ocorrencias, caminho_aeronaves, caminho_fatores);
+        } // carregarDicionario()
+
     } //class
 }//namespace
