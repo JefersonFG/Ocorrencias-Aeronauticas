@@ -1,6 +1,6 @@
 ﻿namespace Ocorrências_Aeronáuticas
 {
-    partial class Form_Aguarde
+    partial class LoadForm
     {
         /// <summary>
         /// Required designer variable.
@@ -34,24 +34,22 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 9);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(50, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(161, 13);
+            this.label1.Size = new System.Drawing.Size(192, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Executando... Por favor aguarde";
+            this.label1.Text = "Aguarde, lendo arquivos...";
             // 
-            // Form_Aguarde
+            // LoadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(215, 32);
+            this.ClientSize = new System.Drawing.Size(284, 59);
             this.Controls.Add(this.label1);
-            this.MaximizeBox = false;
-            this.Name = "Form_Aguarde";
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Aguarde";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Aguarde_FormClosing);
+            this.Name = "LoadForm";
+            this.Text = "Carregando...";
+            this.Load += new System.EventHandler(this.LoadForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

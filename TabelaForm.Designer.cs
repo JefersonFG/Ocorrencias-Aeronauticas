@@ -2,7 +2,7 @@
 
 namespace Ocorrências_Aeronáuticas
 {
-    partial class Form_ListaCompleta
+    partial class TabelaForm
     {
         /// <summary>
         /// Required designer variable.
