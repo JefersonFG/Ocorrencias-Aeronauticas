@@ -191,7 +191,7 @@ namespace Ocorrências_Aeronáuticas
                     "  País: " + dado_selecionado.ocorrencia.pais + "\r\n" +
                     "  Aerodromo: " + dado_selecionado.ocorrencia.aerodromo + "\r\n" +
                     "  Dia ocorrência: " + dado_selecionado.ocorrencia.dia_ocorrencia + "\r\n" +
-                    "  Horário UTC: " + dado_selecionado.ocorrencia.horario_utc + "\r\n" +
+                    "  Horário UTC: " + dado_selecionado.ocorrencia.horario + "\r\n" +
                     "  Será investigada: " + dado_selecionado.ocorrencia.sera_investigada + "\r\n" +
                     "  Comando investigador: " + dado_selecionado.ocorrencia.comando_investigador + "\r\n" +
                     "  Status investigação: " + dado_selecionado.ocorrencia.status_investigacao + "\r\n" +

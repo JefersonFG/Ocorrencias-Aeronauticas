@@ -179,7 +179,7 @@ namespace Ocorrências_Aeronáuticas
             this.pais = linha[5];
             this.aerodromo = linha[6];
             this.dia_ocorrencia = Convert.ToDateTime(linha[7]);
-            this.horario_utc = Convert.ToDateTime(linha[8]);
+            this.horario = Convert.ToDateTime(linha[8]);
             this.sera_investigada = linha[9];
             this.comando_investigador = linha[10];
             this.status_investigacao = linha[11];
