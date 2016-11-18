@@ -58,10 +58,11 @@ namespace Ocorrências_Aeronáuticas
             //descobrir por que não está funcionando!
             using(var ocorrencias_stream = new StreamReader(caminho_csv_ocorrencias))
             {
-                var leitor = new CsvReader(ocorrencias_stream);
-                var ocorrencias = leitor.GetRecords<Ocorrencia>();
                 try
                 {
+                    var leitor = new CsvReader(ocorrencias_stream);
+                    var ocorrencias = leitor.GetRecords<Ocorrencia>();
+                
                     foreach(Ocorrencia ocorrencia in ocorrencias)
                     {
                         if (dicionario.TryGetValue(ocorrencia.codigo_ocorrencia, out dado_existente))
