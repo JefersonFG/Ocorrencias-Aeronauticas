@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using CsvHelper;
 
 namespace Ocorrências_Aeronáuticas
@@ -14,103 +15,164 @@ namespace Ocorrências_Aeronáuticas
                                                                 string caminho_csv_aeronaves,
                                                                 string caminho_csv_fator_contribuinte) 
         {
-            CsvLinha linha;
-            CsvLeitura leitor;
+            //CsvLinha linha;
+            //CsvLeitura leitor;
 
-            Ocorrencia ocorrencia;
-            Aeronave aeronave;
-            FatorContribuinte fator_contribuinte;
+            //Ocorrencia ocorrencia;
+            //Aeronave aeronave;
+            //FatorContribuinte fator_contribuinte;
 
             Dictionary<int, DadosOcorrencia> dicionario = new Dictionary<int, DadosOcorrencia>();
             DadosOcorrencia dado_existente;
 
-            /* leitura do arquivo de Ocorrencias */
-            leitor = new CsvLeitura(caminho_csv_ocorrencias);
-            linha = new CsvLinha();
+            ///* leitura do arquivo de Ocorrencias */
+            //leitor = new CsvLeitura(caminho_csv_ocorrencias);
+            //linha = new CsvLinha();
 
-            leitor.LeLinha(linha); //pula a linha de colunas
+            //leitor.LeLinha(linha); //pula a linha de colunas
 
-            while (leitor.LeLinha(linha))
+            //while (leitor.LeLinha(linha))
+            //{
+            //    try
+            //    {
+            //        ocorrencia = new Ocorrencia();
+            //        ocorrencia.fromCSV(linha);
+
+            //        if (dicionario.TryGetValue(ocorrencia.codigo_ocorrencia, out dado_existente))
+            //        {
+            //            dado_existente.ocorrencia = ocorrencia;
+            //        }
+            //        else
+            //        {
+            //            dicionario.Add(ocorrencia.codigo_ocorrencia, new DadosOcorrencia(ocorrencia.codigo_ocorrencia, null, ocorrencia, null));
+            //        }
+            //    }
+            //    catch (Exception exception)
+            //    {
+            //        // o que fazer aqui ?
+            //    }            
+            //}//while
+
+            //leitor.Close();
+
+            //descobrir por que não está funcionando!
+            using(var ocorrencias_stream = new StreamReader(caminho_csv_ocorrencias))
             {
+                var leitor = new CsvReader(ocorrencias_stream);
+                var ocorrencias = leitor.GetRecords<Ocorrencia>();
                 try
                 {
-                    ocorrencia = new Ocorrencia();
-                    ocorrencia.fromCSV(linha);
-
-                    if (dicionario.TryGetValue(ocorrencia.codigo_ocorrencia, out dado_existente))
+                    foreach(Ocorrencia ocorrencia in ocorrencias)
                     {
-                        dado_existente.ocorrencia = ocorrencia;
-                    }
-                    else
-                    {
-                        dicionario.Add(ocorrencia.codigo_ocorrencia, new DadosOcorrencia(ocorrencia.codigo_ocorrencia, null, ocorrencia, null));
+                        if (dicionario.TryGetValue(ocorrencia.codigo_ocorrencia, out dado_existente))
+                            dado_existente.ocorrencia = ocorrencia;
+                        else
+                            dicionario.Add(ocorrencia.codigo_ocorrencia, new DadosOcorrencia(ocorrencia.codigo_ocorrencia, null, ocorrencia, null));
                     }
                 }
-                catch (Exception exception)
+                catch (Exception e)
                 {
-                    // o que fazer aqui ?
-                }            
-            }//while
+                    MessageBox.Show(e.ToString());
+                }
+            }
 
-            leitor.Close();
+            ///* leitura do arquivo de Aeronaves */
+            //leitor = new CsvLeitura(caminho_csv_aeronaves);
+            //linha = new CsvLinha();
+            //leitor.LeLinha(linha); //pula a linha de colunas
 
-            /* leitura do arquivo de Aeronaves */
-            leitor = new CsvLeitura(caminho_csv_aeronaves);
-            linha = new CsvLinha();
-            leitor.LeLinha(linha); //pula a linha de colunas
+            //while (leitor.LeLinha(linha))
+            //{
+            //    try
+            //    {
+            //        aeronave = new Aeronave();
+            //        aeronave.fromCSV(linha);
 
-            while (leitor.LeLinha(linha))
+            //        if (dicionario.TryGetValue(aeronave.codigo_ocorrencia, out dado_existente))
+            //        {
+            //            dado_existente.aeronave = aeronave;
+            //        }
+            //        else
+            //        {
+            //            dicionario.Add(aeronave.codigo_ocorrencia, new DadosOcorrencia(aeronave.codigo_ocorrencia, aeronave, null, null));
+            //        }
+            //    }
+            //    catch (Exception exception)
+            //    {
+            //        // o que fazer aqui ?
+            //    }
+            //}//while
+
+            //leitor.Close();
+
+            using (var aeronaves_stream = new StreamReader(caminho_csv_aeronaves))
             {
+                var leitor = new CsvReader(aeronaves_stream);
+                IEnumerable<Aeronave> aeronaves = leitor.GetRecords<Aeronave>();
                 try
                 {
-                    aeronave = new Aeronave();
-                    aeronave.fromCSV(linha);
-
-                    if (dicionario.TryGetValue(aeronave.codigo_ocorrencia, out dado_existente))
+                    foreach (Aeronave aeronave in aeronaves)
                     {
-                        dado_existente.aeronave = aeronave;
-                    }
-                    else
-                    {
-                        dicionario.Add(aeronave.codigo_ocorrencia, new DadosOcorrencia(aeronave.codigo_ocorrencia, aeronave, null, null));
+                        if (dicionario.TryGetValue(aeronave.codigo_ocorrencia, out dado_existente))
+                            dado_existente.aeronave = aeronave;
+                        else
+                            dicionario.Add(aeronave.codigo_ocorrencia, new DadosOcorrencia(aeronave.codigo_ocorrencia, aeronave, null, null));
                     }
                 }
-                catch (Exception exception)
+                catch (Exception e)
                 {
-                    // o que fazer aqui ?
+                    MessageBox.Show(e.ToString());
                 }
-            }//while
-
-            leitor.Close();
+            }
 
             /* leitura do arquivo de Fatores Contribuintes */
-            leitor = new CsvLeitura(caminho_csv_fator_contribuinte);
-            linha = new CsvLinha();
-            leitor.LeLinha(linha); //pula a linha de colunas
+            //leitor = new CsvLeitura(caminho_csv_fator_contribuinte);
+            //linha = new CsvLinha();
+            //leitor.LeLinha(linha); //pula a linha de colunas
 
-            while (leitor.LeLinha(linha))
+            //while (leitor.LeLinha(linha))
+            //{
+            //    try
+            //    {
+            //        fator_contribuinte = new FatorContribuinte();
+            //        fator_contribuinte.fromCSV(linha);
+
+            //        if (dicionario.TryGetValue(fator_contribuinte.codigo_ocorrencia, out dado_existente))
+            //        {
+            //            dado_existente.fator = fator_contribuinte;
+            //        }
+            //        else
+            //        {
+            //            dicionario.Add(fator_contribuinte.codigo_ocorrencia, new DadosOcorrencia(fator_contribuinte.codigo_ocorrencia, null, null, fator_contribuinte));
+            //        }
+            //    }
+            //    catch (Exception exception)
+            //    {
+            //        // o que fazer aqui ?
+            //    }
+            //}//while
+
+            //leitor.Close();
+
+            using (var fatores_stream = new StreamReader(caminho_csv_fator_contribuinte))
             {
+                var leitor = new CsvReader(fatores_stream);
+                IEnumerable<FatorContribuinte> fatores = leitor.GetRecords<FatorContribuinte>();
                 try
                 {
-                    fator_contribuinte = new FatorContribuinte();
-                    fator_contribuinte.fromCSV(linha);
-
-                    if (dicionario.TryGetValue(fator_contribuinte.codigo_ocorrencia, out dado_existente))
+                    foreach (FatorContribuinte fator in fatores)
                     {
-                        dado_existente.fator = fator_contribuinte;
-                    }
-                    else
-                    {
-                        dicionario.Add(fator_contribuinte.codigo_ocorrencia, new DadosOcorrencia(fator_contribuinte.codigo_ocorrencia, null, null, fator_contribuinte));
+                        if (dicionario.TryGetValue(fator.codigo_ocorrencia, out dado_existente))
+                            dado_existente.fator = fator;
+                        else
+                            dicionario.Add(fator.codigo_ocorrencia, new DadosOcorrencia(fator.codigo_ocorrencia, null, null, fator));
                     }
                 }
-                catch (Exception exception)
+                catch (Exception e)
                 {
-                    // o que fazer aqui ?
+                    MessageBox.Show(e.ToString());
                 }
-            }//while
-
-            leitor.Close();
+            }
 
             return dicionario;
 
