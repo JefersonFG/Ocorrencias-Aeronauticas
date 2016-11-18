@@ -56,7 +56,7 @@ namespace Ocorrências_Aeronáuticas
                 {
                     if(lista_ordenada[i].ocorrencia != null)
                     {
-                        if (lista_ordenada[i].ocorrencia.localidade.CompareTo(lista_ordenada[i + 1].ocorrencia.localidade) < 0)
+                        if ( lista_ordenada[i + 1].ocorrencia.localidade.CompareTo(lista_ordenada[i].ocorrencia.localidade) < 0)
                         {
                             // Exchange elements
                             DadosOcorrencia temp = lista_ordenada[i];
