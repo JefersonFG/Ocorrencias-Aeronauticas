@@ -130,7 +130,7 @@
             this.comboSelecioneCidade.FormattingEnabled = true;
             this.comboSelecioneCidade.Location = new System.Drawing.Point(15, 96);
             this.comboSelecioneCidade.Name = "comboSelecioneCidade";
-            this.comboSelecioneCidade.Size = new System.Drawing.Size(164, 21);
+            this.comboSelecioneCidade.Size = new System.Drawing.Size(246, 21);
             this.comboSelecioneCidade.TabIndex = 102;
             this.comboSelecioneCidade.Visible = false;
             this.comboSelecioneCidade.SelectionChangeCommitted += new System.EventHandler(this.comboSelecioneCidade_SelectionChangeCommitted);
