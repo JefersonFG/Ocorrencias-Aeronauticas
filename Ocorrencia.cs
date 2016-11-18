@@ -82,7 +82,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Horário no formato hh:mm:ss
         /// </value>
-        public DateTime horario_utc { get; set; }
+        public DateTime horario { get; set; }
 
         /// <summary>
         /// Informação se a ocorrência será ou não investigada
