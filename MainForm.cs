@@ -44,6 +44,8 @@ namespace Ocorrências_Aeronáuticas
                 nome_cidade = localidade.Substring(0, localidade.IndexOf(" -")); //pega apenas o nome da cidade
             }
 
+            bool encontrou_cidade = false;
+
             List<DadosOcorrencia> resultados = Controlador.pesquisaCidade(nome_cidade);
 
             //limpa o textbox que tem os dados da ocorrencia
@@ -51,6 +53,7 @@ namespace Ocorrências_Aeronáuticas
 
             if (resultados.Count > 0) //retornou mais que 1 cidade
             {
+                encontrou_cidade = true;
                 resultados = OrdenaDados.bubbleSort_localidade(resultados); //BUBBLE SORT ??
 
                 //formata o nome para CIDADE - ESTADO
@@ -60,9 +63,6 @@ namespace Ocorrências_Aeronáuticas
                 //busca no mapa
                 gmapControl.SetPositionByKeywords(cidade_selecionada);
 
-                //atualiza labels
-                labelCidadesEncontradas.Text = resultados.Count + " cidade(s) encontrada(s).";
-                labelSelecioneCidade.Text = "Resultados da busca (\'" + nome_cidade + "\'):";
                 textPesquisar.Text = cidade_selecionada;
             }
             else  // == 0
@@ -74,9 +74,7 @@ namespace Ocorrências_Aeronáuticas
                 resultados = Controlador.pesquisaCidade(localidade);
                 resultados = OrdenaDados.bubbleSort_localidade(resultados); //BUBBLE SORT ??
 
-                //atualiza labels
-                labelCidadesEncontradas.Text = "\'"+nome_cidade+"\' não foi encontrada.";
-                labelSelecioneCidade.Text = "Lista de todas as cidades ("+resultados.Count+"):";
+                
             }
 
             /* cria uma lista de cidades sem repetição, e adiciona as ocorrências de cada cidade na devida cidade */
@@ -124,6 +122,19 @@ namespace Ocorrências_Aeronáuticas
             comboOcorrencias.DataSource = lista_codigo_ocorrencias;
 
             resultados_pesquisa = lista_cidades;
+
+            if(encontrou_cidade)
+            {
+                labelCidadesEncontradas.Text = lista_cidades.Count + " cidade(s) encontrada(s).";
+                labelSelecioneCidade.Text = "Resultados da busca (\'" + nome_cidade + "\'):";
+            }
+            else
+            {
+                //atualiza labels
+                labelCidadesEncontradas.Text = "\'" + nome_cidade + "\' não foi encontrada.";
+                labelSelecioneCidade.Text = "Lista de todas as cidades (" + resultados.Count + "):";
+            }           
+
 
             //ativa o menu hamburger
             checkHamburger.Checked = true;
