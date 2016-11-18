@@ -39,6 +39,8 @@
             this.labelCidadesEncontradas = new System.Windows.Forms.Label();
             this.labelDadosOcorrencia = new System.Windows.Forms.Label();
             this.textDadosOcorrencia = new System.Windows.Forms.TextBox();
+            this.comboOcorrencias = new System.Windows.Forms.ComboBox();
+            this.labelOcorrencias = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textPesquisar
@@ -148,29 +150,53 @@
             // 
             this.labelDadosOcorrencia.AutoSize = true;
             this.labelDadosOcorrencia.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDadosOcorrencia.Location = new System.Drawing.Point(12, 131);
+            this.labelDadosOcorrencia.Location = new System.Drawing.Point(13, 174);
             this.labelDadosOcorrencia.Name = "labelDadosOcorrencia";
-            this.labelDadosOcorrencia.Size = new System.Drawing.Size(141, 16);
+            this.labelDadosOcorrencia.Size = new System.Drawing.Size(146, 16);
             this.labelDadosOcorrencia.TabIndex = 104;
-            this.labelDadosOcorrencia.Text = "Dados da ocorrência";
+            this.labelDadosOcorrencia.Text = "Dados da ocorrência:";
             this.labelDadosOcorrencia.Visible = false;
             // 
             // textDadosOcorrencia
             // 
-            this.textDadosOcorrencia.Location = new System.Drawing.Point(15, 159);
+            this.textDadosOcorrencia.Location = new System.Drawing.Point(15, 196);
             this.textDadosOcorrencia.Multiline = true;
             this.textDadosOcorrencia.Name = "textDadosOcorrencia";
             this.textDadosOcorrencia.ReadOnly = true;
             this.textDadosOcorrencia.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textDadosOcorrencia.Size = new System.Drawing.Size(246, 229);
+            this.textDadosOcorrencia.Size = new System.Drawing.Size(246, 192);
             this.textDadosOcorrencia.TabIndex = 105;
             this.textDadosOcorrencia.Visible = false;
+            // 
+            // comboOcorrencias
+            // 
+            this.comboOcorrencias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboOcorrencias.FormattingEnabled = true;
+            this.comboOcorrencias.Location = new System.Drawing.Point(15, 144);
+            this.comboOcorrencias.Name = "comboOcorrencias";
+            this.comboOcorrencias.Size = new System.Drawing.Size(76, 21);
+            this.comboOcorrencias.TabIndex = 106;
+            this.comboOcorrencias.Visible = false;
+            this.comboOcorrencias.SelectionChangeCommitted += new System.EventHandler(this.comboOcorrencias_SelectionChangeCommitted);
+            // 
+            // labelOcorrencias
+            // 
+            this.labelOcorrencias.AutoSize = true;
+            this.labelOcorrencias.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelOcorrencias.Location = new System.Drawing.Point(12, 123);
+            this.labelOcorrencias.Name = "labelOcorrencias";
+            this.labelOcorrencias.Size = new System.Drawing.Size(186, 16);
+            this.labelOcorrencias.TabIndex = 107;
+            this.labelOcorrencias.Text = "Lista de ocorrências na cidade:";
+            this.labelOcorrencias.Visible = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 411);
+            this.Controls.Add(this.labelOcorrencias);
+            this.Controls.Add(this.comboOcorrencias);
             this.Controls.Add(this.textDadosOcorrencia);
             this.Controls.Add(this.labelDadosOcorrencia);
             this.Controls.Add(this.labelCidadesEncontradas);
@@ -203,5 +229,7 @@
         private System.Windows.Forms.Label labelCidadesEncontradas;
         private System.Windows.Forms.Label labelDadosOcorrencia;
         private System.Windows.Forms.TextBox textDadosOcorrencia;
+        private System.Windows.Forms.ComboBox comboOcorrencias;
+        private System.Windows.Forms.Label labelOcorrencias;
     }
 }
