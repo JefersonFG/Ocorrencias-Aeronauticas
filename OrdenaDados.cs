@@ -27,7 +27,7 @@ namespace Ocorrências_Aeronáuticas
                 exchanges = false;
                 for (int i = 0; i < lista_ordenada.Count - 1; i++)
                 {
-                    if (lista_ordenada[i].codigo_ocorrencia < lista_ordenada[i + 1].codigo_ocorrencia)
+                    if (lista_ordenada[i].codigo_ocorrencia > lista_ordenada[i + 1].codigo_ocorrencia)
                     {
                         // Exchange elements
                         DadosOcorrencia temp = lista_ordenada[i];

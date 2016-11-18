@@ -45,13 +45,14 @@ namespace Ocorrências_Aeronáuticas
             }
 
             List<DadosOcorrencia> resultados = Controlador.pesquisaCidade(nome_cidade);
-            resultados = OrdenaDados.bubbleSort_localidade(resultados); //BUBBLE SORT ??
 
             //limpa o textbox que tem os dados da ocorrencia
             limparDadosOcorrencia();
 
             if (resultados.Count > 0) //retornou mais que 1 cidade
             {
+                resultados = OrdenaDados.bubbleSort_localidade(resultados); //BUBBLE SORT ??
+
                 //formata o nome para CIDADE - ESTADO
                 string cidade_selecionada = resultados[0].ocorrencia.localidade + " - " +
                                         resultados[0].ocorrencia.uf;
@@ -63,9 +64,6 @@ namespace Ocorrências_Aeronáuticas
                 labelCidadesEncontradas.Text = resultados.Count + " cidade(s) encontrada(s).";
                 labelSelecioneCidade.Text = "Resultados da busca (\'" + nome_cidade + "\'):";
                 textPesquisar.Text = cidade_selecionada;
-
-                //preenche os dados no textbox
-                preencherDadosOcorrencia(resultados[0]);
             }
             else  // == 0
             {
@@ -74,6 +72,7 @@ namespace Ocorrências_Aeronáuticas
 
                 //busca todas
                 resultados = Controlador.pesquisaCidade(localidade);
+                resultados = OrdenaDados.bubbleSort_localidade(resultados); //BUBBLE SORT ??
 
                 //atualiza labels
                 labelCidadesEncontradas.Text = "\'"+nome_cidade+"\' não foi encontrada.";
@@ -103,13 +102,16 @@ namespace Ocorrências_Aeronáuticas
                 }//if
             }//foreach
 
-            /* preenche combobox de cidades */
+            /* preenche combobox de cidades, e ordena (ordem crescente) a lista de ocorrencias de cada cidade */
             List<string> lista_cidades_combobox = new List<string>();
             foreach (Cidade cidade in lista_cidades)
             {
                 lista_cidades_combobox.Add(cidade.localidade + " - " + cidade.uf);
-                
+                cidade.lista_ocorrencias = OrdenaDados.bubbleSort_codigo_ocorrencia(cidade.lista_ocorrencias); //ordena
             } //foreach
+
+            //preenche os dados no textbox
+            preencherDadosOcorrencia(lista_cidades[0].lista_ocorrencias[0]);
 
             comboSelecioneCidade.DataSource = lista_cidades_combobox;
 
