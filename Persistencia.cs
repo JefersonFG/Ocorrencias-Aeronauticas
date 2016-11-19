@@ -22,10 +22,10 @@ namespace Ocorrências_Aeronáuticas
             //Aeronave aeronave;
             //FatorContribuinte fator_contribuinte;
 
-            Dictionary<int, DadosOcorrencia> dicionario = new Dictionary<int, DadosOcorrencia>();
+            var dicionario = new Dictionary<int, DadosOcorrencia>();
             DadosOcorrencia dado_existente;
 
-            ///* leitura do arquivo de Ocorrencias */
+            // leitura do arquivo de Ocorrencias
             //leitor = new CsvLeitura(caminho_csv_ocorrencias);
             //linha = new CsvLinha();
 
@@ -61,7 +61,8 @@ namespace Ocorrências_Aeronáuticas
                 try
                 {
                     var leitor = new CsvReader(ocorrencias_stream);
-                    var ocorrencias = leitor.GetRecords<Ocorrencia>();
+                    leitor.ReadHeader();
+                    var ocorrencias = leitor.GetRecords<Ocorrencia>().ToList();
                 
                     foreach(Ocorrencia ocorrencia in ocorrencias)
                     {
@@ -77,7 +78,7 @@ namespace Ocorrências_Aeronáuticas
                 }
             }
 
-            ///* leitura do arquivo de Aeronaves */
+            // leitura do arquivo de Aeronaves
             //leitor = new CsvLeitura(caminho_csv_aeronaves);
             //linha = new CsvLinha();
             //leitor.LeLinha(linha); //pula a linha de colunas
@@ -126,7 +127,7 @@ namespace Ocorrências_Aeronáuticas
                 }
             }
 
-            /* leitura do arquivo de Fatores Contribuintes */
+            // leitura do arquivo de Fatores Contribuintes 
             //leitor = new CsvLeitura(caminho_csv_fator_contribuinte);
             //linha = new CsvLinha();
             //leitor.LeLinha(linha); //pula a linha de colunas
