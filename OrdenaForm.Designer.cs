@@ -59,11 +59,17 @@
             this.comboAlgoritmo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboAlgoritmo.FormattingEnabled = true;
             this.comboAlgoritmo.Items.AddRange(new object[] {
-            "Bubble Sort (BBST)"});
+            "Bubble Sort (BBST)",
+            "Heap Sort (HPST)",
+            "Insertion Sort com Busca Linear (ISBL)",
+            "Quick Sort Randomizado (QSRM)",
+            "Shell Sort (SHST)"});
             this.comboAlgoritmo.Location = new System.Drawing.Point(15, 25);
             this.comboAlgoritmo.Name = "comboAlgoritmo";
             this.comboAlgoritmo.Size = new System.Drawing.Size(233, 21);
+            this.comboAlgoritmo.Sorted = true;
             this.comboAlgoritmo.TabIndex = 1;
+            this.comboAlgoritmo.SelectedIndexChanged += new System.EventHandler(this.comboAlgoritmo_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -116,6 +122,7 @@
             this.gridDados.MultiSelect = false;
             this.gridDados.Name = "gridDados";
             this.gridDados.ReadOnly = true;
+            this.gridDados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridDados.Size = new System.Drawing.Size(199, 200);
             this.gridDados.TabIndex = 6;
             this.gridDados.SelectionChanged += new System.EventHandler(this.gridDados_SelectionChanged);
