@@ -409,6 +409,6 @@ namespace Ocorrências_Aeronáuticas
                 checkDecrescente.Checked = false;
                 checkDecrescente.Enabled = true;
             }
-        }
+        } //comboAlgoritmo_SelectedIndexChanged(object sender, EventArgs e)
     } //class
 }//namespace

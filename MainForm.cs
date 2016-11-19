@@ -55,7 +55,7 @@ namespace Ocorrências_Aeronáuticas
             if (resultados.Count > 0) //retornou mais que 1 cidade
             {
                 encontrou_cidade = true;
-                resultados = OrdenaDados.insertionSort_localidade(resultados, true);// INSERTION SORT ??
+                resultados = OrdenaDados.HeapsortLocalizacao(resultados);// eh o mais rapido dos algoritmos
 
                 //formata o nome para CIDADE - ESTADO
                 string cidade_selecionada = resultados[0].ocorrencia.localidade + " - " +
@@ -73,7 +73,7 @@ namespace Ocorrências_Aeronáuticas
 
                 //busca todas
                 resultados = Controlador.pesquisaCidade(localidade);
-                resultados = OrdenaDados.insertionSort_localidade(resultados, true); // INSERTION SORT ??
+                resultados = OrdenaDados.HeapsortLocalizacao(resultados);// eh o mais rapido dos algoritmos
 
 
             }
@@ -106,7 +106,7 @@ namespace Ocorrências_Aeronáuticas
             foreach (Cidade cidade in lista_cidades)
             {
                 lista_cidades_combobox.Add(cidade.localidade + " - " + cidade.uf);
-                cidade.lista_ocorrencias = OrdenaDados.insertionSort_codigo_ocorrencia(cidade.lista_ocorrencias, true); // INSERTION SORT ??
+                cidade.lista_ocorrencias = OrdenaDados.HeapsortOcorrencia(cidade.lista_ocorrencias);// eh o mais rapido dos algoritmos
             } //foreach
 
             //preenche os dados no textbox
