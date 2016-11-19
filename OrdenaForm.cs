@@ -106,7 +106,7 @@ namespace Ocorrências_Aeronáuticas
                     preencherTempoExecucao("Insertion Sort com Busca Linear (ISBL)", lista_ordenada.Count, "localidade", checkDecrescente.Checked, sw.ElapsedMilliseconds);
                     preencherGridListaOcorrencias(lista_ordenada);
                 }
-            }
+            } //if
             if (comboAlgoritmo.Text.Equals("Quick Sort Randomizado (QSRM)"))
             {
                 if (comboCampo.Text.Equals("codigo_ocorrencia"))
@@ -138,8 +138,74 @@ namespace Ocorrências_Aeronáuticas
 
                     preencherTempoExecucao("Quick Sort Randomizado (QSRM)", lista_ordenada.Count, "localidade", checkDecrescente.Checked, sw.ElapsedMilliseconds);
                     preencherGridListaOcorrencias(lista_ordenada);
+                } //if
+            }//if
+            if (comboAlgoritmo.Text.Equals("Shell Sort (SHST)"))
+            {
+                if (comboCampo.Text.Equals("codigo_ocorrencia"))
+                {
+                    Stopwatch sw = new Stopwatch();
+
+                    sw.Start();
+                    List<DadosOcorrencia> lista_ordenada = OrdenaDados.ShellSort_codigo_ocorrencia(this.lista_dados_ocorrencias);
+                    sw.Stop();
+
+                    this.lista_ordenada = lista_ordenada;
+
+                    Console.WriteLine("time: " + sw.Elapsed);
+
+                    preencherTempoExecucao("Shell Sort (SHST)", lista_ordenada.Count, "codigo_ocorrencia", checkDecrescente.Checked, sw.ElapsedMilliseconds);
+                    preencherGridListaOcorrencias(lista_ordenada);
                 }
+                if (comboCampo.Text.Equals("localidade"))
+                {
+                    Stopwatch sw = new Stopwatch();
+
+                    sw.Start();
+                    List<DadosOcorrencia> lista_ordenada = OrdenaDados.ShellSort_localidade(this.lista_dados_ocorrencias);
+                    sw.Stop();
+
+                    this.lista_ordenada = lista_ordenada;
+
+                    Console.WriteLine("time: " + sw.Elapsed);
+
+                    preencherTempoExecucao("Shell Sort (SHST)", lista_ordenada.Count, "localidade", checkDecrescente.Checked, sw.ElapsedMilliseconds);
+                    preencherGridListaOcorrencias(lista_ordenada);
+                } //if
             }
+            if (comboAlgoritmo.Text.Equals("Heap Sort (HPST)"))
+            {
+                if (comboCampo.Text.Equals("codigo_ocorrencia"))
+                {
+                    Stopwatch sw = new Stopwatch();
+
+                    sw.Start();
+                    List<DadosOcorrencia> lista_ordenada = OrdenaDados.HeapsortOcorrencia(this.lista_dados_ocorrencias);
+                    sw.Stop();
+
+                    this.lista_ordenada = lista_ordenada;
+
+                    Console.WriteLine("time: " + sw.Elapsed);
+
+                    preencherTempoExecucao("Heap Sort (HPST)", lista_ordenada.Count, "codigo_ocorrencia", checkDecrescente.Checked, sw.ElapsedMilliseconds);
+                    preencherGridListaOcorrencias(lista_ordenada);
+                }
+                if (comboCampo.Text.Equals("localidade"))
+                {
+                    Stopwatch sw = new Stopwatch();
+
+                    sw.Start();
+                    List<DadosOcorrencia> lista_ordenada = OrdenaDados.HeapsortLocalizacao(this.lista_dados_ocorrencias);
+                    sw.Stop();
+
+                    this.lista_ordenada = lista_ordenada;
+
+                    Console.WriteLine("time: " + sw.Elapsed);
+
+                    preencherTempoExecucao("Heap Sort (HPST)", lista_ordenada.Count, "localidade", checkDecrescente.Checked, sw.ElapsedMilliseconds);
+                    preencherGridListaOcorrencias(lista_ordenada);
+                } //if
+            }//if
         }//btnOrdenar_Click(object sender, EventArgs e)
 
         private string horarioAtual()
@@ -325,5 +391,24 @@ namespace Ocorrências_Aeronáuticas
                 
             }
         } //btnSalvar_Click(object sender, EventArgs e)
+
+        private void comboAlgoritmo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboAlgoritmo.Text.Equals("Heap Sort (HPST)"))
+            {
+                checkDecrescente.Checked = true;
+                checkDecrescente.Enabled = false;
+            }
+            else if (comboAlgoritmo.Text.Equals("Shell Sort (SHST)"))
+            {
+                checkDecrescente.Checked = true;
+                checkDecrescente.Enabled = false;
+            }
+            else
+            {
+                checkDecrescente.Checked = false;
+                checkDecrescente.Enabled = true;
+            }
+        }
     } //class
 }//namespace

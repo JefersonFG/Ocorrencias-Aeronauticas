@@ -60,13 +60,16 @@
             this.comboAlgoritmo.FormattingEnabled = true;
             this.comboAlgoritmo.Items.AddRange(new object[] {
             "Bubble Sort (BBST)",
+            "Heap Sort (HPST)",
             "Insertion Sort com Busca Linear (ISBL)",
-            "Quick Sort Randomizado (QSRM)"});
+            "Quick Sort Randomizado (QSRM)",
+            "Shell Sort (SHST)"});
             this.comboAlgoritmo.Location = new System.Drawing.Point(15, 25);
             this.comboAlgoritmo.Name = "comboAlgoritmo";
             this.comboAlgoritmo.Size = new System.Drawing.Size(233, 21);
             this.comboAlgoritmo.Sorted = true;
             this.comboAlgoritmo.TabIndex = 1;
+            this.comboAlgoritmo.SelectedIndexChanged += new System.EventHandler(this.comboAlgoritmo_SelectedIndexChanged);
             // 
             // label2
             // 
