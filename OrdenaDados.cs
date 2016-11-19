@@ -104,7 +104,7 @@ namespace Ocorrências_Aeronáuticas
         #endregion
 
         #region Insertion Sort
-        public static List<DadosOcorrencia> InsertionSort_codigo_ocorrencia(List<DadosOcorrencia> lista_desordenada)
+        public static List<DadosOcorrencia> insertionSort_codigo_ocorrencia(List<DadosOcorrencia> lista_desordenada, bool crescente)
         {
             int n = lista_desordenada.Count - 1;
             int i, j;
@@ -122,44 +122,65 @@ namespace Ocorrências_Aeronáuticas
                 temp = lista_ordenada[i];
                 for (j = i - 1; j >= 0; --j)
                 {
-                    if (temp.codigo_ocorrencia > lista_ordenada[j].codigo_ocorrencia)
-                        lista_ordenada[j + 1] = lista_ordenada[j];
-                    else break;
-                }
-                lista_ordenada[j + 1] = temp;
-            }
-
-            return lista_ordenada;
-        }
-
-        public static List<DadosOcorrencia> InsertionSort_localidade(List<DadosOcorrencia> lista_desordenada)
-        {
-            int n = lista_desordenada.Count - 1;
-            int i, j;
-
-            DadosOcorrencia temp;
-
-            List<DadosOcorrencia> lista_ordenada = new List<DadosOcorrencia>();
-            foreach (DadosOcorrencia dados_ocorrencia in lista_desordenada)
-            {
-                lista_ordenada.Add(dados_ocorrencia);
-            }
-
-            for (i = 1; i <= n; ++i)
-            {
-                temp = lista_ordenada[i];
-                for (j = i - 1; j >= 0; --j)
-                {
-                    if (temp.ocorrencia.localidade.CompareTo(lista_ordenada[j].ocorrencia.localidade) > 0)
-                        lista_ordenada[j + 1] = lista_ordenada[j];
+                    if(crescente)
+                    {
+                        if (temp.codigo_ocorrencia < lista_ordenada[j].codigo_ocorrencia)
+                            lista_ordenada[j + 1] = lista_ordenada[j];
+                        else break;
+                    }
                     else
-                        break;
+                    {
+                        if (temp.codigo_ocorrencia > lista_ordenada[j].codigo_ocorrencia)
+                            lista_ordenada[j + 1] = lista_ordenada[j];
+                        else break;
+                    }
+                    
                 }
                 lista_ordenada[j + 1] = temp;
-            }
+            }//for
 
             return lista_ordenada;
-        }
+        }//insertionSort_codigo_ocorrencia(List<DadosOcorrencia> lista_desordenada, bool crescente) 
+
+        public static List<DadosOcorrencia> insertionSort_localidade(List<DadosOcorrencia> lista_desordenada, bool crescente)
+        {
+            int n = lista_desordenada.Count - 1;
+            int i, j;
+
+            DadosOcorrencia temp;
+
+            List<DadosOcorrencia> lista_ordenada = new List<DadosOcorrencia>();
+            foreach (DadosOcorrencia dados_ocorrencia in lista_desordenada)
+            {
+                lista_ordenada.Add(dados_ocorrencia);
+            }
+
+            for (i = 1; i <= n; ++i)
+            {
+                temp = lista_ordenada[i];
+                for (j = i - 1; j >= 0; --j)
+                {
+                    if(crescente)
+                    {
+                        if (lista_ordenada[j].ocorrencia.localidade.CompareTo(temp.ocorrencia.localidade) > 0)
+                            lista_ordenada[j + 1] = lista_ordenada[j];
+                        else
+                            break;
+                    }
+                    else
+                    {
+                        if (temp.ocorrencia.localidade.CompareTo(lista_ordenada[j].ocorrencia.localidade) > 0)
+                            lista_ordenada[j + 1] = lista_ordenada[j];
+                        else
+                            break;
+                    }
+                    
+                }
+                lista_ordenada[j + 1] = temp;
+            } //for
+
+            return lista_ordenada;
+        } //insertionSort_localidade(List<DadosOcorrencia> lista_desordenada, bool crescente)
 
         /*
         public static List<DadosOcorrencia> BinaryInsertionSort_codigo_ocorrencia(List<DadosOcorrencia> lista_desordenada)
@@ -195,43 +216,43 @@ namespace Ocorrências_Aeronáuticas
         #endregion
 
         #region Quick Sort
-        public static List<DadosOcorrencia> QSRM_Ocorrencia (List<DadosOcorrencia> listaDesordenada)
+        public static List<DadosOcorrencia> QSRM_Ocorrencia (List<DadosOcorrencia> listaDesordenada, bool crescente)
         {
             List<DadosOcorrencia> listaOrdenada = new List<DadosOcorrencia>();
             listaOrdenada = listaDesordenada;
-            RandomizedQuickSortOcorrencia(listaOrdenada, 0, listaOrdenada.Count - 1);
+            RandomizedQuickSortOcorrencia(listaOrdenada, 0, listaOrdenada.Count - 1, crescente);
             return listaOrdenada;
         }
 
-        public static List<DadosOcorrencia> QSRM_Localizacao(List<DadosOcorrencia> listaDesordenada)
+        public static List<DadosOcorrencia> QSRM_Localizacao(List<DadosOcorrencia> listaDesordenada, bool crescente)
         {
             List<DadosOcorrencia> listaOrdenada = new List<DadosOcorrencia>();
             listaOrdenada = listaDesordenada;
-            RandomizedQuickSortLocalizacao(listaOrdenada, 0, listaOrdenada.Count - 1);
+            RandomizedQuickSortLocalizacao(listaOrdenada, 0, listaOrdenada.Count - 1, crescente);
             return listaOrdenada;
         }
 
-        public static void RandomizedQuickSortOcorrencia(List<DadosOcorrencia> input, int left, int right)
+        public static void RandomizedQuickSortOcorrencia(List<DadosOcorrencia> input, int left, int right, bool crescente)
         {
             if (left < right)
             {
-                int q = RandomizedPartitionOcorrencia(input, left, right);
-                RandomizedQuickSortOcorrencia(input, left, q - 1);
-                RandomizedQuickSortOcorrencia(input, q + 1, right);
+                int q = RandomizedPartitionOcorrencia(input, left, right, crescente);
+                RandomizedQuickSortOcorrencia(input, left, q - 1, crescente);
+                RandomizedQuickSortOcorrencia(input, q + 1, right, crescente);
             }
         }
 
-        public static void RandomizedQuickSortLocalizacao(List<DadosOcorrencia> input, int left, int right)
+        public static void RandomizedQuickSortLocalizacao(List<DadosOcorrencia> input, int left, int right, bool crescente)
         {
             if (left < right)
             {
-                int q = RandomizedPartitionLocalizacao(input, left, right);
-                RandomizedQuickSortLocalizacao(input, left, q - 1);
-                RandomizedQuickSortLocalizacao(input, q + 1, right);
+                int q = RandomizedPartitionLocalizacao(input, left, right, crescente);
+                RandomizedQuickSortLocalizacao(input, left, q - 1, crescente);
+                RandomizedQuickSortLocalizacao(input, q + 1, right, crescente);
             }
         }
 
-        private static int RandomizedPartitionOcorrencia(List<DadosOcorrencia> input, int left, int right)
+        private static int RandomizedPartitionOcorrencia(List<DadosOcorrencia> input, int left, int right, bool crescente)
         {
             Random random = new Random();
             int i = random.Next(left, right);
@@ -240,10 +261,10 @@ namespace Ocorrências_Aeronáuticas
             input[i] = input[right];
             input[right] = pivot;
 
-            return PartitionOcorrencia(input, left, right);
+            return PartitionOcorrencia(input, left, right, crescente);
         }
 
-        private static int RandomizedPartitionLocalizacao(List<DadosOcorrencia> input, int left, int right)
+        private static int RandomizedPartitionLocalizacao(List<DadosOcorrencia> input, int left, int right, bool crescente)
         {
             Random random = new Random();
             int i = random.Next(left, right);
@@ -252,10 +273,10 @@ namespace Ocorrências_Aeronáuticas
             input[i] = input[right];
             input[right] = pivot;
 
-            return PartitionLocalizacao(input, left, right);
+            return PartitionLocalizacao(input, left, right, crescente);
         }
 
-        private static int PartitionOcorrencia(List<DadosOcorrencia> input, int left, int right)
+        private static int PartitionOcorrencia(List<DadosOcorrencia> input, int left, int right, bool crescente)
         {
             DadosOcorrencia pivot = input[right];
             DadosOcorrencia temp;
@@ -263,13 +284,27 @@ namespace Ocorrências_Aeronáuticas
             int i = left;
             for (int j = left; j < right; j++)
             {
-                if (input[j].codigo_ocorrencia >= pivot.codigo_ocorrencia)
+                if(crescente)
                 {
-                    temp = input[j];
-                    input[j] = input[i];
-                    input[i] = temp;
-                    i++;
+                    if (input[j].codigo_ocorrencia <= pivot.codigo_ocorrencia)
+                    {
+                        temp = input[j];
+                        input[j] = input[i];
+                        input[i] = temp;
+                        i++;
+                    }
                 }
+                else
+                {
+                    if (input[j].codigo_ocorrencia >= pivot.codigo_ocorrencia)
+                    {
+                        temp = input[j];
+                        input[j] = input[i];
+                        input[i] = temp;
+                        i++;
+                    }
+                }
+                
             }
 
             input[right] = input[i];
@@ -278,7 +313,7 @@ namespace Ocorrências_Aeronáuticas
             return i;
         }
 
-        private static int PartitionLocalizacao(List<DadosOcorrencia> input, int left, int right)
+        private static int PartitionLocalizacao(List<DadosOcorrencia> input, int left, int right, bool crescente)
         {
             DadosOcorrencia pivot = input[right];
             DadosOcorrencia temp;
@@ -286,13 +321,27 @@ namespace Ocorrências_Aeronáuticas
             int i = left;
             for (int j = left; j < right; j++)
             {
-                if (input[j].ocorrencia.localidade.CompareTo(pivot.ocorrencia.localidade) >= 0)
+                if(crescente)
                 {
-                    temp = input[j];
-                    input[j] = input[i];
-                    input[i] = temp;
-                    i++;
+                    if (pivot.ocorrencia.localidade.CompareTo(input[j].ocorrencia.localidade) >= 0)
+                    {
+                        temp = input[j];
+                        input[j] = input[i];
+                        input[i] = temp;
+                        i++;
+                    }
                 }
+                else
+                {
+                    if (input[j].ocorrencia.localidade.CompareTo(pivot.ocorrencia.localidade) >= 0)
+                    {
+                        temp = input[j];
+                        input[j] = input[i];
+                        input[i] = temp;
+                        i++;
+                    }
+                }
+                
             }
 
             input[right] = input[i];
