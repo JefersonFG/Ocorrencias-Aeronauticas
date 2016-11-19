@@ -12,6 +12,13 @@ namespace Ocorrências_Aeronáuticas
     /// </summary>
     public class Ocorrencia
     {
+        //variáveis para testes de consistência.
+        private string _diaOcorrencia;
+        private string _horario;
+        private string _diaPublicacao;
+        private string _saidaPista;
+        private string _diaExtracao;
+
         /// <summary>
         /// Código de identificação de ocorrência
         /// </summary>
@@ -74,7 +81,13 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Data no formato dd/mm/aaaa
         /// </value>
-        public DateTime dia_ocorrencia { get; set; }
+        //public DateTime dia_ocorrencia { get; set; }
+
+        public string dia_ocorrencia
+        {
+            get { return _diaOcorrencia.Equals("NULL") ? "Desconhecido" : _diaOcorrencia; }
+            set { _diaOcorrencia = value; }
+        }
 
         /// <summary>
         /// Horário da ocorrência no padrão UTC
@@ -82,7 +95,11 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Horário no formato hh:mm:ss
         /// </value>
-        public DateTime horario_utc { get; set; }
+        public string horario
+        {
+            get { return _diaOcorrencia.Equals("NULL") ? "Desconhecido" : _horario; }
+            set { _horario = value; }
+        }
 
         /// <summary>
         /// Informação se a ocorrência será ou não investigada
@@ -130,7 +147,11 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Data no formato dd/mm/aaaa
         /// </value>
-        public DateTime dia_publicacao { get; set; }
+        public string dia_publicacao
+        {
+            get { return _diaPublicacao.Equals("NULL") ? "Desconhecido" : _diaPublicacao; }
+            set { _diaPublicacao = value; }
+        }
 
         /// <summary>
         /// Quantidade de recomendações de segurança emitidas
@@ -154,7 +175,11 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Se afirmativo 1, caso contrário 0
         /// </value>
-        public int saida_pista { get; set; }
+        public string saida_pista
+        {
+            get { return _saidaPista.Equals("NULL") ? "Desconhecido" : _saidaPista; }
+            set { _saidaPista = value; }
+        }
 
         /// <summary>
         /// Dia da extração dos dados na base de dados do CENIPA
@@ -162,35 +187,10 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Data no formato dd/mm/aaaa
         /// </value>
-        public DateTime dia_extracao { get; set; }
-
-        /// <summary>
-        /// Preenche um objeto da classe a partir de uma linha lida do arquivo CSV.
-        /// </summary>
-        /// <param name="linha">Linha a ser lida</param>
-        /// <returns>Objeto do tipo Ocorrência</returns>
-        public Ocorrencia fromCSV(CsvLinha linha)
+        public string dia_extracao
         {
-            this.codigo_ocorrencia = Convert.ToInt32(linha[0]);
-            this.classificacao = linha[1];
-            this.tipo = linha[2];
-            this.localidade = linha[3];
-            this.uf = linha[4];
-            this.pais = linha[5];
-            this.aerodromo = linha[6];
-            this.dia_ocorrencia = Convert.ToDateTime(linha[7]);
-            this.horario_utc = Convert.ToDateTime(linha[8]);
-            this.sera_investigada = linha[9];
-            this.comando_investigador = linha[10];
-            this.status_investigacao = linha[11];
-            this.numero_relatorio = linha[12];
-            this.relatorio_publicado = linha[13];
-            this.dia_publicacao = (linha[14] == "NULL" ? Convert.ToDateTime("01-01-1901") : Convert.ToDateTime(linha[14]));
-            this.quantidade_recomendacoes = (linha[15] == "NULL" ? 0 : Convert.ToInt32(linha[15]));
-            this.aeronaves_envolvidas = (linha[16] == "NULL" ? 0 : Convert.ToInt32(linha[16]));
-            this.saida_pista = (linha[17] == "NULL" ? 0 : Convert.ToInt32(linha[17]));
-            this.dia_extracao = Convert.ToDateTime(linha[18]);
-            return this;
+            get { return _diaExtracao.Equals("NULL") ? "Desconhecido" : _diaExtracao; }
+            set { _diaExtracao = value; }
         }
     }
 }

@@ -12,6 +12,9 @@ namespace Ocorrências_Aeronáuticas
     /// </summary>
     public class FatorContribuinte
     {
+        //variável para teste de consistência
+        private string _diaExtracao;
+
         /// <summary>
         /// Código de identificação do fator contribuinte
         /// </summary>
@@ -84,25 +87,10 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Data no formato dd/mm/aaaa
         /// </value>
-        public DateTime dia_extracao { get; set; }
-
-        /// <summary>
-        /// Preenche um objeto da classe a partir de uma linha lida do arquivo CSV.
-        /// </summary>
-        /// <param name="linha">Linha a ser lida</param>
-        /// <returns>Objeto do tipo FatorContribuinte</returns>
-        public FatorContribuinte fromCSV(CsvLinha linha)
+        public string dia_extracao
         {
-            this.codigo_fator = Convert.ToInt32(linha[0]);
-            this.codigo_ocorrencia = Convert.ToInt32(linha[1]);
-            this.fator = linha[2];
-            this.aspecto = linha[3];
-            this.condicionante = linha[4];
-            this.area = linha[5];
-            //this.nivel_contribuicao = linha[6];   //não é utilizado no csv
-            this.detalhe_fator = linha[6];
-            this.dia_extracao = Convert.ToDateTime(linha[7]);
-            return this;
+            get { return _diaExtracao.Equals("NULL") ? "Desconhecido" : _diaExtracao; }
+            set { _diaExtracao = value; }
         }
     }
 }

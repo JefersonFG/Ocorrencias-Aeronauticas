@@ -21,7 +21,8 @@ namespace Ocorrências_Aeronáuticas
         System.Drawing.Point posicao_mapa_direita = new Point(285, 56);
         System.Drawing.Point posicao_mapa_normal = new Point(13, 56);
 
-        private List<DadosOcorrencia> resultados_pesquisa; //armazena os resultados de uma pesquisa
+        private List<Cidade> resultados_pesquisa; //armazena os resultados de uma pesquisa (organizado por cidade)
+        private List<DadosOcorrencia> lista_dados_ocorrencia_resultados_pesquisa; //armazena todos os resultados da pesquisa
 
         public MainForm()
         {
@@ -44,28 +45,26 @@ namespace Ocorrências_Aeronáuticas
                 nome_cidade = localidade.Substring(0, localidade.IndexOf(" -")); //pega apenas o nome da cidade
             }
 
-            //realiza a busca
-            resultados_pesquisa = Controlador.pesquisaCidade(nome_cidade);
+            bool encontrou_cidade = false;
+
+            List<DadosOcorrencia> resultados = Controlador.pesquisaCidade(nome_cidade);
 
             //limpa o textbox que tem os dados da ocorrencia
             limparDadosOcorrencia();
 
-            if (resultados_pesquisa.Count > 0) //retornou mais que 1 cidade
+            if (resultados.Count > 0) //retornou mais que 1 cidade
             {
+                encontrou_cidade = true;
+                resultados = OrdenaDados.bubbleSort_localidade(resultados, true); //BUBBLE SORT ??
+
                 //formata o nome para CIDADE - ESTADO
-                string cidade_selecionada = resultados_pesquisa[0].ocorrencia.localidade + " - " +
-                                        resultados_pesquisa[0].ocorrencia.uf;
+                string cidade_selecionada = resultados[0].ocorrencia.localidade + " - " +
+                                        resultados[0].ocorrencia.uf;
                 
                 //busca no mapa
                 gmapControl.SetPositionByKeywords(cidade_selecionada);
 
-                //atualiza labels
-                labelCidadesEncontradas.Text = resultados_pesquisa.Count + " cidade(s) encontrada(s).";
-                labelSelecioneCidade.Text = "Resultados da busca (\'" + nome_cidade + "\'):";
                 textPesquisar.Text = cidade_selecionada;
-
-                //preenche os dados no textbox
-                preencherDadosOcorrencia(resultados_pesquisa[0]);
             }
             else  // == 0
             {
@@ -73,46 +72,106 @@ namespace Ocorrências_Aeronáuticas
                 localidade = "";
 
                 //busca todas
-                resultados_pesquisa = Controlador.pesquisaCidade(localidade);
+                resultados = Controlador.pesquisaCidade(localidade);
+                resultados = OrdenaDados.bubbleSort_localidade(resultados, true); //BUBBLE SORT ??
 
-                //atualiza labels
-                labelCidadesEncontradas.Text = "\'"+nome_cidade+"\' não foi encontrada.";
-                labelSelecioneCidade.Text = "Lista de todas as cidades ("+resultados_pesquisa.Count+"):";
+                
             }
 
-            /* preenche combobox */
-            List<string> lista_cidades = new List<string>();
-            foreach (DadosOcorrencia dados_ocorrencia in resultados_pesquisa)
+            /* cria uma lista de cidades sem repetição, e adiciona as ocorrências de cada cidade na devida cidade */
+            List<Cidade> lista_cidades = new List<Cidade>();
+            foreach(DadosOcorrencia dados_ocorrencia in resultados)
             {
-                lista_cidades.Add(dados_ocorrencia.ocorrencia.localidade + " - " +
-                                    dados_ocorrencia.ocorrencia.uf + "  (cód. " +
-                                    dados_ocorrencia.codigo_ocorrencia + ")");
+                bool existe_na_lista = false;
+                for(int i = 0; i < lista_cidades.Count; i++)
+                {
+                    if (lista_cidades.ElementAt(i).localidade == dados_ocorrencia.ocorrencia.localidade)
+                    {
+                        if (lista_cidades.ElementAt(i).uf == dados_ocorrencia.ocorrencia.uf)
+                        {
+                            existe_na_lista = true;
+                            lista_cidades.ElementAt(i).lista_ocorrencias.Add(dados_ocorrencia);
+                            break;
+                        }//if
+                    }//if
+                }//for
+                if (!existe_na_lista)
+                {
+                    lista_cidades.Add(new Cidade(dados_ocorrencia.ocorrencia.localidade, dados_ocorrencia.ocorrencia.uf, dados_ocorrencia));
+                }//if
+            }//foreach
+
+            /* preenche combobox de cidades, e ordena (ordem crescente) a lista de ocorrencias de cada cidade */
+            List<string> lista_cidades_combobox = new List<string>();
+            foreach (Cidade cidade in lista_cidades)
+            {
+                lista_cidades_combobox.Add(cidade.localidade + " - " + cidade.uf);
+                cidade.lista_ocorrencias = OrdenaDados.bubbleSort_codigo_ocorrencia(cidade.lista_ocorrencias, true); //ordena
             } //foreach
 
-            comboSelecioneCidade.DataSource = lista_cidades;
+            //preenche os dados no textbox
+            preencherDadosOcorrencia(lista_cidades[0].lista_ocorrencias[0]);
+
+            comboSelecioneCidade.DataSource = lista_cidades_combobox;
+
+            /* preenche combobox de ocorrencias da cidade na posição 0*/
+            List<int> lista_codigo_ocorrencias = new List<int>();
+            foreach(DadosOcorrencia dados_ocorrencia in lista_cidades[0].lista_ocorrencias)
+            {
+                lista_codigo_ocorrencias.Add(dados_ocorrencia.codigo_ocorrencia);
+            }
+            comboOcorrencias.DataSource = lista_codigo_ocorrencias;
+
+            resultados_pesquisa = lista_cidades;
+
+            if(encontrou_cidade)
+            {
+                labelCidadesEncontradas.Text = lista_cidades.Count + " cidade(s) encontrada(s).";
+                labelSelecioneCidade.Text = "Resultados da busca (\'" + nome_cidade + "\'):";
+            }
+            else
+            {
+                //atualiza labels
+                labelCidadesEncontradas.Text = "\'" + nome_cidade + "\' não foi encontrada.";
+                labelSelecioneCidade.Text = "Lista de todas as cidades (" + resultados.Count + "):";
+            }
+
+            this.lista_dados_ocorrencia_resultados_pesquisa = resultados;
 
             //ativa o menu hamburger
             checkHamburger.Checked = true;
         } //pesquisar()
 
-        private void pesquisar(DadosOcorrencia dado_selecionado) //pesquisa o item selecionado no comboBox
+        private void ocorrenciaSelecionada(DadosOcorrencia ocorrencia_selecionada) //mostra a ocorrência selecionada no comboBox
+        {
+            //preenche o textbox com os dados da ocorrencia selecionada
+            preencherDadosOcorrencia(ocorrencia_selecionada);
+        } // pesquisar(DadosOcorrencia dado_selecionado)
+
+        private void cidadeSelecionada(Cidade cidade_selecionada) //pesquisa a cidade selecionada no ComboBox
         {
             //formata para CIDADE - ESTADO
-            string cidade_selecionada = dado_selecionado.ocorrencia.localidade + " - " +
-                                           dado_selecionado.ocorrencia.uf;
+            string cidade = cidade_selecionada.localidade + " - " + cidade_selecionada.uf;
 
 
             //busca no mapa
-            gmapControl.SetPositionByKeywords(cidade_selecionada);
+            gmapControl.SetPositionByKeywords(cidade);
 
-            //preenche o textbox com os dados da ocorrencia
-            preencherDadosOcorrencia(dado_selecionado);
-            
+            //preenche o textbox com os dados da ocorrencia na primeira posição
+            preencherDadosOcorrencia(cidade_selecionada.lista_ocorrencias[0]);
+
             //atualiza labels
-            textPesquisar.Text = cidade_selecionada;
-            labelCidadesEncontradas.Text = "\'"+cidade_selecionada+"\' selecionada.";
+            textPesquisar.Text = cidade;
+            labelCidadesEncontradas.Text = "\'" + cidade + "\' selecionada.";
 
-        } // pesquisar(DadosOcorrencia dado_selecionado)
+            /* preenche combobox de ocorrencias da cidade selecionada */
+            List<int> lista_codigo_ocorrencias = new List<int>();
+            foreach (DadosOcorrencia dados_ocorrencia in cidade_selecionada.lista_ocorrencias)
+            {
+                lista_codigo_ocorrencias.Add(dados_ocorrencia.codigo_ocorrencia);
+            }
+            comboOcorrencias.DataSource = lista_codigo_ocorrencias;
+        }//cidadeSelecionada(Cidade cidade_selecionada)
 
         private void limparDadosOcorrencia() //limpa o textbox com os dados da ocorrencia selecionada
         {
@@ -134,7 +193,7 @@ namespace Ocorrências_Aeronáuticas
                     "  País: " + dado_selecionado.ocorrencia.pais + "\r\n" +
                     "  Aerodromo: " + dado_selecionado.ocorrencia.aerodromo + "\r\n" +
                     "  Dia ocorrência: " + dado_selecionado.ocorrencia.dia_ocorrencia + "\r\n" +
-                    "  Horário UTC: " + dado_selecionado.ocorrencia.horario_utc + "\r\n" +
+                    "  Horário UTC: " + dado_selecionado.ocorrencia.horario + "\r\n" +
                     "  Será investigada: " + dado_selecionado.ocorrencia.sera_investigada + "\r\n" +
                     "  Comando investigador: " + dado_selecionado.ocorrencia.comando_investigador + "\r\n" +
                     "  Status investigação: " + dado_selecionado.ocorrencia.status_investigacao + "\r\n" +
@@ -197,6 +256,9 @@ namespace Ocorrências_Aeronáuticas
             comboSelecioneCidade.Visible = modo;
             labelDadosOcorrencia.Visible = modo;
             textDadosOcorrencia.Visible = modo;
+            labelOcorrencias.Visible = modo;
+            comboOcorrencias.Visible = modo;
+            btnOrdenar.Visible = modo;
 
             /* ajusta tamanho do mapa */
             if (modo == true)
@@ -316,7 +378,36 @@ namespace Ocorrências_Aeronáuticas
 
         private void comboSelecioneCidade_SelectionChangeCommitted(object sender, EventArgs e) //selecionou cidade da lista
         {
-            pesquisar(resultados_pesquisa[comboSelecioneCidade.SelectedIndex]); //pesquisa a cidade selecionada
+            cidadeSelecionada(resultados_pesquisa[comboSelecioneCidade.SelectedIndex]); //pesquisa a cidade selecionada
+        }
+
+        private void comboOcorrencias_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ocorrenciaSelecionada(resultados_pesquisa[comboSelecioneCidade.SelectedIndex]
+                    .lista_ocorrencias[comboOcorrencias.SelectedIndex]); //mostra a ocorrência selecionada
+        }
+
+        private void btnOrdenar_Click(object sender, EventArgs e)
+        {
+            if(this.lista_dados_ocorrencia_resultados_pesquisa != null)
+                (new OrdenaForm(this.lista_dados_ocorrencia_resultados_pesquisa)).ShowDialog();
+            else
+                MessageBox.Show("A lista não pode estar vazia", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }//class
+
+    class Cidade
+    {
+        public string localidade { set; get; }
+        public string uf { set; get;  }
+        public List<DadosOcorrencia> lista_ocorrencias { set; get; }
+
+        public Cidade(string localidade, string uf, DadosOcorrencia dados_ocorrencia)
+        {
+            this.lista_ocorrencias = new List<DadosOcorrencia>();
+            this.lista_ocorrencias.Add(dados_ocorrencia);
+            this.localidade = localidade;
+            this.uf = uf;
+        }
+    }
 } //namespace

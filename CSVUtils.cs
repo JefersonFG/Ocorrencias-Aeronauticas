@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using CsvHelper;
 
 //código: http://www.codeproject.com/Articles/415732/Reading-and-Writing-CSV-Files-in-Csharp
 //malandragem, maluco.
@@ -151,4 +152,6 @@ namespace Ocorrências_Aeronáuticas
             return (linha.Count > 0);
         }
     }
+
+    
 }

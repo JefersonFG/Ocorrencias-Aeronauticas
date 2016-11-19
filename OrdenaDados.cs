@@ -14,7 +14,7 @@ namespace Ocorrências_Aeronáuticas
     public static class OrdenaDados //mamãe
     {
         #region Bubble Sort
-        public static List<DadosOcorrencia> bubbleSort_codigo_ocorrencia(List<DadosOcorrencia> lista_desordenada)
+        public static List<DadosOcorrencia> bubbleSort_codigo_ocorrencia(List<DadosOcorrencia> lista_desordenada, bool crescente)
         {
             List<DadosOcorrencia> lista_ordenada = new List<DadosOcorrencia>();
             foreach (DadosOcorrencia dados_ocorrencia in lista_desordenada)
@@ -27,21 +27,36 @@ namespace Ocorrências_Aeronáuticas
                 exchanges = false;
                 for (int i = 0; i < lista_ordenada.Count - 1; i++)
                 {
-                    if (lista_ordenada[i].codigo_ocorrencia < lista_ordenada[i + 1].codigo_ocorrencia)
+                    if(crescente)
                     {
-                        // Exchange elements
-                        DadosOcorrencia temp = lista_ordenada[i];
-                        lista_ordenada[i] = lista_ordenada[i + 1];
-                        lista_ordenada[i + 1] = temp;
-                        exchanges = true;
+                        if (lista_ordenada[i].codigo_ocorrencia > lista_ordenada[i + 1].codigo_ocorrencia)
+                        {
+                            // Exchange elements
+                            DadosOcorrencia temp = lista_ordenada[i];
+                            lista_ordenada[i] = lista_ordenada[i + 1];
+                            lista_ordenada[i + 1] = temp;
+                            exchanges = true;
+                        }
                     }
-                }
+                    else
+                    {
+                        if (lista_ordenada[i].codigo_ocorrencia < lista_ordenada[i + 1].codigo_ocorrencia)
+                        {
+                            // Exchange elements
+                            DadosOcorrencia temp = lista_ordenada[i];
+                            lista_ordenada[i] = lista_ordenada[i + 1];
+                            lista_ordenada[i + 1] = temp;
+                            exchanges = true;
+                        }
+                    }//else
+                    
+                }//for
             } while (exchanges);
 
             return lista_ordenada;
         }
 
-        public static List<DadosOcorrencia> bubbleSort_localidade(List<DadosOcorrencia> lista_desordenada)
+        public static List<DadosOcorrencia> bubbleSort_localidade(List<DadosOcorrencia> lista_desordenada, bool crescente)
         {
             List<DadosOcorrencia> lista_ordenada = new List<DadosOcorrencia>();
             foreach (DadosOcorrencia dados_ocorrencia in lista_desordenada)
@@ -56,16 +71,31 @@ namespace Ocorrências_Aeronáuticas
                 {
                     if(lista_ordenada[i].ocorrencia != null)
                     {
-                        if (lista_ordenada[i].ocorrencia.localidade.CompareTo(lista_ordenada[i + 1].ocorrencia.localidade) < 0)
+                        if(crescente)
                         {
-                            // Exchange elements
-                            DadosOcorrencia temp = lista_ordenada[i];
-                            lista_ordenada[i] = lista_ordenada[i + 1];
-                            lista_ordenada[i + 1] = temp;
-                            exchanges = true;
+                            if (lista_ordenada[i + 1].ocorrencia.localidade.CompareTo(lista_ordenada[i].ocorrencia.localidade) < 0)
+                            {
+                                // Exchange elements
+                                DadosOcorrencia temp = lista_ordenada[i];
+                                lista_ordenada[i] = lista_ordenada[i + 1];
+                                lista_ordenada[i + 1] = temp;
+                                exchanges = true;
+                            }
                         }
-                    }
-                }
+                        else
+                        {
+                            if (lista_ordenada[i].ocorrencia.localidade.CompareTo(lista_ordenada[i + 1].ocorrencia.localidade) < 0)
+                            {
+                                // Exchange elements
+                                DadosOcorrencia temp = lista_ordenada[i];
+                                lista_ordenada[i] = lista_ordenada[i + 1];
+                                lista_ordenada[i + 1] = temp;
+                                exchanges = true;
+                            }
+                        }
+                        
+                    }//if
+                }//for
             } while (exchanges);
 
             return lista_ordenada;

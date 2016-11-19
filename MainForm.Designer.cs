@@ -31,14 +31,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.textPesquisar = new System.Windows.Forms.TextBox();
             this.gmapControl = new GMap.NET.WindowsForms.GMapControl();
-            this.btnConfig = new System.Windows.Forms.Button();
-            this.btnPesquisar = new System.Windows.Forms.Button();
-            this.checkHamburger = new System.Windows.Forms.CheckBox();
             this.labelSelecioneCidade = new System.Windows.Forms.Label();
             this.comboSelecioneCidade = new System.Windows.Forms.ComboBox();
             this.labelCidadesEncontradas = new System.Windows.Forms.Label();
             this.labelDadosOcorrencia = new System.Windows.Forms.Label();
             this.textDadosOcorrencia = new System.Windows.Forms.TextBox();
+            this.comboOcorrencias = new System.Windows.Forms.ComboBox();
+            this.labelOcorrencias = new System.Windows.Forms.Label();
+            this.checkHamburger = new System.Windows.Forms.CheckBox();
+            this.btnConfig = new System.Windows.Forms.Button();
+            this.btnPesquisar = new System.Windows.Forms.Button();
+            this.btnOrdenar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textPesquisar
@@ -77,6 +80,95 @@
             this.gmapControl.Zoom = 13D;
             this.gmapControl.Load += new System.EventHandler(this.gmapControl_Load);
             // 
+            // labelSelecioneCidade
+            // 
+            this.labelSelecioneCidade.AutoSize = true;
+            this.labelSelecioneCidade.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSelecioneCidade.Location = new System.Drawing.Point(12, 75);
+            this.labelSelecioneCidade.Name = "labelSelecioneCidade";
+            this.labelSelecioneCidade.Size = new System.Drawing.Size(104, 16);
+            this.labelSelecioneCidade.TabIndex = 101;
+            this.labelSelecioneCidade.Text = "Lista de cidades:";
+            this.labelSelecioneCidade.Visible = false;
+            // 
+            // comboSelecioneCidade
+            // 
+            this.comboSelecioneCidade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboSelecioneCidade.FormattingEnabled = true;
+            this.comboSelecioneCidade.Location = new System.Drawing.Point(15, 96);
+            this.comboSelecioneCidade.Name = "comboSelecioneCidade";
+            this.comboSelecioneCidade.Size = new System.Drawing.Size(183, 21);
+            this.comboSelecioneCidade.TabIndex = 102;
+            this.comboSelecioneCidade.Visible = false;
+            this.comboSelecioneCidade.SelectionChangeCommitted += new System.EventHandler(this.comboSelecioneCidade_SelectionChangeCommitted);
+            // 
+            // labelCidadesEncontradas
+            // 
+            this.labelCidadesEncontradas.AutoSize = true;
+            this.labelCidadesEncontradas.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCidadesEncontradas.Location = new System.Drawing.Point(12, 56);
+            this.labelCidadesEncontradas.Name = "labelCidadesEncontradas";
+            this.labelCidadesEncontradas.Size = new System.Drawing.Size(132, 16);
+            this.labelCidadesEncontradas.TabIndex = 103;
+            this.labelCidadesEncontradas.Text = "Pesquise uma cidade.";
+            this.labelCidadesEncontradas.Visible = false;
+            // 
+            // labelDadosOcorrencia
+            // 
+            this.labelDadosOcorrencia.AutoSize = true;
+            this.labelDadosOcorrencia.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDadosOcorrencia.Location = new System.Drawing.Point(13, 174);
+            this.labelDadosOcorrencia.Name = "labelDadosOcorrencia";
+            this.labelDadosOcorrencia.Size = new System.Drawing.Size(146, 16);
+            this.labelDadosOcorrencia.TabIndex = 104;
+            this.labelDadosOcorrencia.Text = "Dados da ocorrência:";
+            this.labelDadosOcorrencia.Visible = false;
+            // 
+            // textDadosOcorrencia
+            // 
+            this.textDadosOcorrencia.Location = new System.Drawing.Point(15, 196);
+            this.textDadosOcorrencia.Multiline = true;
+            this.textDadosOcorrencia.Name = "textDadosOcorrencia";
+            this.textDadosOcorrencia.ReadOnly = true;
+            this.textDadosOcorrencia.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textDadosOcorrencia.Size = new System.Drawing.Size(246, 192);
+            this.textDadosOcorrencia.TabIndex = 105;
+            this.textDadosOcorrencia.Visible = false;
+            // 
+            // comboOcorrencias
+            // 
+            this.comboOcorrencias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboOcorrencias.FormattingEnabled = true;
+            this.comboOcorrencias.Location = new System.Drawing.Point(15, 144);
+            this.comboOcorrencias.Name = "comboOcorrencias";
+            this.comboOcorrencias.Size = new System.Drawing.Size(76, 21);
+            this.comboOcorrencias.TabIndex = 106;
+            this.comboOcorrencias.Visible = false;
+            this.comboOcorrencias.SelectionChangeCommitted += new System.EventHandler(this.comboOcorrencias_SelectionChangeCommitted);
+            // 
+            // labelOcorrencias
+            // 
+            this.labelOcorrencias.AutoSize = true;
+            this.labelOcorrencias.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelOcorrencias.Location = new System.Drawing.Point(12, 123);
+            this.labelOcorrencias.Name = "labelOcorrencias";
+            this.labelOcorrencias.Size = new System.Drawing.Size(186, 16);
+            this.labelOcorrencias.TabIndex = 107;
+            this.labelOcorrencias.Text = "Lista de ocorrências na cidade:";
+            this.labelOcorrencias.Visible = false;
+            // 
+            // checkHamburger
+            // 
+            this.checkHamburger.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkHamburger.BackgroundImage = global::Ocorrências_Aeronáuticas.Properties.Resources.hamburger;
+            this.checkHamburger.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.checkHamburger.Location = new System.Drawing.Point(12, 10);
+            this.checkHamburger.Name = "checkHamburger";
+            this.checkHamburger.Size = new System.Drawing.Size(30, 30);
+            this.checkHamburger.TabIndex = 0;
+            this.checkHamburger.UseVisualStyleBackColor = true;
+            this.checkHamburger.CheckedChanged += new System.EventHandler(this.checkHamburger_CheckedChanged);
+            // 
             // btnConfig
             // 
             this.btnConfig.BackgroundImage = global::Ocorrências_Aeronáuticas.Properties.Resources.config;
@@ -99,78 +191,25 @@
             this.btnPesquisar.UseVisualStyleBackColor = true;
             this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
             // 
-            // checkHamburger
+            // btnOrdenar
             // 
-            this.checkHamburger.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkHamburger.BackgroundImage = global::Ocorrências_Aeronáuticas.Properties.Resources.hamburger;
-            this.checkHamburger.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.checkHamburger.Location = new System.Drawing.Point(12, 10);
-            this.checkHamburger.Name = "checkHamburger";
-            this.checkHamburger.Size = new System.Drawing.Size(30, 30);
-            this.checkHamburger.TabIndex = 0;
-            this.checkHamburger.UseVisualStyleBackColor = true;
-            this.checkHamburger.CheckedChanged += new System.EventHandler(this.checkHamburger_CheckedChanged);
-            // 
-            // labelSelecioneCidade
-            // 
-            this.labelSelecioneCidade.AutoSize = true;
-            this.labelSelecioneCidade.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSelecioneCidade.Location = new System.Drawing.Point(12, 75);
-            this.labelSelecioneCidade.Name = "labelSelecioneCidade";
-            this.labelSelecioneCidade.Size = new System.Drawing.Size(104, 16);
-            this.labelSelecioneCidade.TabIndex = 101;
-            this.labelSelecioneCidade.Text = "Lista de cidades:";
-            this.labelSelecioneCidade.Visible = false;
-            // 
-            // comboSelecioneCidade
-            // 
-            this.comboSelecioneCidade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboSelecioneCidade.FormattingEnabled = true;
-            this.comboSelecioneCidade.Location = new System.Drawing.Point(15, 96);
-            this.comboSelecioneCidade.Name = "comboSelecioneCidade";
-            this.comboSelecioneCidade.Size = new System.Drawing.Size(246, 21);
-            this.comboSelecioneCidade.TabIndex = 102;
-            this.comboSelecioneCidade.Visible = false;
-            this.comboSelecioneCidade.SelectionChangeCommitted += new System.EventHandler(this.comboSelecioneCidade_SelectionChangeCommitted);
-            // 
-            // labelCidadesEncontradas
-            // 
-            this.labelCidadesEncontradas.AutoSize = true;
-            this.labelCidadesEncontradas.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCidadesEncontradas.Location = new System.Drawing.Point(12, 56);
-            this.labelCidadesEncontradas.Name = "labelCidadesEncontradas";
-            this.labelCidadesEncontradas.Size = new System.Drawing.Size(132, 16);
-            this.labelCidadesEncontradas.TabIndex = 103;
-            this.labelCidadesEncontradas.Text = "Pesquise uma cidade.";
-            this.labelCidadesEncontradas.Visible = false;
-            // 
-            // labelDadosOcorrencia
-            // 
-            this.labelDadosOcorrencia.AutoSize = true;
-            this.labelDadosOcorrencia.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDadosOcorrencia.Location = new System.Drawing.Point(12, 131);
-            this.labelDadosOcorrencia.Name = "labelDadosOcorrencia";
-            this.labelDadosOcorrencia.Size = new System.Drawing.Size(141, 16);
-            this.labelDadosOcorrencia.TabIndex = 104;
-            this.labelDadosOcorrencia.Text = "Dados da ocorrência";
-            this.labelDadosOcorrencia.Visible = false;
-            // 
-            // textDadosOcorrencia
-            // 
-            this.textDadosOcorrencia.Location = new System.Drawing.Point(15, 159);
-            this.textDadosOcorrencia.Multiline = true;
-            this.textDadosOcorrencia.Name = "textDadosOcorrencia";
-            this.textDadosOcorrencia.ReadOnly = true;
-            this.textDadosOcorrencia.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textDadosOcorrencia.Size = new System.Drawing.Size(246, 229);
-            this.textDadosOcorrencia.TabIndex = 105;
-            this.textDadosOcorrencia.Visible = false;
+            this.btnOrdenar.Location = new System.Drawing.Point(204, 95);
+            this.btnOrdenar.Name = "btnOrdenar";
+            this.btnOrdenar.Size = new System.Drawing.Size(57, 23);
+            this.btnOrdenar.TabIndex = 108;
+            this.btnOrdenar.Text = "Ordenar";
+            this.btnOrdenar.UseVisualStyleBackColor = true;
+            this.btnOrdenar.Visible = false;
+            this.btnOrdenar.Click += new System.EventHandler(this.btnOrdenar_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 411);
+            this.Controls.Add(this.btnOrdenar);
+            this.Controls.Add(this.labelOcorrencias);
+            this.Controls.Add(this.comboOcorrencias);
             this.Controls.Add(this.textDadosOcorrencia);
             this.Controls.Add(this.labelDadosOcorrencia);
             this.Controls.Add(this.labelCidadesEncontradas);
@@ -203,5 +242,8 @@
         private System.Windows.Forms.Label labelCidadesEncontradas;
         private System.Windows.Forms.Label labelDadosOcorrencia;
         private System.Windows.Forms.TextBox textDadosOcorrencia;
+        private System.Windows.Forms.ComboBox comboOcorrencias;
+        private System.Windows.Forms.Label labelOcorrencias;
+        private System.Windows.Forms.Button btnOrdenar;
     }
 }

@@ -12,6 +12,14 @@ namespace Ocorrências_Aeronáuticas
     /// </summary>
     public class Aeronave
     {
+        //variáveis para teste de consistência
+        private string _diaExtracao;
+        private string _qtdFatalidades;
+        private string _qtdMotores;
+        private string _pesoMaximo;
+        private string _qtdAssentos;
+        private string _anoFabricacao;
+
         /// <summary>
         /// Código de identificação de aeronave
         /// </summary>
@@ -82,7 +90,11 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Valor inteiro
         /// </value>
-        public int quantidade_motores { get; set; }
+        public string quantidade_motores
+        {
+            get { return _qtdMotores.Equals("NULL") ? "Desconhecido" : _qtdMotores; }
+            set { _qtdMotores = value; }
+        }
 
         /// <summary>
         /// Peso máximo para decolagem
@@ -90,7 +102,11 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Valor em kg
         /// </value>
-        public float peso_maximo_decolagem { get; set; }
+        public string peso_maximo_decolagem
+        {
+            get { return _pesoMaximo.Equals("NULL") ? "Desconhecido" : _pesoMaximo; }
+            set { _pesoMaximo = value; }
+        }
 
         /// <summary>
         /// Quantidade de assentos na aeronave
@@ -98,7 +114,11 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Valor inteiro
         /// </value>
-        public int quantidade_assentos { get; set; }
+        public string quantidade_assentos
+        {
+            get { return _qtdAssentos.Equals("NULL") ? "Desconhecido" : _qtdAssentos; }
+            set { _qtdAssentos = value; }
+        }
 
         /// <summary>
         /// Ano de fabricação da aeronave
@@ -106,7 +126,11 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Valor inteiro
         /// </value>
-        public int ano_fabricacao { get; set; }
+        public string ano_fabricacao
+        {
+            get { return _anoFabricacao.Equals("NULL") ? "Desconhecido" : _anoFabricacao; }
+            set { _anoFabricacao = value; }
+        }
 
         /// <summary>
         /// País de registro da aeronave
@@ -178,7 +202,11 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Valor inteiro
         /// </value>
-        public int quantidade_fatalidades { get; set; }
+        public string quantidade_fatalidades
+        {
+            get { return _qtdFatalidades.Equals("NULL") ? "0" : _qtdFatalidades; }
+            set { _qtdFatalidades = value; }
+        }
 
         /// <summary>
         /// Dia da extração dos dados na base de dados do CENIPA
@@ -186,38 +214,10 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Data no formato dd/mm/aaaa
         /// </value>
-        public DateTime dia_extracao { get; set; }
-
-        /// <summary>
-        /// Preenche um objeto da classe a partir de uma linha lida do arquivo CSV.
-        /// </summary>
-        /// <param name="linha">Linha a ser lida</param>
-        /// <returns>Objeto do tipo Aeronave</returns>
-        public Aeronave fromCSV(CsvLinha linha)
+        public string dia_extracao
         {
-            this.codigo_aeronave = Convert.ToInt32(linha[0]);
-            this.codigo_ocorrencia = Convert.ToInt32(linha[1]);
-            this.matricula = linha[2];
-            this.codigo_operador = (linha[3] == "NULL" ? 0 : Convert.ToInt32(linha[3]));
-            this.equipamento = linha[4];
-            this.fabricante = linha[5];
-            this.modelo = linha[6];
-            this.tipo_motor = linha[7];
-            this.quantidade_motores = (linha[8] == "NULL" ? 0 : Convert.ToInt32(linha[8]));
-            this.peso_maximo_decolagem = (linha[9] == "NULL" ? 0 : Convert.ToSingle(linha[9]));
-            this.quantidade_assentos = (linha[10] == "NULL" ? 0 : Convert.ToInt32(linha[10]));
-            this.ano_fabricacao = (linha[11] == "NULL" ? 0 : Convert.ToInt32(linha[11]));
-            this.pais_registro = linha[12];
-            this.categoria_registro = linha[13];
-            this.categoria_aviacao = linha[14];
-            this.origem_voo = linha[15];
-            this.destino_voo = linha[16];
-            this.fase_operacao = linha[17];
-            this.tipo_operacao = linha[18];
-            this.nivel_dano = linha[19];
-            this.quantidade_fatalidades = (linha[20] == "NULL" ? 0 : Convert.ToInt32(linha[20]));
-            this.dia_extracao = Convert.ToDateTime(linha[21]);
-            return this;
+            get { return _diaExtracao.Equals("NULL") ? "Desconhecido" : _diaExtracao; }
+            set { _diaExtracao = value; }
         }
     }
 }
