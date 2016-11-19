@@ -31,9 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.textPesquisar = new System.Windows.Forms.TextBox();
             this.gmapControl = new GMap.NET.WindowsForms.GMapControl();
-            this.btnConfig = new System.Windows.Forms.Button();
-            this.btnPesquisar = new System.Windows.Forms.Button();
-            this.checkHamburger = new System.Windows.Forms.CheckBox();
             this.labelSelecioneCidade = new System.Windows.Forms.Label();
             this.comboSelecioneCidade = new System.Windows.Forms.ComboBox();
             this.labelCidadesEncontradas = new System.Windows.Forms.Label();
@@ -41,6 +38,10 @@
             this.textDadosOcorrencia = new System.Windows.Forms.TextBox();
             this.comboOcorrencias = new System.Windows.Forms.ComboBox();
             this.labelOcorrencias = new System.Windows.Forms.Label();
+            this.checkHamburger = new System.Windows.Forms.CheckBox();
+            this.btnConfig = new System.Windows.Forms.Button();
+            this.btnPesquisar = new System.Windows.Forms.Button();
+            this.btnOrdenar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textPesquisar
@@ -79,40 +80,6 @@
             this.gmapControl.Zoom = 13D;
             this.gmapControl.Load += new System.EventHandler(this.gmapControl_Load);
             // 
-            // btnConfig
-            // 
-            this.btnConfig.BackgroundImage = global::Ocorrências_Aeronáuticas.Properties.Resources.config;
-            this.btnConfig.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnConfig.Location = new System.Drawing.Point(742, 12);
-            this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(30, 30);
-            this.btnConfig.TabIndex = 3;
-            this.btnConfig.UseVisualStyleBackColor = true;
-            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
-            // 
-            // btnPesquisar
-            // 
-            this.btnPesquisar.BackgroundImage = global::Ocorrências_Aeronáuticas.Properties.Resources.search;
-            this.btnPesquisar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnPesquisar.Location = new System.Drawing.Point(505, 10);
-            this.btnPesquisar.Name = "btnPesquisar";
-            this.btnPesquisar.Size = new System.Drawing.Size(30, 30);
-            this.btnPesquisar.TabIndex = 2;
-            this.btnPesquisar.UseVisualStyleBackColor = true;
-            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
-            // 
-            // checkHamburger
-            // 
-            this.checkHamburger.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkHamburger.BackgroundImage = global::Ocorrências_Aeronáuticas.Properties.Resources.hamburger;
-            this.checkHamburger.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.checkHamburger.Location = new System.Drawing.Point(12, 10);
-            this.checkHamburger.Name = "checkHamburger";
-            this.checkHamburger.Size = new System.Drawing.Size(30, 30);
-            this.checkHamburger.TabIndex = 0;
-            this.checkHamburger.UseVisualStyleBackColor = true;
-            this.checkHamburger.CheckedChanged += new System.EventHandler(this.checkHamburger_CheckedChanged);
-            // 
             // labelSelecioneCidade
             // 
             this.labelSelecioneCidade.AutoSize = true;
@@ -130,7 +97,7 @@
             this.comboSelecioneCidade.FormattingEnabled = true;
             this.comboSelecioneCidade.Location = new System.Drawing.Point(15, 96);
             this.comboSelecioneCidade.Name = "comboSelecioneCidade";
-            this.comboSelecioneCidade.Size = new System.Drawing.Size(246, 21);
+            this.comboSelecioneCidade.Size = new System.Drawing.Size(183, 21);
             this.comboSelecioneCidade.TabIndex = 102;
             this.comboSelecioneCidade.Visible = false;
             this.comboSelecioneCidade.SelectionChangeCommitted += new System.EventHandler(this.comboSelecioneCidade_SelectionChangeCommitted);
@@ -190,11 +157,57 @@
             this.labelOcorrencias.Text = "Lista de ocorrências na cidade:";
             this.labelOcorrencias.Visible = false;
             // 
+            // checkHamburger
+            // 
+            this.checkHamburger.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkHamburger.BackgroundImage = global::Ocorrências_Aeronáuticas.Properties.Resources.hamburger;
+            this.checkHamburger.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.checkHamburger.Location = new System.Drawing.Point(12, 10);
+            this.checkHamburger.Name = "checkHamburger";
+            this.checkHamburger.Size = new System.Drawing.Size(30, 30);
+            this.checkHamburger.TabIndex = 0;
+            this.checkHamburger.UseVisualStyleBackColor = true;
+            this.checkHamburger.CheckedChanged += new System.EventHandler(this.checkHamburger_CheckedChanged);
+            // 
+            // btnConfig
+            // 
+            this.btnConfig.BackgroundImage = global::Ocorrências_Aeronáuticas.Properties.Resources.config;
+            this.btnConfig.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnConfig.Location = new System.Drawing.Point(742, 12);
+            this.btnConfig.Name = "btnConfig";
+            this.btnConfig.Size = new System.Drawing.Size(30, 30);
+            this.btnConfig.TabIndex = 3;
+            this.btnConfig.UseVisualStyleBackColor = true;
+            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
+            // 
+            // btnPesquisar
+            // 
+            this.btnPesquisar.BackgroundImage = global::Ocorrências_Aeronáuticas.Properties.Resources.search;
+            this.btnPesquisar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnPesquisar.Location = new System.Drawing.Point(505, 10);
+            this.btnPesquisar.Name = "btnPesquisar";
+            this.btnPesquisar.Size = new System.Drawing.Size(30, 30);
+            this.btnPesquisar.TabIndex = 2;
+            this.btnPesquisar.UseVisualStyleBackColor = true;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
+            // 
+            // btnOrdenar
+            // 
+            this.btnOrdenar.Location = new System.Drawing.Point(204, 95);
+            this.btnOrdenar.Name = "btnOrdenar";
+            this.btnOrdenar.Size = new System.Drawing.Size(57, 23);
+            this.btnOrdenar.TabIndex = 108;
+            this.btnOrdenar.Text = "Ordenar";
+            this.btnOrdenar.UseVisualStyleBackColor = true;
+            this.btnOrdenar.Visible = false;
+            this.btnOrdenar.Click += new System.EventHandler(this.btnOrdenar_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 411);
+            this.Controls.Add(this.btnOrdenar);
             this.Controls.Add(this.labelOcorrencias);
             this.Controls.Add(this.comboOcorrencias);
             this.Controls.Add(this.textDadosOcorrencia);
@@ -231,5 +244,6 @@
         private System.Windows.Forms.TextBox textDadosOcorrencia;
         private System.Windows.Forms.ComboBox comboOcorrencias;
         private System.Windows.Forms.Label labelOcorrencias;
+        private System.Windows.Forms.Button btnOrdenar;
     }
 }

@@ -88,6 +88,12 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Ocorrencia.cs" />
+    <Compile Include="OrdenaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrdenaForm.Designer.cs">
+      <DependentUpon>OrdenaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Persistencia.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,6 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrdenaForm.resx">
+      <DependentUpon>OrdenaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

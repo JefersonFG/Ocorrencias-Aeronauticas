@@ -21,7 +21,8 @@ namespace Ocorrências_Aeronáuticas
         System.Drawing.Point posicao_mapa_direita = new Point(285, 56);
         System.Drawing.Point posicao_mapa_normal = new Point(13, 56);
 
-        private List<Cidade> resultados_pesquisa; //armazena os resultados de uma pesquisa
+        private List<Cidade> resultados_pesquisa; //armazena os resultados de uma pesquisa (organizado por cidade)
+        private List<DadosOcorrencia> lista_dados_ocorrencia_resultados_pesquisa; //armazena todos os resultados da pesquisa
 
         public MainForm()
         {
@@ -54,7 +55,7 @@ namespace Ocorrências_Aeronáuticas
             if (resultados.Count > 0) //retornou mais que 1 cidade
             {
                 encontrou_cidade = true;
-                resultados = OrdenaDados.bubbleSort_localidade(resultados); //BUBBLE SORT ??
+                resultados = OrdenaDados.bubbleSort_localidade(resultados, true); //BUBBLE SORT ??
 
                 //formata o nome para CIDADE - ESTADO
                 string cidade_selecionada = resultados[0].ocorrencia.localidade + " - " +
@@ -72,7 +73,7 @@ namespace Ocorrências_Aeronáuticas
 
                 //busca todas
                 resultados = Controlador.pesquisaCidade(localidade);
-                resultados = OrdenaDados.bubbleSort_localidade(resultados); //BUBBLE SORT ??
+                resultados = OrdenaDados.bubbleSort_localidade(resultados, true); //BUBBLE SORT ??
 
                 
             }
@@ -105,7 +106,7 @@ namespace Ocorrências_Aeronáuticas
             foreach (Cidade cidade in lista_cidades)
             {
                 lista_cidades_combobox.Add(cidade.localidade + " - " + cidade.uf);
-                cidade.lista_ocorrencias = OrdenaDados.bubbleSort_codigo_ocorrencia(cidade.lista_ocorrencias); //ordena
+                cidade.lista_ocorrencias = OrdenaDados.bubbleSort_codigo_ocorrencia(cidade.lista_ocorrencias, true); //ordena
             } //foreach
 
             //preenche os dados no textbox
@@ -133,8 +134,9 @@ namespace Ocorrências_Aeronáuticas
                 //atualiza labels
                 labelCidadesEncontradas.Text = "\'" + nome_cidade + "\' não foi encontrada.";
                 labelSelecioneCidade.Text = "Lista de todas as cidades (" + resultados.Count + "):";
-            }           
+            }
 
+            this.lista_dados_ocorrencia_resultados_pesquisa = resultados;
 
             //ativa o menu hamburger
             checkHamburger.Checked = true;
@@ -256,6 +258,7 @@ namespace Ocorrências_Aeronáuticas
             textDadosOcorrencia.Visible = modo;
             labelOcorrencias.Visible = modo;
             comboOcorrencias.Visible = modo;
+            btnOrdenar.Visible = modo;
 
             /* ajusta tamanho do mapa */
             if (modo == true)
@@ -382,6 +385,14 @@ namespace Ocorrências_Aeronáuticas
         {
             ocorrenciaSelecionada(resultados_pesquisa[comboSelecioneCidade.SelectedIndex]
                     .lista_ocorrencias[comboOcorrencias.SelectedIndex]); //mostra a ocorrência selecionada
+        }
+
+        private void btnOrdenar_Click(object sender, EventArgs e)
+        {
+            if(this.lista_dados_ocorrencia_resultados_pesquisa != null)
+                (new OrdenaForm(this.lista_dados_ocorrencia_resultados_pesquisa)).ShowDialog();
+            else
+                MessageBox.Show("A lista não pode estar vazia", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }//class
 
