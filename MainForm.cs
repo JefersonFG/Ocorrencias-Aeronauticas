@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO; //Remover
 
 namespace Ocorrências_Aeronáuticas
 {
@@ -297,7 +298,75 @@ namespace Ocorrências_Aeronáuticas
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
-            
+            //Código de teste
+            Dictionary<int, DadosOcorrencia> dicionario = new Dictionary<int, DadosOcorrencia>();
+
+            Aeronave aeronave1 = new Aeronave();
+            aeronave1.ano_fabricacao = "1990";
+            aeronave1.categoria_aviacao = "categoriaa1";
+            aeronave1.categoria_registro = "categoriar1";
+            aeronave1.codigo_aeronave = 00000001;
+            aeronave1.codigo_ocorrencia = 000000001;
+            aeronave1.codigo_operador = 00000001;
+            aeronave1.destino_voo = "destino1";
+            aeronave1.dia_extracao = "10/10/10";
+            aeronave1.equipamento = "equipamento1";
+            aeronave1.fabricante = "fabricante1";
+            aeronave1.fase_operacao = "fase1";
+            aeronave1.matricula = "matricula1";
+            aeronave1.modelo = "modelo1";
+            aeronave1.nivel_dano = "niveldano1";
+            aeronave1.origem_voo = "origem1";
+            aeronave1.pais_registro = "pais1";
+            aeronave1.peso_maximo_decolagem = "peso1";
+            aeronave1.quantidade_assentos = "quantidadea1";
+            aeronave1.quantidade_fatalidades = "quantidadef1";
+            aeronave1.quantidade_motores = "quantidadem1";
+            aeronave1.tipo_motor = "tipom1";
+            aeronave1.tipo_operacao = "tipoo1";
+
+            Ocorrencia ocorrencia1 = new Ocorrencia();
+            ocorrencia1.aerodromo = "aerodromo1";
+            ocorrencia1.aeronaves_envolvidas = 2;
+            ocorrencia1.classificacao = "classificacao1";
+            ocorrencia1.codigo_ocorrencia = 00000001;
+            ocorrencia1.comando_investigador = "comando1";
+            ocorrencia1.dia_extracao = "10/10/10";
+            ocorrencia1.dia_ocorrencia = "10/10/10";
+            ocorrencia1.dia_publicacao = "10/10/10";
+            ocorrencia1.horario = "13:00";
+            ocorrencia1.localidade = "Porto Alegre";
+            ocorrencia1.numero_relatorio = "numerorelatorio1";
+            ocorrencia1.pais = "Brasil";
+            ocorrencia1.quantidade_recomendacoes = 10;
+            ocorrencia1.relatorio_publicado = "relatoriopublicado1";
+            ocorrencia1.saida_pista = "saidapista1";
+            ocorrencia1.sera_investigada = "serainvestigada1";
+            ocorrencia1.status_investigacao = "statusinvestigacao1";
+            ocorrencia1.tipo = "tipo1";
+            ocorrencia1.uf = "uf1";
+
+            FatorContribuinte fator1 = new FatorContribuinte();
+            fator1.area = "area1";
+            fator1.aspecto = "aspecto1";
+            fator1.codigo_fator = 00000001;
+            fator1.codigo_ocorrencia = 00000001;
+            fator1.condicionante = "condicionane1";
+            fator1.detalhe_fator = "detalhefator1";
+            fator1.dia_extracao = "10/10/10";
+            fator1.fator = "fator1";
+
+            DadosOcorrencia dado1 = new DadosOcorrencia(00000001, aeronave1, ocorrencia1, fator1);
+
+            if (!File.Exists(Persistencia.path_btree))
+            {
+                dicionario.Add(00000001, dado1);
+                Persistencia.criaArvore(dicionario);
+            }
+            else
+            {
+                dicionario = Persistencia.leArvore();
+            }
         }
 
         private void gmapControl_Load(object sender, EventArgs e)

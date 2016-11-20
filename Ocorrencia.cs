@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProtoBuf;
 
 namespace Ocorrências_Aeronáuticas
 {
@@ -10,6 +11,7 @@ namespace Ocorrências_Aeronáuticas
     /// Classe contendo as informações da ocorrência, lidas do arquivo ocorrencias.csv
     /// O campo chave é codigo_ocorrencia
     /// </summary>
+    [ProtoContract]
     public class Ocorrencia
     {
         //variáveis para testes de consistência.
@@ -25,6 +27,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Valor inteiro
         /// </value>
+        [ProtoMember(1)]
         public int codigo_ocorrencia { get; set; }
 
         /// <summary>
@@ -33,6 +36,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// ACIDENTE ou INCIDENTE GRAVE
         /// </value>
+        [ProtoMember(2)]
         public string classificacao { get; set; }
 
         /// <summary>
@@ -41,6 +45,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Caracterização da ocorrência, resumo do ocorrido
         /// </value>
+        [ProtoMember(3)]
         public string tipo { get; set; }
 
         /// <summary>
@@ -49,6 +54,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Nome do município por extenso
         /// </value>
+        [ProtoMember(4)]
         public string localidade { get; set; }
 
         /// <summary>
@@ -57,6 +63,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Sigla do estado
         /// </value>
+        [ProtoMember(5)]
         public string uf { get; set; }
 
         /// <summary>
@@ -65,6 +72,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Nome do país por extenso
         /// </value>
+        [ProtoMember(6)]
         public string pais { get; set; }
 
         /// <summary>
@@ -73,6 +81,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Código de 4 caracteres
         /// </value>
+        [ProtoMember(7)]
         public string aerodromo { get; set; }
 
         /// <summary>
@@ -82,7 +91,7 @@ namespace Ocorrências_Aeronáuticas
         /// Data no formato dd/mm/aaaa
         /// </value>
         //public DateTime dia_ocorrencia { get; set; }
-
+        [ProtoMember(8)]
         public string dia_ocorrencia
         {
             get { return _diaOcorrencia.Equals("NULL") ? "Desconhecido" : _diaOcorrencia; }
@@ -95,6 +104,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Horário no formato hh:mm:ss
         /// </value>
+        [ProtoMember(9)]
         public string horario
         {
             get { return _diaOcorrencia.Equals("NULL") ? "Desconhecido" : _horario; }
@@ -107,6 +117,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// SIM ou NÃO
         /// </value>
+        [ProtoMember(10)]
         public string sera_investigada { get; set; }
 
         /// <summary>
@@ -115,6 +126,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Identificação do comando investigador
         /// </value>
+        [ProtoMember(11)]
         public string comando_investigador { get; set; }
 
         /// <summary>
@@ -123,6 +135,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// ATIVA ou FINALIZADA
         /// </value>
+        [ProtoMember(12)]
         public string status_investigacao { get; set; }
 
         /// <summary>
@@ -131,6 +144,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Identificação do relatório, até 50 caracteres
         /// </value>
+        [ProtoMember(13)]
         public string numero_relatorio { get; set; }
 
         /// <summary>
@@ -139,6 +153,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Se afirmativo 1, caso contrário 0
         /// </value>
+        [ProtoMember(14)]
         public string relatorio_publicado { get; set; }
 
         /// <summary>
@@ -147,6 +162,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Data no formato dd/mm/aaaa
         /// </value>
+        [ProtoMember(15)]
         public string dia_publicacao
         {
             get { return _diaPublicacao.Equals("NULL") ? "Desconhecido" : _diaPublicacao; }
@@ -159,6 +175,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Valor inteiro
         /// </value>
+        [ProtoMember(16)]
         public int quantidade_recomendacoes { get; set; }
 
         /// <summary>
@@ -167,6 +184,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Valor inteiro
         /// </value>
+        [ProtoMember(17)]
         public int aeronaves_envolvidas { get; set; }
 
         /// <summary>
@@ -175,6 +193,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Se afirmativo 1, caso contrário 0
         /// </value>
+        [ProtoMember(18)]
         public string saida_pista
         {
             get { return _saidaPista.Equals("NULL") ? "Desconhecido" : _saidaPista; }
@@ -187,6 +206,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Data no formato dd/mm/aaaa
         /// </value>
+        [ProtoMember(19)]
         public string dia_extracao
         {
             get { return _diaExtracao.Equals("NULL") ? "Desconhecido" : _diaExtracao; }

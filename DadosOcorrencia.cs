@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using ProtoBuf;
 
 namespace Ocorrências_Aeronáuticas
 {
@@ -11,6 +13,7 @@ namespace Ocorrências_Aeronáuticas
     /// A classe será usada no dicionário que por sua vez será usado para ordenação dos dados
     /// Os dados podem ser ordenados pelo campo codigo_ocorrencia ou localidade
     /// </summary>
+    [ProtoContract]
     public class DadosOcorrencia
     {
         /// <summary>
@@ -19,6 +22,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Valor inteiro
         /// </value>
+        [ProtoMember(1)]
         public int codigo_ocorrencia { get; set; }
 
         /// <summary>
@@ -27,6 +31,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Objeto do tipo Aeronave
         /// </value>
+        [ProtoMember(2)]
         public Aeronave aeronave { get; set; }
 
         /// <summary>
@@ -35,6 +40,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Objeto do tipo Ocorrencia
         /// </value>
+        [ProtoMember(3)]
         public Ocorrencia ocorrencia { get; set; }
 
         /// <summary>
@@ -43,6 +49,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Objeto do tipo FatorContribuinte
         /// </value>
+        [ProtoMember(4)]
         public FatorContribuinte fator { get; set; }
 
         public DadosOcorrencia(int codigo_ocorrencia, Aeronave aeronave, Ocorrencia ocorrencia, FatorContribuinte fator)
@@ -52,6 +59,13 @@ namespace Ocorrências_Aeronáuticas
             this.ocorrencia = ocorrencia;
             this.fator = fator;
         }
-        
+
+        public DadosOcorrencia()
+        {
+            this.codigo_ocorrencia = 0;
+            this.aeronave = null;
+            this.ocorrencia = null;
+            this.fator = null;
+        }
     }
 }

@@ -6,11 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CsvHelper;
+using CSharpTest.Net.Collections;
+using CSharpTest.Net.Serialization;
 
 namespace Ocorrências_Aeronáuticas
 {
     public static class Persistencia
     {
+        public static string path_btree { get; set; }
+
         public static Dictionary<int, DadosOcorrencia> lerCSV(string caminho_csv_ocorrencias, 
                                                                 string caminho_csv_aeronaves,
                                                                 string caminho_csv_fator_contribuinte) 
@@ -185,6 +189,97 @@ namespace Ocorrências_Aeronáuticas
 
         } //escreverResultados()
 
+        /// <summary>
+        /// Cria a árvore à partir dos dados lidos do CSV
+        /// </summary>
+        /// <param name="dicionario">Dados lidos do CSV</param>
+        /// <returns>Indica se houve erro ou não no processo</returns>
+        public static bool criaArvore (Dictionary<int, DadosOcorrencia> dicionario)
+        {
+            //Cria o componente responsável por serializar os dados a serem escritos na árvore
+            ProtoNetSerializer<DadosOcorrencia> serializer = new ProtoNetSerializer<DadosOcorrencia>();
+
+            //Prepara as opções da árvore
+            var tree_options = new BPlusTree<int, DadosOcorrencia>.OptionsV2(PrimitiveSerializer.Int32, serializer);
+
+            tree_options.CalcBTreeOrder(8, 30);
+            tree_options.CreateFile = CreatePolicy.IfNeeded;
+            tree_options.FileName = path_btree;
+
+            //Checa se o arquivo já existe
+            if (!File.Exists(path_btree))
+            {
+                using (var tree = new BPlusTree<int, DadosOcorrencia>(tree_options))
+                {
+                    foreach (KeyValuePair<int, DadosOcorrencia> entry in dicionario)
+                    {
+                        //Percorre o dicionário e adiciona na árvore
+                        tree.Add(entry.Key, entry.Value);
+                    }
+                }
+            }
+            else
+            {
+                //Erro, a árvore já existe!
+                return false;
+            }
+
+            //Se não houve erros retorna true
+            return true;
+        } //criaArvore()
+
+        /// <summary>
+        /// Lê a árvore do disco e a carrega na memória
+        /// </summary>
+        /// <returns>Dados lidos da árvore</returns>
+        public static Dictionary<int, DadosOcorrencia> leArvore()
+        {
+            //Cria um novo dicionário
+            Dictionary<int, DadosOcorrencia> dicionario = new Dictionary<int, DadosOcorrencia>();
+
+            //Cria o componente responsável por desserializar os dados a serem lidos da árvore
+            ProtoNetSerializer<DadosOcorrencia> serializer = new ProtoNetSerializer<DadosOcorrencia>();
+
+            //Prepara as opções da árvore
+            var tree_options = new BPlusTree<int, DadosOcorrencia>.OptionsV2(PrimitiveSerializer.Int32, serializer);
+
+            tree_options.CalcBTreeOrder(8, 30);
+            tree_options.CreateFile = CreatePolicy.IfNeeded;
+            tree_options.FileName = path_btree;
+
+            //Checa se o arquivo já existe
+            if (File.Exists(path_btree))
+            {
+                using (var tree = new BPlusTree<int, DadosOcorrencia>(tree_options))
+                {
+                    DadosOcorrencia temp;
+
+                    if (tree.TryGetValue(00000001, out temp))
+                    {
+                        string success = "success";
+                    }
+                    else
+                    {
+                        string failure = "failure";
+                    }
+                }
+            }
+            else
+            {
+                //Erro, a árvore não existe!
+            }
+
+            //Retorna o dicionário lido
+            return dicionario;
+        } //leArvore
+
+        static Persistencia()
+        {
+            //Obtém o caminho padrão da árvore          
+            string path = Environment.CurrentDirectory;
+            path_btree = Path.GetFullPath(Path.Combine(path, @"..\..\data\Arvore.bin"));
+        } //Persistencia()
+
         /*public static void inicializaResultados()
         {
             File.WriteAllText("../../resultados_Aerosafe.txt", string.Empty);
@@ -196,6 +291,7 @@ namespace Ocorrências_Aeronáuticas
             {
                 sw.WriteLine(resultado);
             }
-        } */
+        }
+        */
     }//class
 } //namespace
