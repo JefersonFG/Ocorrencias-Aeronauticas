@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProtoBuf;
 
 namespace Ocorrências_Aeronáuticas
 {
@@ -10,6 +11,7 @@ namespace Ocorrências_Aeronáuticas
     /// Classe contendo as informações dos fatores contribuintes envolvidos com a ocorrência, lidas do arquivo fator_contribuinte.csv
     /// O campo chave é codigo_ocorrencia
     /// </summary>
+    [ProtoContract]
     public class FatorContribuinte
     {
         //variável para teste de consistência
@@ -21,6 +23,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Valor inteiro
         /// </value>
+        [ProtoMember(1)]
         public int codigo_fator { get; set; }
 
         /// <summary>
@@ -29,6 +32,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Valor inteiro
         /// </value>
+        [ProtoMember(2)]
         public int codigo_ocorrencia { get; set; }
 
         /// <summary>
@@ -37,6 +41,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Descrição do fator por extenso
         /// </value>
+        [ProtoMember(3)]
         public string fator { get; set; }
 
         /// <summary>
@@ -45,6 +50,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Descrição do aspecto por extenso
         /// </value>
+        [ProtoMember(4)]
         public string aspecto { get; set; }
 
         /// <summary>
@@ -53,6 +59,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Descrição do condicionante por extenso
         /// </value>
+        [ProtoMember(5)]
         public string condicionante { get; set; }
 
         /// <summary>
@@ -61,6 +68,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Descrição da área por extenso
         /// </value>
+        [ProtoMember(6)]
         public string area { get; set; }
 
         /// <summary>
@@ -71,6 +79,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Descrição da contribuição por extenso
         /// </value>
+        /// [ProtoMember(10)]
         //public string nivel_contribuicao { get; set; }
 
         /// <summary>
@@ -79,6 +88,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Descrição dos detalhes do fator por extenso
         /// </value>
+        [ProtoMember(7)]
         public string detalhe_fator { get; set; }
 
         /// <summary>
@@ -87,6 +97,7 @@ namespace Ocorrências_Aeronáuticas
         /// <value>
         /// Data no formato dd/mm/aaaa
         /// </value>
+        [ProtoMember(8)]
         public string dia_extracao
         {
             get { return _diaExtracao.Equals("NULL") ? "Desconhecido" : _diaExtracao; }

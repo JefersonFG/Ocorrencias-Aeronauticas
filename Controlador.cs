@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,44 +8,33 @@ using System.Threading.Tasks;
 namespace Ocorrências_Aeronáuticas
 {
     class Controlador
-    {
-        private static Dictionary<int, DadosOcorrencia> dic_dados_ocorrencia;
-
-        public static void dicionarioInicial(Dictionary<int, DadosOcorrencia> dicionario)
-        {
-            dic_dados_ocorrencia = dicionario;
-        } //dicionarioInicial()
-
-        //pesquisa cidades que contenham esta localidade no nome
+    {    
+        /// <summary>
+        /// Pesquisa cidades que contenham esta localidade no nome  
+        /// </summary>
+        /// <param name="localidade">A localidade a ser buscada</param>
+        /// <returns>Lista de ocorrência que ocorreram nessa localidade</returns>
         public static List<DadosOcorrencia> pesquisaCidade(string localidade) 
         {
-
-            List<DadosOcorrencia> lista = new List<DadosOcorrencia>();
-
-            Ocorrencia ocorrencia;
-
-            foreach (KeyValuePair<int, DadosOcorrencia> registro in dic_dados_ocorrencia)
-            {
-                ocorrencia = registro.Value.ocorrencia;
-                if (ocorrencia.localidade.IndexOf(localidade, StringComparison.OrdinalIgnoreCase) >= 0)
-                {
-                    lista.Add(registro.Value);
-                }
-
-            } //foreach
-
-
-            return lista;
+            //Busca a localidade na árvore
+            return Persistencia.buscaValor(localidade);
         } //pesquisaCidade()
 
-        public static Dictionary<int, DadosOcorrencia> carregarDicionario(string caminho_pasta_com_csvs)
+        /// <summary>
+        /// Verifica se os dados dos arquivos CSV já foram carregados na árvore B+, se não carrega
+        /// </summary>
+        /// <param name="caminho_pasta_com_csvs">Caminho para a pasta contendo os arquivos de dados CSV</param>
+        public static void carregarDados(string caminho_pasta_com_csvs)
         {
-            string caminho_ocorrencias = caminho_pasta_com_csvs + "ocorrencia.csv";
-            string caminho_aeronaves = caminho_pasta_com_csvs + "aeronave.csv";
-            string caminho_fatores = caminho_pasta_com_csvs + "fator_contribuinte.csv";
+            //Verifica se já foi gerada a árvore com os dados, se não lê os arquivos CSV e cria a árvore
+            if (!File.Exists(Persistencia.path_btree))
+            {
+                string caminho_ocorrencias = caminho_pasta_com_csvs + "ocorrencia.csv";
+                string caminho_aeronaves = caminho_pasta_com_csvs + "aeronave.csv";
+                string caminho_fatores = caminho_pasta_com_csvs + "fator_contribuinte.csv";
 
-            return Persistencia.lerCSV(caminho_ocorrencias, caminho_aeronaves, caminho_fatores);
+                Persistencia.lerCSV(caminho_ocorrencias, caminho_aeronaves, caminho_fatores);
+            }
         } // carregarDicionario()
-
     } //class
 }//namespace
