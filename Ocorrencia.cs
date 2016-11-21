@@ -14,11 +14,35 @@ namespace Ocorrências_Aeronáuticas
     [ProtoContract]
     public class Ocorrencia
     {
-        //variáveis para testes de consistência.
+        /// <summary>
+        /// Variável para testes de consistência. Evita que dados não esperados
+        /// sejam lidos.
+        /// (dia_ocorrencia)
+        /// </summary>
         private string _diaOcorrencia;
+        /// <summary>
+        /// Variável para testes de consistência. Evita que dados não esperados
+        /// sejam lidos.
+        /// (horario)
+        /// </summary>
         private string _horario;
+        /// <summary>
+        /// Variável para testes de consistência. Evita que dados não esperados
+        /// sejam lidos.
+        /// (dia_publicacao)
+        /// </summary>
         private string _diaPublicacao;
+        /// <summary>
+        /// Variável para testes de consistência. Evita que dados não esperados
+        /// sejam lidos.
+        /// (saida_pista)
+        /// </summary>
         private string _saidaPista;
+        /// <summary>
+        /// Variável para testes de consistência. Evita que dados não esperados
+        /// sejam lidos.
+        /// (dia_extracao)
+        /// </summary>
         private string _diaExtracao;
 
         /// <summary>
@@ -85,12 +109,12 @@ namespace Ocorrências_Aeronáuticas
         public string aerodromo { get; set; }
 
         /// <summary>
-        /// Data da ocorrência
+        /// Data da ocorrência.
+        /// Lida como string para evitar inconsistências.
         /// </summary>
         /// <value>
         /// Data no formato dd/mm/aaaa
         /// </value>
-        //public DateTime dia_ocorrencia { get; set; }
         [ProtoMember(8)]
         public string dia_ocorrencia
         {
@@ -99,7 +123,8 @@ namespace Ocorrências_Aeronáuticas
         }
 
         /// <summary>
-        /// Horário da ocorrência no padrão UTC
+        /// Horário da ocorrência no padrão UTC.
+        /// Lida como string para evitar inconsistências.
         /// </summary>
         /// <value>
         /// Horário no formato hh:mm:ss
@@ -157,7 +182,8 @@ namespace Ocorrências_Aeronáuticas
         public string relatorio_publicado { get; set; }
 
         /// <summary>
-        /// Dia da publicação do relatório final de investigação
+        /// Dia da publicação do relatório final de investigação.
+        /// Lida como string para evitar inconsistências.
         /// </summary>
         /// <value>
         /// Data no formato dd/mm/aaaa
@@ -188,7 +214,8 @@ namespace Ocorrências_Aeronáuticas
         public int aeronaves_envolvidas { get; set; }
 
         /// <summary>
-        /// Informação se houve ou não saída de pista na ocorrência
+        /// Informação se houve ou não saída de pista na ocorrência.
+        /// Lida como string para evitar inconsistências.
         /// </summary>
         /// <value>
         /// Se afirmativo 1, caso contrário 0
@@ -201,7 +228,8 @@ namespace Ocorrências_Aeronáuticas
         }
 
         /// <summary>
-        /// Dia da extração dos dados na base de dados do CENIPA
+        /// Dia da extração dos dados na base de dados do CENIPA.
+        /// Lida como string para evitar inconsistências.
         /// </summary>
         /// <value>
         /// Data no formato dd/mm/aaaa

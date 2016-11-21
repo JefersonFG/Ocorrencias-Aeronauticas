@@ -87,7 +87,6 @@
   <ItemGroup>
     <Compile Include="Aeronave.cs" />
     <Compile Include="Controlador.cs" />
-    <Compile Include="CSVUtils.cs" />
     <Compile Include="DadosOcorrencia.cs" />
     <Compile Include="FatorContribuinte.cs" />
     <Compile Include="MainForm.cs">

@@ -9,15 +9,15 @@ using ProtoBuf;
 namespace Ocorrências_Aeronáuticas
 {
     /// <summary>
-    /// Classe que agrega os dados da ocorrência lida dos três arquivos, cada uma no seu objeto
-    /// A classe será usada no dicionário que por sua vez será usado para ordenação dos dados
-    /// Os dados podem ser ordenados pelo campo codigo_ocorrencia ou localidade
+    /// Classe que agrega os dados da ocorrência lida dos três arquivos, cada uma no seu objeto.
+    /// A classe será usada no dicionário que por sua vez será usado para ordenação dos dados.
+    /// Os dados podem ser ordenados pelo campo codigo_ocorrencia ou localidade.
     /// </summary>
     [ProtoContract]
     public class DadosOcorrencia
     {
         /// <summary>
-        /// Código de identificação de ocorrência, comum aos três ojetos
+        /// Código de identificação de ocorrência, comum aos três objetos
         /// </summary>
         /// <value>
         /// Valor inteiro
@@ -26,7 +26,7 @@ namespace Ocorrências_Aeronáuticas
         public int codigo_ocorrencia { get; set; }
 
         /// <summary>
-        /// Objeto contendo os dados lidos do arquivo aeronave.csv com o codigo_ocorrencia acima
+        /// Objeto contendo os dados lidos do arquivo aeronave.csv, com o codigo_ocorrencia acima
         /// </summary>
         /// <value>
         /// Objeto do tipo Aeronave
@@ -35,7 +35,7 @@ namespace Ocorrências_Aeronáuticas
         public Aeronave aeronave { get; set; }
 
         /// <summary>
-        /// Objeto contendo os dados lidos do arquivo ocorrencia.csv com o codigo_ocorrencia acima
+        /// Objeto contendo os dados lidos do arquivo ocorrencia.csv, com o codigo_ocorrencia acima
         /// </summary>
         /// <value>
         /// Objeto do tipo Ocorrencia
@@ -44,7 +44,7 @@ namespace Ocorrências_Aeronáuticas
         public Ocorrencia ocorrencia { get; set; }
 
         /// <summary>
-        /// Objeto contendo os dados lidos do arquivo fator_contribuinte.csv com o codigo_ocorrencia acima
+        /// Objeto contendo os dados lidos do arquivo fator_contribuinte.csv, com o codigo_ocorrencia acima
         /// </summary>
         /// <value>
         /// Objeto do tipo FatorContribuinte
@@ -52,6 +52,13 @@ namespace Ocorrências_Aeronáuticas
         [ProtoMember(4)]
         public FatorContribuinte fator { get; set; }
 
+        /// <summary>
+        /// Construtor que inicializa uma nova instância de DadosOcorrência.
+        /// </summary>
+        /// <param name="codigo_ocorrencia">Código da Ocorrencia, para identificação.</param>
+        /// <param name="aeronave">Informações sobre a aeronave.</param>
+        /// <param name="ocorrencia">Informações sobre a ocorrencia.</param>
+        /// <param name="fator">Informações sobre os fatores contribuintes.</param>
         public DadosOcorrencia(int codigo_ocorrencia, Aeronave aeronave, Ocorrencia ocorrencia, FatorContribuinte fator)
         {
             this.codigo_ocorrencia = codigo_ocorrencia;
@@ -61,7 +68,7 @@ namespace Ocorrências_Aeronáuticas
         }
 
         /// <summary>
-        /// Construtor vazio
+        /// Construtor vazio.
         /// </summary>
         public DadosOcorrencia()
         {

@@ -14,12 +14,41 @@ namespace Ocorrências_Aeronáuticas
     [ProtoContract]
     public class Aeronave
     {
-        //variáveis para teste de consistência
+        /// <summary>
+        /// Variável para testes de consistência. Evita que dados não esperados
+        /// sejam lidos.
+        /// (dia_extracao)
+        /// </summary>
         private string _diaExtracao;
+        /// <summary>
+        /// Variável para testes de consistência. Evita que dados não esperados
+        /// sejam lidos.
+        /// (quantidade_fatalidades)
+        /// </summary>
         private string _qtdFatalidades;
+        /// <summary>
+        /// Variável para testes de consistência. Evita que dados não esperados
+        /// sejam lidos.
+        /// (quantidade_motores)
+        /// </summary>
         private string _qtdMotores;
+        /// <summary>
+        /// Variável para testes de consistência. Evita que dados não esperados
+        /// sejam lidos.
+        /// (peso_maximo_decolagem)
+        /// </summary>
         private string _pesoMaximo;
+        /// <summary>
+        /// Variável para testes de consistência. Evita que dados não esperados
+        /// sejam lidos.
+        /// (quantidade_assentos)
+        /// </summary>
         private string _qtdAssentos;
+        /// <summary>
+        /// Variável para testes de consistência. Evita que dados não esperados
+        /// sejam lidos.
+        /// (ano_fabricacao)
+        /// </summary>
         private string _anoFabricacao;
 
         /// <summary>
@@ -95,7 +124,8 @@ namespace Ocorrências_Aeronáuticas
         public string tipo_motor { get; set; }
 
         /// <summary>
-        /// Quantidade de motores da aeronave
+        /// Quantidade de motores da aeronave.
+        /// Lida como string para evitar inconsistências.
         /// </summary>
         /// <value>
         /// Valor inteiro
@@ -108,7 +138,8 @@ namespace Ocorrências_Aeronáuticas
         }
 
         /// <summary>
-        /// Peso máximo para decolagem
+        /// Peso máximo para decolagem.
+        /// Lida como string para evitar inconsistências.
         /// </summary>
         /// <value>
         /// Valor em kg
@@ -121,7 +152,8 @@ namespace Ocorrências_Aeronáuticas
         }
 
         /// <summary>
-        /// Quantidade de assentos na aeronave
+        /// Quantidade de assentos na aeronave.
+        /// Lida como string para evitar inconsistências.
         /// </summary>
         /// <value>
         /// Valor inteiro
@@ -134,7 +166,8 @@ namespace Ocorrências_Aeronáuticas
         }
 
         /// <summary>
-        /// Ano de fabricação da aeronave
+        /// Ano de fabricação da aeronave.
+        /// Lida como string para evitar inconsistências.
         /// </summary>
         /// <value>
         /// Valor inteiro
@@ -147,7 +180,7 @@ namespace Ocorrências_Aeronáuticas
         }
 
         /// <summary>
-        /// País de registro da aeronave
+        /// País de registro da aeronave.
         /// </summary>
         /// <value>
         /// Nome do país por extenso
@@ -219,7 +252,8 @@ namespace Ocorrências_Aeronáuticas
         public string nivel_dano { get; set; }
 
         /// <summary>
-        /// Quantidade de fatalidades (mortos) na aeronave
+        /// Quantidade de fatalidades (mortos) na aeronave.
+        /// Lida como string para evitar inconsistências.
         /// </summary>
         /// <value>
         /// Valor inteiro
@@ -232,7 +266,8 @@ namespace Ocorrências_Aeronáuticas
         }
 
         /// <summary>
-        /// Dia da extração dos dados na base de dados do CENIPA
+        /// Dia da extração dos dados na base de dados do CENIPA.
+        /// Lida como string para evitar inconsistências.
         /// </summary>
         /// <value>
         /// Data no formato dd/mm/aaaa
