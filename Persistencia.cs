@@ -255,7 +255,7 @@ namespace Ocorrências_Aeronáuticas
                     //Varre a árvore buscando o dado
                     foreach (KeyValuePair<int, DadosOcorrencia> par in tree)
                     {
-                        if (par.Value.ocorrencia.localidade == valor)
+                        if (par.Value.ocorrencia.localidade.IndexOf(valor, StringComparison.OrdinalIgnoreCase) >= 0)
                         {
                             dicionario.Add(par.Key, par.Value);
                         }
