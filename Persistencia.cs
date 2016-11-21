@@ -229,12 +229,12 @@ namespace Ocorrências_Aeronáuticas
         } //criaArvore()
 
         /// <summary>
-        /// Lê a árvore do disco e a carrega na memória
+        /// Busca um valor específico na árvore
         /// </summary>
         /// <returns>Dados lidos da árvore</returns>
-        public static Dictionary<int, DadosOcorrencia> leArvore()
+        public static Dictionary<int, DadosOcorrencia> buscaValor(string valor)
         {
-            //Cria um novo dicionário
+            //Cria um novo dicionário para retornar
             Dictionary<int, DadosOcorrencia> dicionario = new Dictionary<int, DadosOcorrencia>();
 
             //Cria o componente responsável por desserializar os dados a serem lidos da árvore
@@ -252,6 +252,7 @@ namespace Ocorrências_Aeronáuticas
             {
                 using (var tree = new BPlusTree<int, DadosOcorrencia>(tree_options))
                 {
+                    //TODO Colocar o código de pesquisa aqui
                     DadosOcorrencia temp;
 
                     if (tree.TryGetValue(00000001, out temp))
@@ -271,8 +272,11 @@ namespace Ocorrências_Aeronáuticas
 
             //Retorna o dicionário lido
             return dicionario;
-        } //leArvore
+        } //buscaValor()
 
+        /// <summary>
+        /// Construtor que obtém o caminho da árvore no disco
+        /// </summary>
         static Persistencia()
         {
             //Obtém o caminho padrão da árvore          

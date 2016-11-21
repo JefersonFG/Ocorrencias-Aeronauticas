@@ -60,6 +60,9 @@ namespace Ocorrências_Aeronáuticas
             this.fator = fator;
         }
 
+        /// <summary>
+        /// Construtor vazio
+        /// </summary>
         public DadosOcorrencia()
         {
             this.codigo_ocorrencia = 0;
