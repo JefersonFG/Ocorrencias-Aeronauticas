@@ -15,7 +15,7 @@ namespace Ocorrências_Aeronáuticas
     {
         public static string path_btree { get; set; }
 
-        public static Dictionary<int, DadosOcorrencia> lerCSV(string caminho_csv_ocorrencias, 
+        public static void lerCSV(string caminho_csv_ocorrencias, 
                                                                 string caminho_csv_aeronaves,
                                                                 string caminho_csv_fator_contribuinte) 
         {
@@ -180,8 +180,8 @@ namespace Ocorrências_Aeronáuticas
                 }
             }
 
-            return dicionario;
-
+            //Cria a árvore B+ a ser utilizada no programa com os dados lidos dos arquivos CSV
+            criaArvore(dicionario);
         } //lerCSV()
 
         public static void escreverResultados(TIPO_SORT tipo_sort, TIPO_DADO_SORT tipo_dado_sort, int qtde_dados, float tempo_ms)
@@ -232,10 +232,10 @@ namespace Ocorrências_Aeronáuticas
         /// Busca um valor específico na árvore
         /// </summary>
         /// <returns>Dados lidos da árvore</returns>
-        public static Dictionary<int, DadosOcorrencia> buscaValor(string valor)
+        public static List<DadosOcorrencia> buscaValor(string valor)
         {
-            //Cria um novo dicionário para retornar
-            Dictionary<int, DadosOcorrencia> dicionario = new Dictionary<int, DadosOcorrencia>();
+            //Cria uma nova lista para retornar
+            List<DadosOcorrencia> lista = new List<DadosOcorrencia>();
 
             //Cria o componente responsável por desserializar os dados a serem lidos da árvore
             ProtoNetSerializer<DadosOcorrencia> serializer = new ProtoNetSerializer<DadosOcorrencia>();
@@ -257,7 +257,7 @@ namespace Ocorrências_Aeronáuticas
                     {
                         if (par.Value.ocorrencia.localidade.IndexOf(valor, StringComparison.OrdinalIgnoreCase) >= 0)
                         {
-                            dicionario.Add(par.Key, par.Value);
+                            lista.Add(par.Value);
                         }
                     }
                 }
@@ -267,8 +267,8 @@ namespace Ocorrências_Aeronáuticas
                 //Erro, a árvore não existe!
             }
 
-            //Retorna o dicionário lido
-            return dicionario;
+            //Retorna a lista lida
+            return lista;
         } //buscaValor()
 
         /// <summary>
