@@ -252,7 +252,7 @@ namespace Ocorrências_Aeronáuticas
             {
                 using (var tree = new BPlusTree<int, DadosOcorrencia>(tree_options))
                 {
-                    //TODO Colocar o código de pesquisa aqui
+                    //Varre a árvore buscando o dado
                     foreach (KeyValuePair<int, DadosOcorrencia> par in tree)
                     {
                         if (par.Value.ocorrencia.localidade == valor)
