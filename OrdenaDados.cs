@@ -4,16 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-//código: http://www.codeproject.com/Articles/177363/Searching-and-Sorting-Algorithms-via-C
-
 namespace Ocorrências_Aeronáuticas
 {
     public enum TIPO_SORT { BUBBLE, INSERTION, QUICK, SHELL, MERGE, HEAP, RADIX, LINEAR, BINARY, INTERPOLATION, NTH };
     public enum TIPO_DADO_SORT { CODIGO_OCORRENCIA, LOCALIDADE };
 
-    public static class OrdenaDados //mamãe
+    /// <summary>
+    /// Funções para ordenamento de dados através de diversos algoritmos distintos - cada
+    /// qual com suas vantagens e desvantagens.
+    /// Permite que sejam realizados "benchmarks", através do OrdenaForm.
+    /// 
+    /// Baseado em códigos encontrados no link:
+    /// http://www.codeproject.com/Articles/177363/Searching-and-Sorting-Algorithms-via-C
+    /// </summary>
+    public static class OrdenaDados
     {
         #region Bubble Sort
+        /// <summary>
+        /// Utiliza Bubble Sort.
+        /// A chave é o código de ocorrência
+        /// </summary>
+        /// <param name="lista_desordenada">A lista desordenada.</param>
+        /// <param name="crescente">Se <c>true</c> [crescente].</param>
+        /// <returns>Retorna a lista devidamente ordenada.</returns>
         public static List<DadosOcorrencia> bubbleSort_codigo_ocorrencia(List<DadosOcorrencia> lista_desordenada, bool crescente)
         {
             List<DadosOcorrencia> lista_ordenada = new List<DadosOcorrencia>();
@@ -56,6 +69,13 @@ namespace Ocorrências_Aeronáuticas
             return lista_ordenada;
         }
 
+        /// <summary>
+        /// Utiliza Bubble Sort.
+        /// A chave é a localidade
+        /// </summary>
+        /// <param name="lista_desordenada">A lista desordenada.</param>
+        /// <param name="crescente">Se <c>true</c> [crescente].</param>
+        /// <returns>Retorna a lista devidamente ordenada.</returns>
         public static List<DadosOcorrencia> bubbleSort_localidade(List<DadosOcorrencia> lista_desordenada, bool crescente)
         {
             List<DadosOcorrencia> lista_ordenada = new List<DadosOcorrencia>();
@@ -104,6 +124,13 @@ namespace Ocorrências_Aeronáuticas
         #endregion
 
         #region Insertion Sort
+        /// <summary>
+        /// Utiliza Insertion Sort.
+        /// A chave é o código de ocorrência
+        /// </summary>
+        /// <param name="lista_desordenada">A lista desordenada.</param>
+        /// <param name="crescente">Se <c>true</c> [crescente].</param>
+        /// <returns>Retorna a lista devidamente ordenada.</returns>
         public static List<DadosOcorrencia> insertionSort_codigo_ocorrencia(List<DadosOcorrencia> lista_desordenada, bool crescente)
         {
             int n = lista_desordenada.Count - 1;
@@ -142,6 +169,13 @@ namespace Ocorrências_Aeronáuticas
             return lista_ordenada;
         }//insertionSort_codigo_ocorrencia(List<DadosOcorrencia> lista_desordenada, bool crescente) 
 
+        /// <summary>
+        /// Utiliza Insertion Sort.
+        /// A chave é a localidade
+        /// </summary>
+        /// <param name="lista_desordenada">A lista desordenada.</param>
+        /// <param name="crescente">Se <c>true</c> [crescente].</param>
+        /// <returns>Retorna a lista devidamente ordenada.</returns>
         public static List<DadosOcorrencia> insertionSort_localidade(List<DadosOcorrencia> lista_desordenada, bool crescente)
         {
             int n = lista_desordenada.Count - 1;
@@ -216,6 +250,13 @@ namespace Ocorrências_Aeronáuticas
         #endregion
 
         #region Quick Sort
+        /// <summary>
+        /// Utiliza Quick Sort.
+        /// A chave é o código de ocorrência
+        /// </summary>
+        /// <param name="lista_desordenada">A lista desordenada.</param>
+        /// <param name="crescente">Se <c>true</c> [crescente].</param>
+        /// <returns>Retorna a lista devidamente ordenada.</returns>
         public static List<DadosOcorrencia> QSRM_Ocorrencia (List<DadosOcorrencia> listaDesordenada, bool crescente)
         {
             List<DadosOcorrencia> listaOrdenada = new List<DadosOcorrencia>();
@@ -224,6 +265,13 @@ namespace Ocorrências_Aeronáuticas
             return listaOrdenada;
         }
 
+        /// <summary>
+        /// Utiliza Quick Sort.
+        /// A chave é a localidade
+        /// </summary>
+        /// <param name="lista_desordenada">A lista desordenada.</param>
+        /// <param name="crescente">Se <c>true</c> [crescente].</param>
+        /// <returns>Retorna a lista devidamente ordenada.</returns>
         public static List<DadosOcorrencia> QSRM_Localizacao(List<DadosOcorrencia> listaDesordenada, bool crescente)
         {
             List<DadosOcorrencia> listaOrdenada = new List<DadosOcorrencia>();
@@ -232,6 +280,14 @@ namespace Ocorrências_Aeronáuticas
             return listaOrdenada;
         }
 
+        /// <summary>
+        /// Função auxiliar com chamada recursiva, que representa a "visão geral" do procedimento.
+        /// É feita uma partição inicial, posteriormente refinada até chegar-se a uma lista ordenada.
+        /// </summary>
+        /// <param name="input">A lista desordenada.</param>
+        /// <param name="left">Pivô esquerdo.</param>
+        /// <param name="right">Pivô direito.</param>
+        /// <param name="crescente">Se <c>true</c> [crescente].</param>
         public static void RandomizedQuickSortOcorrencia(List<DadosOcorrencia> input, int left, int right, bool crescente)
         {
             if (left < right)
@@ -242,6 +298,14 @@ namespace Ocorrências_Aeronáuticas
             }
         }
 
+        /// <summary>
+        /// Função auxiliar com chamada recursiva, que representa a "visão geral" do procedimento.
+        /// É feita uma partição inicial, posteriormente refinada até chegar-se a uma lista ordenada.
+        /// </summary>
+        /// <param name="input">A lista desordenada.</param>
+        /// <param name="left">Pivô esquerdo.</param>
+        /// <param name="right">Pivô direito.</param>
+        /// <param name="crescente">Se <c>true</c> [crescente].</param>
         public static void RandomizedQuickSortLocalizacao(List<DadosOcorrencia> input, int left, int right, bool crescente)
         {
             if (left < right)
@@ -252,6 +316,14 @@ namespace Ocorrências_Aeronáuticas
             }
         }
 
+        /// <summary>
+        /// Randomiza o pivô para posterior partição da lista.
+        /// </summary>
+        /// <param name="input">A lista desordenada.</param>
+        /// <param name="left">Pivô esquerdo.</param>
+        /// <param name="right">Pivô direito.</param>
+        /// <param name="crescente">Se <c>true</c> [crescente].</param>
+        /// <returns>Retorna um inteiro a ser utilizado como pivô nas chamadas recursivas.</returns>
         private static int RandomizedPartitionOcorrencia(List<DadosOcorrencia> input, int left, int right, bool crescente)
         {
             Random random = new Random();
@@ -264,6 +336,14 @@ namespace Ocorrências_Aeronáuticas
             return PartitionOcorrencia(input, left, right, crescente);
         }
 
+        /// <summary>
+        /// Randomiza o pivô para posterior partição da lista.
+        /// </summary>
+        /// <param name="input">A lista desordenada.</param>
+        /// <param name="left">Pivô esquerdo.</param>
+        /// <param name="right">Pivô direito.</param>
+        /// <param name="crescente">Se <c>true</c> [crescente].</param>
+        /// <returns>Retorna um inteiro a ser utilizado como pivô nas chamadas recursivas.</returns>
         private static int RandomizedPartitionLocalizacao(List<DadosOcorrencia> input, int left, int right, bool crescente)
         {
             Random random = new Random();
@@ -276,6 +356,15 @@ namespace Ocorrências_Aeronáuticas
             return PartitionLocalizacao(input, left, right, crescente);
         }
 
+        /// <summary>
+        /// Efetivamente particiona a lista, para que o algoritmo funcione.
+        /// Utiliza como chave o código de ocorrência
+        /// </summary>
+        /// <param name="input">A lista desordenada.</param>
+        /// <param name="left">Pivô esquerdo.</param>
+        /// <param name="right">Pivô direito.</param>
+        /// <param name="crescente">Se <c>true</c> [crescente].</param>
+        /// <returns>Retorna um inteiro a ser utilizado como pivô nas chamadas recursivas.</returns>
         private static int PartitionOcorrencia(List<DadosOcorrencia> input, int left, int right, bool crescente)
         {
             DadosOcorrencia pivot = input[right];
@@ -313,6 +402,15 @@ namespace Ocorrências_Aeronáuticas
             return i;
         }
 
+        /// <summary>
+        /// Efetivamente particiona a lista, para que o algoritmo funcione.
+        /// Utiliza como chave a localização
+        /// </summary>
+        /// <param name="input">A lista desordenada.</param>
+        /// <param name="left">Pivô esquerdo.</param>
+        /// <param name="right">Pivô direito.</param>
+        /// <param name="crescente">Se <c>true</c> [crescente].</param>
+        /// <returns>Retorna um inteiro a ser utilizado como pivô nas chamadas recursivas.</returns>
         private static int PartitionLocalizacao(List<DadosOcorrencia> input, int left, int right, bool crescente)
         {
             DadosOcorrencia pivot = input[right];
@@ -353,6 +451,14 @@ namespace Ocorrências_Aeronáuticas
 
         #region Shell Sort
 
+        /// <summary>
+        /// Utiliza Shell Sort.
+        /// A chave é o código de ocorrência
+        /// 
+        /// (NÃO É POSSÍVEL ESCOLHER A DIREÇÃO DO SORT)
+        /// </summary>
+        /// <param name="lista_desordenada">A lista desordenada.</param>
+        /// <returns>Retorna a lista devidamente ordenada.</returns>
         public static List<DadosOcorrencia> ShellSort_codigo_ocorrencia(List<DadosOcorrencia> lista_desordenada)
         {
             int i, j;
@@ -399,6 +505,14 @@ namespace Ocorrências_Aeronáuticas
             return lista_ordenada;
         }
 
+        /// <summary>
+        /// Utiliza Shell Sort.
+        /// A chave é a localização
+        /// 
+        /// (NÃO É POSSÍVEL ESCOLHER A DIREÇÃO DO SORT)
+        /// </summary>
+        /// <param name="lista_desordenada">A lista desordenada.</param>
+        /// <returns>Retorna a lista devidamente ordenada.</returns>
         public static List<DadosOcorrencia> ShellSort_localidade(List<DadosOcorrencia> lista_desordenada)
         {
             int i, j;
@@ -530,13 +644,21 @@ namespace Ocorrências_Aeronáuticas
         #endregion
 
         #region Heap Sort
-        public static List<DadosOcorrencia> HeapsortOcorrencia(List<DadosOcorrencia> x)
+        /// <summary>
+        /// Utiliza Heap Sort.
+        /// A chave é o código de ocorrência
+        /// 
+        /// (NÃO É POSSÍVEL ESCOLHER A DIREÇÃO DO SORT)
+        /// </summary>
+        /// <param name="listaDesordenada">A lista desordenada.</param>
+        /// <returns>Retorna a lista devidamente ordenada.</returns>
+        public static List<DadosOcorrencia> HeapsortOcorrencia(List<DadosOcorrencia> listaDesordenada)
         {
             int i;
             DadosOcorrencia temp;
-            int n = x.Count - 1;
+            int n = listaDesordenada.Count - 1;
             List<DadosOcorrencia> listaOrdenada = new List<DadosOcorrencia>();
-            listaOrdenada = x;
+            listaOrdenada = listaDesordenada;
 
             for (i = (n / 2) - 1; i >= 0; i--)
             {
@@ -553,7 +675,14 @@ namespace Ocorrências_Aeronáuticas
             return listaOrdenada;
         }
 
-        public static void siftDownOcorrencia(List<DadosOcorrencia> x, int root, int bottom)
+        /// <summary>
+        /// Função auxiliar, que faz o procedimento de "sift-down" do algoritmo.
+        /// A chave é o código de ocorrência
+        /// </summary>
+        /// <param name="inputList">A lista desordenada.</param>
+        /// <param name="root">A raíz da árvore.</param>
+        /// <param name="bottom">A folha da árvore.</param>
+        public static void siftDownOcorrencia(List<DadosOcorrencia> inputList, int root, int bottom)
         {
             bool done = false;
             int maxChild;
@@ -563,16 +692,16 @@ namespace Ocorrências_Aeronáuticas
             {
                 if (root * 2 == bottom)
                     maxChild = root * 2;
-                else if (x[root * 2].codigo_ocorrencia < x[root * 2 + 1].codigo_ocorrencia)
+                else if (inputList[root * 2].codigo_ocorrencia < inputList[root * 2 + 1].codigo_ocorrencia)
                     maxChild = root * 2;
                 else
                     maxChild = root * 2 + 1;
 
-                if (x[root].codigo_ocorrencia > x[maxChild].codigo_ocorrencia)
+                if (inputList[root].codigo_ocorrencia > inputList[maxChild].codigo_ocorrencia)
                 {
-                    temp = x[root];
-                    x[root] = x[maxChild];
-                    x[maxChild] = temp;
+                    temp = inputList[root];
+                    inputList[root] = inputList[maxChild];
+                    inputList[maxChild] = temp;
                     root = maxChild;
                 }
                 else
@@ -582,13 +711,21 @@ namespace Ocorrências_Aeronáuticas
             }
         }
 
-        public static List<DadosOcorrencia> HeapsortLocalizacao(List<DadosOcorrencia> x)
+        /// <summary>
+        /// Utiliza Heap Sort.
+        /// A chave é a localização
+        /// 
+        /// (NÃO É POSSÍVEL ESCOLHER A DIREÇÃO DO SORT)
+        /// </summary>
+        /// <param name="lista_desordenada">A lista desordenada.</param>
+        /// <returns>Retorna a lista devidamente ordenada.</returns>
+        public static List<DadosOcorrencia> HeapsortLocalizacao(List<DadosOcorrencia> listaDesordenada)
         {
             int i;
             DadosOcorrencia temp;
-            int n = x.Count - 1;
+            int n = listaDesordenada.Count - 1;
             List<DadosOcorrencia> listaOrdenada = new List<DadosOcorrencia>();
-            listaOrdenada = x;
+            listaOrdenada = listaDesordenada;
 
             for (i = (n / 2) - 1; i >= 0; i--)
             {
@@ -605,7 +742,14 @@ namespace Ocorrências_Aeronáuticas
             return listaOrdenada;
         }
 
-        public static void siftDownLocalizacao(List<DadosOcorrencia> x, int root, int bottom)
+        /// <summary>
+        /// Função auxiliar, que faz o procedimento de "sift-down" do algoritmo.
+        /// A chave é a localização
+        /// </summary>
+        /// <param name="inputList">A lista desordenada.</param>
+        /// <param name="root">A raíz da árvore.</param>
+        /// <param name="bottom">A folha da árvore.</param>
+        public static void siftDownLocalizacao(List<DadosOcorrencia> inputList, int root, int bottom)
         {
             bool done = false;
             int maxChild;
@@ -615,16 +759,16 @@ namespace Ocorrências_Aeronáuticas
             {
                 if (root * 2 == bottom)
                     maxChild = root * 2;
-                else if (x[root * 2].ocorrencia.localidade.CompareTo(x[root * 2 + 1].ocorrencia.localidade) < 0)
+                else if (inputList[root * 2].ocorrencia.localidade.CompareTo(inputList[root * 2 + 1].ocorrencia.localidade) < 0)
                     maxChild = root * 2;
                 else
                     maxChild = root * 2 + 1;
 
-                if (x[root].ocorrencia.localidade.CompareTo(x[maxChild].ocorrencia.localidade) > 0)
+                if (inputList[root].ocorrencia.localidade.CompareTo(inputList[maxChild].ocorrencia.localidade) > 0)
                 {
-                    temp = x[root];
-                    x[root] = x[maxChild];
-                    x[maxChild] = temp;
+                    temp = inputList[root];
+                    inputList[root] = inputList[maxChild];
+                    inputList[maxChild] = temp;
                     root = maxChild;
                 }
                 else
@@ -685,272 +829,6 @@ namespace Ocorrências_Aeronáuticas
                 //which is now partially sorted.
                 int[] temp = b; b = x; x = temp;
             }
-        }
-        #endregion
-
-        #region Linear Search
-        public static int LinearSearch(ref int[] x, int valueToFind)
-        {
-            for (int i = 0; i < x.Length; i++)
-            {
-                if (valueToFind == x[i])
-                {
-                    return i;
-                }
-            }
-            return -1;
-        }
-        #endregion
-
-        #region Binary Search
-
-        public static int BinSearch(ref int[] x, int searchValue)
-        {
-            // Returns index of searchValue in sorted array x, or -1 if not found
-            int left = 0;
-            int right = x.Length;
-            return binarySearch(ref x, searchValue, left, right);
-        }
-
-        public static int binarySearch(ref int[] x, int searchValue, int left, int right)
-        {
-            if (right < left)
-            {
-                return -1;
-            }
-            int mid = (left + right) >> 1;
-            if (searchValue > x[mid])
-            {
-                return binarySearch(ref x, searchValue, mid + 1, right);
-            }
-            else if (searchValue < x[mid])
-            {
-                return binarySearch(ref x, searchValue, left, mid - 1);
-            }
-            else
-            {
-                return mid;
-            }
-        }
-        #endregion
-
-        #region Interpolation Search
-
-        public static int InterpolationSearch(ref int[] x, int searchValue)
-        {
-            // Returns index of searchValue in sorted input data
-            // array x, or -1 if searchValue is not found
-            int low = 0;
-            int high = x.Length - 1;
-            int mid;
-
-            while (x[low] < searchValue && x[high] >= searchValue)
-            {
-                mid = low + ((searchValue - x[low]) * (high - low)) / (x[high] - x[low]);
-
-                if (x[mid] < searchValue)
-                    low = mid + 1;
-                else if (x[mid] > searchValue)
-                    high = mid - 1;
-                else
-                    return mid;
-            }
-
-            if (x[low] == searchValue)
-                return low;
-            else
-                return -1; // Not found
-        }
-        #endregion
-
-        #region Nth Largest
-        /*
-        public static int NthLargest1(int[] array, int n)
-        {
-            //Copy input data array into a temporary array
-            //so that original array is unchanged
-            int[] tempArray = new int[array.Length];
-            array.CopyTo(tempArray, 0);
-            //Sort the array
-            QuickSort(ref tempArray);
-            //Return the n-th largest value in the sorted array
-            return tempArray[tempArray.Length - n];
-        }
-
-        public static int NthLargest2(int[] array, int k)
-        {
-            int maxIndex;
-            int maxValue;
-
-            //Copy input data array into a temporary array
-            //so that original array is unchanged
-            int[] tempArray = new int[array.Length];
-            array.CopyTo(tempArray, 0);
-
-            for (int i = 0; i < k; i++)
-            {
-                maxIndex = i;       // index of minimum element
-                maxValue = tempArray[i];// assume minimum is the first array element
-                for (int j = i + 1; j < tempArray.Length; j++)
-                {
-                    // if we've located a higher value
-                    if (tempArray[j] > maxValue)
-                    {   // capture it
-                        maxIndex = j;
-                        maxValue = tempArray[j];
-                    }
-                }
-                Swap(ref tempArray[i], ref tempArray[maxIndex]);
-            }
-            return tempArray[k - 1];
-        }
-        #endregion
-
-        #region Mth Smallest
-
-        public static int MthSmallest1(int[] array, int m)
-        {
-            //Copy input data array into a temporary array
-            //so that original array is unchanged
-            int[] tempArray = new int[array.Length];
-            array.CopyTo(tempArray, 0);
-            //Sort the array
-            QuickSort(ref tempArray);
-            //Return the m-th smallest value in the sorted array
-            return tempArray[m - 1];
-        }
-
-        public static int MthSmallest2(int[] array, int m)
-        {
-            int minIndex;
-            int minValue;
-
-            //Copy input data array into a temporary array
-            //so that original array is unchanged
-            int[] tempArray = new int[array.Length];
-            array.CopyTo(tempArray, 0);
-
-            for (int i = 0; i < m; i++)
-            {
-                minIndex = i;      // index of minimum element
-                minValue = tempArray[i];// assume minimum is the first array element
-                for (int j = i + 1; j < array.Length; j++)
-                {
-                    if (tempArray[j] < minValue)
-                    {   // capture it
-                        minIndex = j;
-                        minValue = tempArray[j];
-                    }
-                }
-                Swap(ref tempArray[i], ref tempArray[minIndex]);
-            }
-            return tempArray[m - 1];
-        }
-        */
-        #endregion
-
-        #region Miscellaneous Utilities
-
-        public static int FindMax(int[] x)
-        {
-            int max = x[0];
-            for (int i = 1; i < x.Length; i++)
-            {
-                if (x[i] > max) max = x[i];
-            }
-            return max;
-        }
-
-        public static int FindMin(int[] x)
-        {
-            int min = x[0];
-            for (int i = 1; i < x.Length; i++)
-            {
-                if (x[i] < min) min = x[i];
-            }
-            return min;
-        }
-
-        static void MixDataUp(ref int[] x, Random rdn)
-        {
-            for (int i = 0; i <= x.Length - 1; i++)
-            {
-                x[i] = (int)(rdn.NextDouble() * x.Length);
-            }
-        }
-
-        static void Swap(ref int left, ref int right)
-        {
-            int temp = left;
-            left = right;
-            right = temp;
-        }
-
-        // Determines if int array is sorted from 0 -> Max
-        public static bool IsSorted(int[] arr)
-        {
-            for (int i = 1; i < arr.Length; i++)
-            {
-                if (arr[i - 1] > arr[i])
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        // Determines if string array is sorted from A -> Z
-        public static bool IsSorted(string[] arr)
-        {
-            for (int i = 1; i < arr.Length; i++)
-            {
-                if (arr[i - 1].CompareTo(arr[i]) > 0) // If previous is bigger, return false
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        // Determines if int array is sorted from Max -> 0
-        public static bool IsSortedDescending(int[] arr)
-        {
-            for (int i = arr.Length - 2; i >= 0; i--)
-            {
-                if (arr[i] < arr[i + 1])
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        // Determines if string array is sorted from Z -> A
-        public static bool IsSortedDescending(string[] arr)
-        {
-            for (int i = arr.Length - 2; i >= 0; i--)
-            {
-                if (arr[i].CompareTo(arr[i + 1]) < 0) // If previous is smaller, return false
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        public static void DisplayElements(ref int[] xArray, char status, string sortname)
-        {
-            if (status == 'a')
-                Console.WriteLine("After sorting using algorithm: " + sortname);
-            else
-                Console.WriteLine("Before sorting");
-            for (int i = 0; i <= xArray.Length - 1; i++)
-            {
-                if ((i != 0) && (i % 10 == 0))
-                    Console.Write("\n");
-                Console.Write(xArray[i] + " ");
-            }
-            Console.ReadLine();
         }
         #endregion
     }
