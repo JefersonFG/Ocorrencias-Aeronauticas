@@ -253,15 +253,12 @@ namespace Ocorrências_Aeronáuticas
                 using (var tree = new BPlusTree<int, DadosOcorrencia>(tree_options))
                 {
                     //TODO Colocar o código de pesquisa aqui
-                    DadosOcorrencia temp;
-
-                    if (tree.TryGetValue(00000001, out temp))
+                    foreach (KeyValuePair<int, DadosOcorrencia> par in tree)
                     {
-                        string success = "success";
-                    }
-                    else
-                    {
-                        string failure = "failure";
+                        if (par.Value.ocorrencia.localidade == valor)
+                        {
+                            dicionario.Add(par.Key, par.Value);
+                        }
                     }
                 }
             }
