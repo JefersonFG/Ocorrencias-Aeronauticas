@@ -1,29 +1,50 @@
 ﻿using GMap.NET;
 using GMap.NET.MapProviders;
-using GMap.NET.WindowsForms;
-using GMap.NET.WindowsForms.Markers;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Ocorrências_Aeronáuticas
 {
+    /// <summary>
+    /// Form principal do programa
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class MainForm : Form
     {
+
+        /* 
+         * 
+         * Variáveis globais
+         * 
+         *  */
+
         System.Drawing.Size tamanho_mapa_diminuido = new Size(487, 332);
         System.Drawing.Size tamanho_mapa_normal = new Size(759, 332);
         System.Drawing.Point posicao_mapa_direita = new Point(285, 56);
         System.Drawing.Point posicao_mapa_normal = new Point(13, 56);
 
+        /// <summary>
+        /// Lista que contem as cidades obtidas na pesquisa.
+        /// A classe "Cidade" está definida no fim deste arquivo.
+        /// </summary>
         private List<Cidade> resultados_pesquisa; //armazena os resultados de uma pesquisa (organizado por cidade)
+        /// <summary>
+        /// Lista de dados ocorrencia obtida na pesquisa.
+        /// </summary>
         private List<DadosOcorrencia> lista_dados_ocorrencia_resultados_pesquisa; //armazena todos os resultados da pesquisa
 
+        /* 
+         * 
+         * Construtor
+         * 
+         *  */
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainForm"/> class.
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
@@ -31,10 +52,13 @@ namespace Ocorrências_Aeronáuticas
 
         /*
          * 
-         * CONTROLE
+         * Métodos de pesquisa e controle dos elementos visuais
          * 
          */
 
+        /// <summary>
+        /// Pesquisa (na árvore que está no disco) o que está na caixa de pesquisa.
+        /// </summary>
         private void pesquisar()  //pesquisa o que está escrito na caixa de pesquisa
         {
             /* obtem o nome da cidade a ser pesquisada */
@@ -60,7 +84,7 @@ namespace Ocorrências_Aeronáuticas
                 //formata o nome para CIDADE - ESTADO
                 string cidade_selecionada = resultados[0].ocorrencia.localidade + " - " +
                                         resultados[0].ocorrencia.uf;
-                
+
                 //busca no mapa
                 gmapControl.SetPositionByKeywords(cidade_selecionada);
 
@@ -80,10 +104,10 @@ namespace Ocorrências_Aeronáuticas
 
             /* cria uma lista de cidades sem repetição, e adiciona as ocorrências de cada cidade na devida cidade */
             List<Cidade> lista_cidades = new List<Cidade>();
-            foreach(DadosOcorrencia dados_ocorrencia in resultados)
+            foreach (DadosOcorrencia dados_ocorrencia in resultados)
             {
                 bool existe_na_lista = false;
-                for(int i = 0; i < lista_cidades.Count; i++)
+                for (int i = 0; i < lista_cidades.Count; i++)
                 {
                     if (lista_cidades.ElementAt(i).localidade == dados_ocorrencia.ocorrencia.localidade)
                     {
@@ -116,7 +140,7 @@ namespace Ocorrências_Aeronáuticas
 
             /* preenche combobox de ocorrencias da cidade na posição 0*/
             List<int> lista_codigo_ocorrencias = new List<int>();
-            foreach(DadosOcorrencia dados_ocorrencia in lista_cidades[0].lista_ocorrencias)
+            foreach (DadosOcorrencia dados_ocorrencia in lista_cidades[0].lista_ocorrencias)
             {
                 lista_codigo_ocorrencias.Add(dados_ocorrencia.codigo_ocorrencia);
             }
@@ -124,7 +148,7 @@ namespace Ocorrências_Aeronáuticas
 
             resultados_pesquisa = lista_cidades;
 
-            if(encontrou_cidade)
+            if (encontrou_cidade)
             {
                 labelCidadesEncontradas.Text = lista_cidades.Count + " cidade(s) encontrada(s).";
                 labelSelecioneCidade.Text = "Resultados da busca (\'" + nome_cidade + "\'):";
@@ -142,12 +166,20 @@ namespace Ocorrências_Aeronáuticas
             checkHamburger.Checked = true;
         } //pesquisar()
 
+        /// <summary>
+        /// Mostra os dados da ocorrência selecionada da lista de ocorrências da cidade.
+        /// </summary>
+        /// <param name="ocorrencia_selecionada">A ocorrencia selecionada.</param>
         private void ocorrenciaSelecionada(DadosOcorrencia ocorrencia_selecionada) //mostra a ocorrência selecionada no comboBox
         {
             //preenche o textbox com os dados da ocorrencia selecionada
             preencherDadosOcorrencia(ocorrencia_selecionada);
         } // pesquisar(DadosOcorrencia dado_selecionado)
 
+        /// <summary>
+        /// Pesquisa no mapa a cidade selecionada, e mostra a lista de ocorrências da cidade.
+        /// </summary>
+        /// <param name="cidade_selecionada">The cidade selecionada.</param>
         private void cidadeSelecionada(Cidade cidade_selecionada) //pesquisa a cidade selecionada no ComboBox
         {
             //formata para CIDADE - ESTADO
@@ -173,15 +205,22 @@ namespace Ocorrências_Aeronáuticas
             comboOcorrencias.DataSource = lista_codigo_ocorrencias;
         }//cidadeSelecionada(Cidade cidade_selecionada)
 
+        /// <summary>
+        /// Limpa o texto que contém as informações da ocorrência selecionada.
+        /// </summary>
         private void limparDadosOcorrencia() //limpa o textbox com os dados da ocorrencia selecionada
         {
             textDadosOcorrencia.Text = "";
         } //limparDadosOcorrencia()
 
+        /// <summary>
+        /// Preenche o texto com as informações da ocorrência selecionada.
+        /// </summary>
+        /// <param name="dado_selecionado">A ocorrencia selecionada.</param>
         private void preencherDadosOcorrencia(DadosOcorrencia dado_selecionado) //preenche os dados da ocorrência
         {
             textDadosOcorrencia.Text = "";
-            if(dado_selecionado.ocorrencia != null)
+            if (dado_selecionado.ocorrencia != null)
             {
                 textDadosOcorrencia.Text = "Ocorrência:\r\n\r\n";
                 textDadosOcorrencia.Text +=
@@ -205,7 +244,7 @@ namespace Ocorrências_Aeronáuticas
                     "  Saída pista: " + dado_selecionado.ocorrencia.saida_pista + "\r\n" +
                     "  Dia extração: " + dado_selecionado.ocorrencia.dia_extracao + "\r\n";
             } //if
-            if(dado_selecionado.aeronave != null)
+            if (dado_selecionado.aeronave != null)
             {
                 textDadosOcorrencia.Text += "\r\n\r\n";
                 textDadosOcorrencia.Text += "Aeronave:\r\n\r\n";
@@ -232,7 +271,7 @@ namespace Ocorrências_Aeronáuticas
                     "  Quantidade de fatalidades: " + dado_selecionado.aeronave.quantidade_fatalidades + "\r\n" +
                     "  Dia de extração: " + dado_selecionado.aeronave.dia_extracao + "\r\n";
             } //if
-            if(dado_selecionado.fator != null)
+            if (dado_selecionado.fator != null)
             {
                 textDadosOcorrencia.Text += "\r\n\r\n";
                 textDadosOcorrencia.Text += "Fator contribuinte: \r\n\r\n";
@@ -248,6 +287,10 @@ namespace Ocorrências_Aeronáuticas
 
         } // preencherDadosOcorrencia()
 
+        /// <summary>
+        /// Atualiza os elementos visuais quando o botão hamburger é ativado/desativado
+        /// </summary>
+        /// <param name="modo">ativado/desativado</param>
         private void setModoHamburger(bool modo) //controle do menu hamburger
         {
             /* visibilidade dos componentes */
@@ -340,11 +383,21 @@ namespace Ocorrências_Aeronáuticas
             } //catch
         } //MainForm_Load()
 
+        /// <summary>
+        /// Handles the CheckedChanged event of the checkHamburger control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void checkHamburger_CheckedChanged(object sender, EventArgs e)
         {
             setModoHamburger(checkHamburger.Checked);
         } // checkHamburger_CheckedChanged()
 
+        /// <summary>
+        /// Handles the KeyDown event of the textPesquisar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyEventArgs"/> instance containing the event data.</param>
         private void textPesquisar_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape) // ESC -> fecha menu hamburger
@@ -353,7 +406,7 @@ namespace Ocorrências_Aeronáuticas
 
                 e.Handled = e.SuppressKeyPress = true;
             }
-            if(e.KeyCode == Keys.Enter) // ENTER -> pesquisa o que está na caixa de texto
+            if (e.KeyCode == Keys.Enter) // ENTER -> pesquisa o que está na caixa de texto
             {
                 pesquisar();
 
@@ -366,6 +419,11 @@ namespace Ocorrências_Aeronáuticas
             textPesquisar.Focus();
         }
 
+        /// <summary>
+        /// Handles the SelectionChangeCommitted event of the comboSelecioneCidade control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void comboSelecioneCidade_SelectionChangeCommitted(object sender, EventArgs e) //selecionou cidade da lista
         {
             cidadeSelecionada(resultados_pesquisa[comboSelecioneCidade.SelectedIndex]); //pesquisa a cidade selecionada
@@ -379,13 +437,16 @@ namespace Ocorrências_Aeronáuticas
 
         private void btnOrdenar_Click(object sender, EventArgs e)
         {
-            if(this.lista_dados_ocorrencia_resultados_pesquisa != null)
+            if (this.lista_dados_ocorrencia_resultados_pesquisa != null)
                 (new OrdenaForm(this.lista_dados_ocorrencia_resultados_pesquisa)).ShowDialog();
             else
                 MessageBox.Show("A lista não pode estar vazia", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }//class
 
+    /// <summary>
+    /// Classe para armazenar a lista de ocorrências de uma cidade
+    /// </summary>
     class Cidade
     {
         public string localidade { set; get; }

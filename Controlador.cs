@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ocorrências_Aeronáuticas
 {
+    /// <summary>
+    /// Classe de controle no modelo MVC.
+    /// </summary>
     class Controlador
     {    
         /// <summary>

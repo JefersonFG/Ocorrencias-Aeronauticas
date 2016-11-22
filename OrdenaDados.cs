@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ocorrências_Aeronáuticas
 {
-    public enum TIPO_SORT { BUBBLE, INSERTION, QUICK, SHELL, MERGE, HEAP, RADIX, LINEAR, BINARY, INTERPOLATION, NTH };
-    public enum TIPO_DADO_SORT { CODIGO_OCORRENCIA, LOCALIDADE };
-
     /// <summary>
     /// Funções para ordenamento de dados através de diversos algoritmos distintos - cada
     /// qual com suas vantagens e desvantagens.

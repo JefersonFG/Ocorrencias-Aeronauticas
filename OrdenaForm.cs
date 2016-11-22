@@ -1,21 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Ocorrências_Aeronáuticas
 {
+    /// <summary>
+    /// Form que possui opções para ordenar a lista de ocorrências e fazer benchmarks.
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class OrdenaForm : Form
     {
+        /* 
+         * 
+         * Variáveis globais
+         * 
+         *  */
+
+        /// <summary>
+        /// Lista de ocorrências completa (desordenada)
+        /// </summary>
         private List<DadosOcorrencia> lista_dados_ocorrencias = null;
+        /// <summary>
+        /// Lista de ocorrências depois da ordenação
+        /// </summary>
         private List<DadosOcorrencia> lista_ordenada = null;
 
+        /* 
+         * 
+         * Construtor
+         * 
+         *  */
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrdenaForm"/> class.
+        /// </summary>
+        /// <param name="lista_dados_ocorrencias">Lista de ocorrências a ser ordenada.</param>
         public OrdenaForm(List<DadosOcorrencia> lista_dados_ocorrencias)
         {
             InitializeComponent();
@@ -23,23 +44,17 @@ namespace Ocorrências_Aeronáuticas
             this.lista_dados_ocorrencias = lista_dados_ocorrencias;
         }
 
-        private void OrdenaForm_Shown(object sender, EventArgs e)
-        {
-            comboAlgoritmo.SelectedIndex = 0;
-            comboCampo.SelectedIndex = 0;
-        } //OrdenaForm_Shown(object sender, EventArgs e)
+        /* 
+         * 
+         * Métodos de ordenação e controle dos elementos visuais.
+         * 
+         *  */
 
-        private void OrdenaForm_Load(object sender, EventArgs e)
+        private void ordenar()
         {
-            preencherGridListaOcorrencias(this.lista_dados_ocorrencias);
-            preencherDadosOcorrenciaSelecionada(this.lista_dados_ocorrencias[0]);
-        } //OrdenaForm_Load(object sender, EventArgs e)
-
-        private void btnOrdenar_Click(object sender, EventArgs e)
-        {
-            if(comboAlgoritmo.Text.Equals("Bubble Sort (BBST)"))
+            if (comboAlgoritmo.Text.Equals("Bubble Sort (BBST)")) //Bubble Sort
             {
-                if(comboCampo.Text.Equals("codigo_ocorrencia"))
+                if (comboCampo.Text.Equals("codigo_ocorrencia"))
                 {
                     Stopwatch sw = new Stopwatch();
 
@@ -74,7 +89,7 @@ namespace Ocorrências_Aeronáuticas
                     preencherGridListaOcorrencias(lista_ordenada);
                 }
             }//if
-            if (comboAlgoritmo.Text.Equals("Insertion Sort com Busca Linear (ISBL)"))
+            if (comboAlgoritmo.Text.Equals("Insertion Sort com Busca Linear (ISBL)")) //Insertion Sort
             {
                 if (comboCampo.Text.Equals("codigo_ocorrencia"))
                 {
@@ -107,7 +122,7 @@ namespace Ocorrências_Aeronáuticas
                     preencherGridListaOcorrencias(lista_ordenada);
                 }
             } //if
-            if (comboAlgoritmo.Text.Equals("Quick Sort Randomizado (QSRM)"))
+            if (comboAlgoritmo.Text.Equals("Quick Sort Randomizado (QSRM)")) //Quick Sort
             {
                 if (comboCampo.Text.Equals("codigo_ocorrencia"))
                 {
@@ -140,7 +155,7 @@ namespace Ocorrências_Aeronáuticas
                     preencherGridListaOcorrencias(lista_ordenada);
                 } //if
             }//if
-            if (comboAlgoritmo.Text.Equals("Shell Sort (SHST)"))
+            if (comboAlgoritmo.Text.Equals("Shell Sort (SHST)")) //Shell sort (apenas decrescente)
             {
                 if (comboCampo.Text.Equals("codigo_ocorrencia"))
                 {
@@ -173,7 +188,7 @@ namespace Ocorrências_Aeronáuticas
                     preencherGridListaOcorrencias(lista_ordenada);
                 } //if
             }
-            if (comboAlgoritmo.Text.Equals("Heap Sort (HPST)"))
+            if (comboAlgoritmo.Text.Equals("Heap Sort (HPST)")) //Heap Sort (apenas decrescente)
             {
                 if (comboCampo.Text.Equals("codigo_ocorrencia"))
                 {
@@ -206,27 +221,43 @@ namespace Ocorrências_Aeronáuticas
                     preencherGridListaOcorrencias(lista_ordenada);
                 } //if
             }//if
-        }//btnOrdenar_Click(object sender, EventArgs e)
+        } //ordenar()
 
+        /// <summary>
+        /// Retorna o horário atual em um formato legível.
+        /// </summary>
+        /// <returns></returns>
         private string horarioAtual()
         {
             return DateTime.Now.ToString("HH:mm:ss", System.Globalization.DateTimeFormatInfo.InvariantInfo);
         }
 
+        /// <summary>
+        /// Adiciona os resultados da ordenação nos benchmarks.
+        /// </summary>
+        /// <param name="algoritmo">The algoritmo.</param>
+        /// <param name="qtde_registros">The qtde registros.</param>
+        /// <param name="campo">The campo.</param>
+        /// <param name="decrescente">if set to <c>true</c> [decrescente].</param>
+        /// <param name="tempo_em_ms">The tempo em ms.</param>
         private void preencherTempoExecucao(string algoritmo, int qtde_registros, string campo, bool decrescente, long tempo_em_ms)
         {
-            textTempoExecucao.Text += "Horário "+horarioAtual() + " - "+algoritmo+":\r\n";
+            textTempoExecucao.Text += "Horário " + horarioAtual() + " - " + algoritmo + ":\r\n";
             textTempoExecucao.Text += " Qtde registros ordenados: " + qtde_registros + "\r\n";
             string ordem;
             if (decrescente)
                 ordem = "decrescente";
             else
                 ordem = "crescente";
-            textTempoExecucao.Text += " Campo ordenado: "+campo+"  (" + ordem + ")\r\n";
+            textTempoExecucao.Text += " Campo ordenado: " + campo + "  (" + ordem + ")\r\n";
             textTempoExecucao.Text += " Tempo de execução do algoritmo: " + tempo_em_ms + " ms\r\n";
             textTempoExecucao.Text += "------------------------------------------------------------------------------------\r\n";
         }
 
+        /// <summary>
+        /// Preenche o Grid de ocorrências com uma lista de ocorrências.
+        /// </summary>
+        /// <param name="lista_dados_ocorrencias">The lista dados ocorrencias.</param>
         private void preencherGridListaOcorrencias(List<DadosOcorrencia> lista_dados_ocorrencias)
         {
             while (this.gridDados.Columns.Count > 0)
@@ -234,7 +265,7 @@ namespace Ocorrências_Aeronáuticas
                 this.gridDados.Columns.RemoveAt(0);
             }
 
-            if(lista_dados_ocorrencias.Count > 0)
+            if (lista_dados_ocorrencias.Count > 0)
             {
                 DataGridViewTextBoxColumn novaColuna;
 
@@ -281,6 +312,10 @@ namespace Ocorrências_Aeronáuticas
             }//if
         } //preencherGridListaOcorrencias(List<DadosOcorrencia> lista_dados_ocorrencias)
 
+        /// <summary>
+        /// Preenche os dados da ocorrência selecionada no Grid.
+        /// </summary>
+        /// <param name="dado_selecionado">The dado selecionado.</param>
         private void preencherDadosOcorrenciaSelecionada(DadosOcorrencia dado_selecionado)
         {
             if (dado_selecionado.ocorrencia != null)
@@ -349,23 +384,7 @@ namespace Ocorrências_Aeronáuticas
             } //if
         }
 
-        private void gridDados_SelectionChanged(object sender, EventArgs e)
-        {
-            if(lista_ordenada != null)
-            {
-                if (gridDados.CurrentCell != null)
-                    preencherDadosOcorrenciaSelecionada(lista_ordenada.ElementAt(gridDados.CurrentCell.RowIndex));
-            }
-            else
-            {
-                if(lista_dados_ocorrencias != null)
-                    if (gridDados.CurrentCell != null)
-                        preencherDadosOcorrenciaSelecionada(lista_dados_ocorrencias.ElementAt(gridDados.CurrentCell.RowIndex));
-            }
-                
-        } //gridDados_SelectionChanged(object sender, EventArgs e)
-
-        private void btnSalvar_Click(object sender, EventArgs e)
+        private void salvarBenchmarks()
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
 
@@ -384,14 +403,75 @@ namespace Ocorrências_Aeronáuticas
 
                     MessageBox.Show("Benchmarks salvos com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                catch(Exception exception)
+                catch (Exception exception)
                 {
                     MessageBox.Show("Erro ao salvar Benchmarks", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                
+
             }
+        }
+
+        /* 
+         * 
+         * Eventos (ações da UI)
+         * 
+         *  */
+
+        private void OrdenaForm_Shown(object sender, EventArgs e)
+        {
+            comboAlgoritmo.SelectedIndex = 0;
+            comboCampo.SelectedIndex = 0;
+        } //OrdenaForm_Shown(object sender, EventArgs e)
+
+        private void OrdenaForm_Load(object sender, EventArgs e)
+        {
+            preencherGridListaOcorrencias(this.lista_dados_ocorrencias);
+            preencherDadosOcorrenciaSelecionada(this.lista_dados_ocorrencias[0]);
+        } //OrdenaForm_Load(object sender, EventArgs e)
+
+        /// <summary>
+        /// Handles the Click event of the btnOrdenar control.
+        /// Realiza a ordenação e atualiza os benchmarks.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void btnOrdenar_Click(object sender, EventArgs e)
+        {
+            ordenar();
+        }//btnOrdenar_Click(object sender, EventArgs e)
+
+        /// <summary>
+        /// Handles the SelectionChanged event of the gridDados control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void gridDados_SelectionChanged(object sender, EventArgs e)
+        {
+            if(lista_ordenada != null)
+            {
+                if (gridDados.CurrentCell != null)
+                    preencherDadosOcorrenciaSelecionada(lista_ordenada.ElementAt(gridDados.CurrentCell.RowIndex));
+            }
+            else
+            {
+                if(lista_dados_ocorrencias != null)
+                    if (gridDados.CurrentCell != null)
+                        preencherDadosOcorrenciaSelecionada(lista_dados_ocorrencias.ElementAt(gridDados.CurrentCell.RowIndex));
+            }
+                
+        } //gridDados_SelectionChanged(object sender, EventArgs e)
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            salvarBenchmarks();
         } //btnSalvar_Click(object sender, EventArgs e)
 
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the comboAlgoritmo control.
+        /// Alguns algoritmos só possuem ordem decrescente.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void comboAlgoritmo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboAlgoritmo.Text.Equals("Heap Sort (HPST)"))

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CsvHelper;
 using CSharpTest.Net.Collections;
@@ -111,11 +109,6 @@ namespace Ocorrências_Aeronáuticas
             //Cria a árvore B+ a ser utilizada no programa com os dados lidos dos arquivos CSV
             criaArvore(dicionario);
         } //lerCSV()
-
-        public static void escreverResultados(TIPO_SORT tipo_sort, TIPO_DADO_SORT tipo_dado_sort, int qtde_dados, float tempo_ms)
-        {
-            //?
-        } //escreverResultados()
 
         /// <summary>
         /// Cria a árvore à partir dos dados lidos do CSV
