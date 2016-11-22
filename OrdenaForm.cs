@@ -54,7 +54,7 @@ namespace Ocorrências_Aeronáuticas
         {
             if (comboAlgoritmo.Text.Equals("Bubble Sort (BBST)")) //Bubble Sort
             {
-                if (comboCampo.Text.Equals("codigo_ocorrencia"))
+                if (comboCampo.Text.Equals("código da ocorrência"))
                 {
                     Stopwatch sw = new Stopwatch();
 
@@ -68,7 +68,7 @@ namespace Ocorrências_Aeronáuticas
 
                     Console.WriteLine("time: " + sw.Elapsed);
 
-                    preencherTempoExecucao("Bubble Sort (BBST)", lista_ordenada.Count, "codigo_ocorrencia", checkDecrescente.Checked, sw.ElapsedMilliseconds);
+                    preencherTempoExecucao("Bubble Sort (BBST)", lista_ordenada.Count, "código da ocorrência", checkDecrescente.Checked, sw.ElapsedMilliseconds);
                     preencherGridListaOcorrencias(lista_ordenada);
                 }//if
                 if (comboCampo.Text.Equals("localidade"))
@@ -91,7 +91,7 @@ namespace Ocorrências_Aeronáuticas
             }//if
             if (comboAlgoritmo.Text.Equals("Insertion Sort com Busca Linear (ISBL)")) //Insertion Sort
             {
-                if (comboCampo.Text.Equals("codigo_ocorrencia"))
+                if (comboCampo.Text.Equals("código da ocorrência"))
                 {
                     Stopwatch sw = new Stopwatch();
 
@@ -103,7 +103,7 @@ namespace Ocorrências_Aeronáuticas
 
                     Console.WriteLine("time: " + sw.Elapsed);
 
-                    preencherTempoExecucao("Insertion Sort com Busca Linear (ISBL)", lista_ordenada.Count, "codigo_ocorrencia", checkDecrescente.Checked, sw.ElapsedMilliseconds);
+                    preencherTempoExecucao("Insertion Sort com Busca Linear (ISBL)", lista_ordenada.Count, "código da ocorrência", checkDecrescente.Checked, sw.ElapsedMilliseconds);
                     preencherGridListaOcorrencias(lista_ordenada);
                 }
                 if (comboCampo.Text.Equals("localidade"))
@@ -124,7 +124,7 @@ namespace Ocorrências_Aeronáuticas
             } //if
             if (comboAlgoritmo.Text.Equals("Quick Sort Randomizado (QSRM)")) //Quick Sort
             {
-                if (comboCampo.Text.Equals("codigo_ocorrencia"))
+                if (comboCampo.Text.Equals("código da ocorrência"))
                 {
                     Stopwatch sw = new Stopwatch();
 
@@ -136,7 +136,7 @@ namespace Ocorrências_Aeronáuticas
 
                     Console.WriteLine("time: " + sw.Elapsed);
 
-                    preencherTempoExecucao("Quick Sort Randomizado (QSRM)", lista_ordenada.Count, "codigo_ocorrencia", checkDecrescente.Checked, sw.ElapsedMilliseconds);
+                    preencherTempoExecucao("Quick Sort Randomizado (QSRM)", lista_ordenada.Count, "código da ocorrência", checkDecrescente.Checked, sw.ElapsedMilliseconds);
                     preencherGridListaOcorrencias(lista_ordenada);
                 }
                 if (comboCampo.Text.Equals("localidade"))
@@ -157,7 +157,7 @@ namespace Ocorrências_Aeronáuticas
             }//if
             if (comboAlgoritmo.Text.Equals("Shell Sort (SHST)")) //Shell sort (apenas decrescente)
             {
-                if (comboCampo.Text.Equals("codigo_ocorrencia"))
+                if (comboCampo.Text.Equals("código da ocorrência"))
                 {
                     Stopwatch sw = new Stopwatch();
 
@@ -169,7 +169,7 @@ namespace Ocorrências_Aeronáuticas
 
                     Console.WriteLine("time: " + sw.Elapsed);
 
-                    preencherTempoExecucao("Shell Sort (SHST)", lista_ordenada.Count, "codigo_ocorrencia", checkDecrescente.Checked, sw.ElapsedMilliseconds);
+                    preencherTempoExecucao("Shell Sort (SHST)", lista_ordenada.Count, "código da ocorrência", checkDecrescente.Checked, sw.ElapsedMilliseconds);
                     preencherGridListaOcorrencias(lista_ordenada);
                 }
                 if (comboCampo.Text.Equals("localidade"))
@@ -190,7 +190,7 @@ namespace Ocorrências_Aeronáuticas
             }
             if (comboAlgoritmo.Text.Equals("Heap Sort (HPST)")) //Heap Sort (apenas decrescente)
             {
-                if (comboCampo.Text.Equals("codigo_ocorrencia"))
+                if (comboCampo.Text.Equals("código da ocorrência"))
                 {
                     Stopwatch sw = new Stopwatch();
 
@@ -202,7 +202,7 @@ namespace Ocorrências_Aeronáuticas
 
                     Console.WriteLine("time: " + sw.Elapsed);
 
-                    preencherTempoExecucao("Heap Sort (HPST)", lista_ordenada.Count, "codigo_ocorrencia", checkDecrescente.Checked, sw.ElapsedMilliseconds);
+                    preencherTempoExecucao("Heap Sort (HPST)", lista_ordenada.Count, "código da ocorrência", checkDecrescente.Checked, sw.ElapsedMilliseconds);
                     preencherGridListaOcorrencias(lista_ordenada);
                 }
                 if (comboCampo.Text.Equals("localidade"))

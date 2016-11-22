@@ -442,6 +442,20 @@ namespace Ocorrências_Aeronáuticas
             else
                 MessageBox.Show("A lista não pode estar vazia", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private void btnAjuda_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "Aerosafe - Estatísticas de ocorrências aeronáuticas no Brasil\r\n\r\n"+
+                "Membros: \r\n"+
+                " Jefferson Guimarães\r\n"+
+                " Vinícius Soares\r\n"+
+                " Yuri Escalianti\r\n\r\n"+
+                "Classificação e Pesquisa de Dados - Orientador: Leandro Krug Wives\r\n" +
+                "Instituto de Informática - UFRGS\r\n" +
+                "2016"+
+                "", "Sobre", MessageBoxButtons.OK, MessageBoxIcon.Question);
+        }
     }//class
 
     /// <summary>

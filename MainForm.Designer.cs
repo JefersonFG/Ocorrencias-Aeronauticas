@@ -39,7 +39,7 @@
             this.comboOcorrencias = new System.Windows.Forms.ComboBox();
             this.labelOcorrencias = new System.Windows.Forms.Label();
             this.checkHamburger = new System.Windows.Forms.CheckBox();
-            this.btnConfig = new System.Windows.Forms.Button();
+            this.btnAjuda = new System.Windows.Forms.Button();
             this.btnPesquisar = new System.Windows.Forms.Button();
             this.btnOrdenar = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -169,16 +169,17 @@
             this.checkHamburger.UseVisualStyleBackColor = true;
             this.checkHamburger.CheckedChanged += new System.EventHandler(this.checkHamburger_CheckedChanged);
             // 
-            // btnConfig
+            // btnAjuda
             // 
-            this.btnConfig.BackgroundImage = global::Ocorrências_Aeronáuticas.Properties.Resources.config;
-            this.btnConfig.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnConfig.Location = new System.Drawing.Point(742, 12);
-            this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(30, 30);
-            this.btnConfig.TabIndex = 3;
-            this.btnConfig.UseVisualStyleBackColor = true;
-            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
+            this.btnAjuda.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnAjuda.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAjuda.Location = new System.Drawing.Point(742, 12);
+            this.btnAjuda.Name = "btnAjuda";
+            this.btnAjuda.Size = new System.Drawing.Size(30, 30);
+            this.btnAjuda.TabIndex = 3;
+            this.btnAjuda.Text = "?";
+            this.btnAjuda.UseVisualStyleBackColor = true;
+            this.btnAjuda.Click += new System.EventHandler(this.btnAjuda_Click);
             // 
             // btnPesquisar
             // 
@@ -216,11 +217,13 @@
             this.Controls.Add(this.comboSelecioneCidade);
             this.Controls.Add(this.labelSelecioneCidade);
             this.Controls.Add(this.checkHamburger);
-            this.Controls.Add(this.btnConfig);
+            this.Controls.Add(this.btnAjuda);
             this.Controls.Add(this.gmapControl);
             this.Controls.Add(this.btnPesquisar);
             this.Controls.Add(this.textPesquisar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ocorrências Aeronáuticas";
@@ -235,7 +238,7 @@
         private System.Windows.Forms.TextBox textPesquisar;
         private System.Windows.Forms.Button btnPesquisar;
         private GMap.NET.WindowsForms.GMapControl gmapControl;
-        private System.Windows.Forms.Button btnConfig;
+        private System.Windows.Forms.Button btnAjuda;
         private System.Windows.Forms.CheckBox checkHamburger;
         private System.Windows.Forms.Label labelSelecioneCidade;
         private System.Windows.Forms.ComboBox comboSelecioneCidade;
