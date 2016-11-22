@@ -9,6 +9,9 @@ using CSharpTest.Net.Serialization;
 
 namespace Ocorrências_Aeronáuticas
 {
+    /// <summary>
+    /// Classe que gerencia operações no disco, como leitura de dados e armazenamento de dados na árvore B+
+    /// </summary>
     public static class Persistencia
     {
         public static string path_btree { get; set; }
